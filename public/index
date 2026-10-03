@@ -1,0 +1,2938 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>FinancersLot — Free Financial Calculators & Document Generators</title>
+  <meta name="description" content="Instant, free financial calculators and document generators. 60+ tools for car loans, seller financing, mortgages, zakat, invoice factoring, and tax PDF documents." />
+  <meta name="keywords" content="finance calculator, car loan calculator, seller financing calculator, reverse mortgage calculator, zakat calculator, tax invoice generator, rent receipt generator, salary slip generator" />
+  <meta name="author" content="FinancersLot" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+  <!-- Canonical & OpenGraph Meta Tags -->
+  <link rel="canonical" id="canonical-url" href="https://financerslot.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="FinancersLot" />
+  <meta property="og:title" id="og-title" content="FinancersLot — Free Financial Calculators & Document Generators" />
+  <meta property="og:description" id="og-desc" content="Instant, private financial calculators and document generators. 100% in-browser calculations." />
+  <meta property="og:url" id="og-url" content="https://financerslot.com/" />
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" id="twitter-title" content="FinancersLot — Free Financial Calculators & Document Generators" />
+  <meta name="twitter:description" id="twitter-desc" content="60+ free financial tools & document generators. 100% in-browser." />
+
+  <!-- Dynamic JSON-LD Schema Script Container -->
+  <script type="application/ld+json" id="json-ld-schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "FinancersLot",
+    "url": "https://financerslot.com/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://financerslot.com/#/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+
+  <!-- CDN Pinned Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    /* ==========================================================================
+       1. CSS DESIGN SYSTEM & THEME TOKENS
+       ========================================================================== */
+    :root {
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+      /* Light Theme Palette */
+      --bg-body: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --bg-card: #ffffff;
+      --border-color: #e2e8f0;
+      --border-hover: #cbd5e1;
+
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-inverse: #ffffff;
+
+      --accent-primary: #4f46e5;
+      --accent-hover: #4338ca;
+      --accent-light: #eef2ff;
+      --accent-ring: rgba(79, 70, 229, 0.25);
+
+      --color-green: #10b981;
+      --color-green-light: #ecfdf5;
+      --color-amber: #f59e0b;
+      --color-amber-light: #fffbeb;
+      --color-red: #ef4444;
+
+      /* Category Tints */
+      --tint-vehicle: #eef2ff;
+      --tint-vehicle-border: #c7d2fe;
+      --tint-equipment: #ecfdf5;
+      --tint-equipment-border: #a7f3d0;
+      --tint-recreation: #fff7ed;
+      --tint-recreation-border: #fed7aa;
+      --tint-home: #f0fdf4;
+      --tint-home-border: #bbf7d0;
+      --tint-business: #f5f3ff;
+      --tint-business-border: #ddd6fe;
+      --tint-personal: #fef2f2;
+      --tint-personal-border: #fecaca;
+
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-full: 9999px;
+
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root[data-theme="system"], :root:not([data-theme="light"]) {
+        --bg-body: #090d16;
+        --bg-surface: #111827;
+        --bg-subtle: #1f2937;
+        --bg-card: #111827;
+        --border-color: #1f2937;
+        --border-hover: #374151;
+
+        --text-main: #f9fafb;
+        --text-muted: #9ca3af;
+        --text-inverse: #090d16;
+
+        --accent-primary: #6366f1;
+        --accent-hover: #818cf8;
+        --accent-light: rgba(99, 102, 241, 0.15);
+        --accent-ring: rgba(99, 102, 241, 0.35);
+
+        --color-green: #34d399;
+        --color-green-light: rgba(52, 211, 153, 0.12);
+        --color-amber: #fbbf24;
+        --color-amber-light: rgba(251, 191, 36, 0.12);
+
+        --tint-vehicle: rgba(99, 102, 241, 0.1);
+        --tint-vehicle-border: rgba(99, 102, 241, 0.25);
+        --tint-equipment: rgba(52, 211, 153, 0.1);
+        --tint-equipment-border: rgba(52, 211, 153, 0.25);
+        --tint-recreation: rgba(251, 146, 60, 0.1);
+        --tint-recreation-border: rgba(251, 146, 60, 0.25);
+        --tint-home: rgba(16, 185, 129, 0.1);
+        --tint-home-border: rgba(16, 185, 129, 0.25);
+        --tint-business: rgba(168, 85, 247, 0.1);
+        --tint-business-border: rgba(168, 85, 247, 0.25);
+        --tint-personal: rgba(244, 63, 94, 0.1);
+        --tint-personal-border: rgba(244, 63, 94, 0.25);
+
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg-body: #090d16;
+      --bg-surface: #111827;
+      --bg-subtle: #1f2937;
+      --bg-card: #111827;
+      --border-color: #1f2937;
+      --border-hover: #374151;
+
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --text-inverse: #090d16;
+
+      --accent-primary: #6366f1;
+      --accent-hover: #818cf8;
+      --accent-light: rgba(99, 102, 241, 0.15);
+      --accent-ring: rgba(99, 102, 241, 0.35);
+
+      --color-green: #34d399;
+      --color-green-light: rgba(52, 211, 153, 0.12);
+      --color-amber: #fbbf24;
+      --color-amber-light: rgba(251, 191, 36, 0.12);
+
+      --tint-vehicle: rgba(99, 102, 241, 0.12);
+      --tint-vehicle-border: rgba(99, 102, 241, 0.35);
+      --tint-equipment: rgba(52, 211, 153, 0.12);
+      --tint-equipment-border: rgba(52, 211, 153, 0.35);
+      --tint-recreation: rgba(251, 146, 60, 0.12);
+      --tint-recreation-border: rgba(251, 146, 60, 0.35);
+      --tint-home: rgba(16, 185, 129, 0.12);
+      --tint-home-border: rgba(16, 185, 129, 0.35);
+      --tint-business: rgba(168, 85, 247, 0.12);
+      --tint-business-border: rgba(168, 85, 247, 0.35);
+      --tint-personal: rgba(244, 63, 94, 0.12);
+      --tint-personal-border: rgba(244, 63, 94, 0.35);
+
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Reset & Base Styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; color: inherit; }
+    button { cursor: pointer; border: none; background: none; }
+
+    *:focus-visible {
+      outline: 2px solid var(--accent-primary);
+      outline-offset: 2px;
+    }
+
+    /* Layout Components */
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .justify-center { justify-content: center; }
+    .flex-wrap { flex-wrap: wrap; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .gap-8 { gap: 2rem; }
+
+    .grid { display: grid; }
+    .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    @media (min-width: 640px) { .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 1024px) {
+      .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .lg\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .lg\:grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+
+      .lg\:col-span-1 { grid-column: span 1 / span 1; }
+      .lg\:col-span-2 { grid-column: span 2 / span 2; }
+      .lg\:col-span-3 { grid-column: span 3 / span 3; }
+      .lg\:col-span-4 { grid-column: span 4 / span 4; }
+      .lg\:col-span-5 { grid-column: span 5 / span 5; }
+      .lg\:col-span-6 { grid-column: span 6 / span 6; }
+      .lg\:col-span-7 { grid-column: span 7 / span 7; }
+      .lg\:col-span-8 { grid-column: span 8 / span 8; }
+      .lg\:col-span-9 { grid-column: span 9 / span 9; }
+      .lg\:col-span-10 { grid-column: span 10 / span 10; }
+      .lg\:col-span-11 { grid-column: span 11 / span 11; }
+      .lg\:col-span-12 { grid-column: span 12 / span 12; }
+    }
+
+    /* Buttons & Badges */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      min-height: 44px;
+      padding: 0.625rem 1.25rem;
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+    .btn:active { transform: translateY(1px); }
+
+    .btn-primary {
+      background-color: var(--accent-primary);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    }
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+    .btn-secondary:hover {
+      background-color: var(--bg-subtle);
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-sm {
+      min-height: 36px;
+      font-size: 0.8125rem;
+      padding: 0.375rem 0.875rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      padding: 0.375rem 0.875rem;
+      border-radius: var(--radius-full);
+      background-color: var(--accent-light);
+      color: var(--accent-primary);
+      border: 1px solid rgba(79, 70, 229, 0.18);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Cards */
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-normal);
+    }
+    .card h3 { color: var(--text-main); }
+    .card p { color: var(--text-muted); }
+    .card-hover:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      transition: background-color var(--transition-normal);
+    }
+    [data-theme="dark"] .navbar {
+      background-color: rgba(17, 24, 39, 0.85);
+    }
+
+    .nav-inner {
+      height: 4.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: -0.03em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+    .logo-text {
+      display: inline-flex;
+      align-items: center;
+      letter-spacing: -0.03em;
+    }
+    .logo-ink { color: var(--text-main); }
+    .logo-slot { color: var(--accent-primary); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+    }
+    .nav-links a:hover { color: var(--text-main); }
+
+    /* Mega Menu Dropdown */
+    .mega-menu-trigger { position: relative; }
+    .mega-menu {
+      position: absolute;
+      top: 100%;
+      left: -10rem;
+      width: 54rem;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      padding: 1.75rem;
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 200ms ease, transform 200ms ease;
+      z-index: 150;
+    }
+    .mega-menu-trigger:hover .mega-menu, .mega-menu-trigger:focus-within .mega-menu {
+      display: grid;
+      opacity: 1;
+      transform: translateY(0);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .mega-col-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .mega-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+    }
+    .mega-list a { color: var(--text-main); transition: color var(--transition-fast); }
+    .mega-list a:hover { color: var(--accent-primary); }
+
+    .select-currency {
+      padding: 0.375rem 0.75rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-surface);
+      font-size: 0.875rem;
+      font-weight: 700;
+      min-height: 44px;
+      cursor: pointer;
+    }
+
+    /* Mobile Hamburger Menu */
+    .hamburger-btn {
+      display: none;
+      font-size: 1.5rem;
+      min-height: 44px;
+      min-width: 44px;
+    }
+    @media (max-width: 1023px) {
+      .nav-links { display: none; }
+      .hamburger-btn { display: flex; align-items: center; justify-content: center; }
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 4.5rem;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--bg-surface);
+      z-index: 200;
+      padding: 1.5rem;
+      overflow-y: auto;
+      display: none;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .mobile-drawer.open { display: flex; }
+
+    /* HERO SECTION */
+    .hero-section {
+      padding: 4.5rem 0 5.5rem;
+      position: relative;
+      background-color: var(--bg-body);
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .hero-grid-pattern {
+      position: absolute;
+      inset: 0;
+      background-size: 36px 36px;
+      background-image: 
+        linear-gradient(to right, rgba(203, 213, 225, 0.45) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(203, 213, 225, 0.45) 1px, transparent 1px);
+      mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 85%);
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 85%);
+      pointer-events: none;
+    }
+
+    [data-theme="dark"] .hero-grid-pattern {
+      background-image: 
+        linear-gradient(to right, rgba(51, 65, 85, 0.45) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(51, 65, 85, 0.45) 1px, transparent 1px);
+    }
+
+    .hero-headline {
+      font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+      font-weight: 800;
+      line-height: 1.1;
+      max-width: 50rem;
+      letter-spacing: -0.04em;
+      color: var(--text-main);
+      margin: 0 auto;
+    }
+
+    .hero-search-box {
+      display: flex;
+      align-items: center;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      padding: 0.375rem 0.375rem 0.375rem 1.25rem;
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
+      transition: all var(--transition-fast);
+      min-height: 56px;
+      width: 100%;
+      max-width: 38rem;
+      margin: 0 auto;
+    }
+    .hero-search-box:focus-within {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 4px var(--accent-ring), 0 12px 32px -5px rgba(79, 70, 229, 0.2);
+    }
+    .hero-search-box input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+    .hero-search-btn {
+      background-color: var(--accent-primary);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      padding: 0.625rem 1.5rem;
+      border-radius: var(--radius-full);
+      transition: background-color var(--transition-fast);
+      white-space: nowrap;
+    }
+    .hero-search-btn:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .chip-btn {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.8125rem;
+      padding: 0.375rem 0.875rem;
+      border-radius: var(--radius-full);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+    .chip-btn:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+      transform: translateY(-1px);
+    }
+      border: 1px solid var(--border-color);
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+    }
+
+    .search-dropdown {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      left: 0;
+      right: 0;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
+      max-height: 24rem;
+      overflow-y: auto;
+      z-index: 120;
+      display: none;
+      text-align: left;
+    }
+    .search-dropdown.open { display: block; }
+
+    .search-result-item {
+      padding: 0.875rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: background-color var(--transition-fast);
+    }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover, .search-result-item.selected {
+      background-color: var(--bg-subtle);
+    }
+
+    /* Hero Floating Result Cards */
+    .hero-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      box-shadow: 0 4px 12px -2px rgba(0,0,0,0.06);
+      animation: floatSmooth 6s ease-in-out infinite;
+      transition: transform var(--transition-normal), border-color var(--transition-fast);
+    }
+    .hero-card:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-4px) !important;
+    }
+    .hero-card:nth-child(2) { animation-delay: -1.5s; }
+    .hero-card:nth-child(3) { animation-delay: -3s; }
+    .hero-card:nth-child(4) { animation-delay: -4.5s; }
+
+    @keyframes floatSmooth {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+
+    /* HOW IT WORKS PROCESS CARDS */
+    .step-card {
+      position: relative;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 2rem 1.75rem;
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .step-card:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .step-num-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--accent-primary) 0%, #818cf8 100%);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.125rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+    .step-mini-widget {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 0.875rem 1rem;
+      font-size: 0.8125rem;
+      margin-top: 0.5rem;
+    }
+
+    /* TRUST STRIP */
+    .trust-strip {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      margin: 2rem 0 4rem;
+    }
+
+    /* CATEGORY CARDS WITH TINTS */
+    .cat-card-vehicle { background-color: var(--tint-vehicle); border: 1px solid var(--tint-vehicle-border); }
+    .cat-card-equipment { background-color: var(--tint-equipment); border: 1px solid var(--tint-equipment-border); }
+    .cat-card-recreation { background-color: var(--tint-recreation); border: 1px solid var(--tint-recreation-border); }
+    .cat-card-home { background-color: var(--tint-home); border: 1px solid var(--tint-home-border); }
+    .cat-card-business { background-color: var(--tint-business); border: 1px solid var(--tint-business-border); }
+    .cat-card-personal { background-color: var(--tint-personal); border: 1px solid var(--tint-personal-border); }
+
+    /* POPULAR TOOLS TABBED GRID */
+    .tab-btn {
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      transition: all var(--transition-fast);
+      min-height: 44px;
+    }
+    .tab-btn.active {
+      background-color: var(--accent-primary);
+      color: #ffffff;
+    }
+
+    .tool-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+    }
+    .tool-row:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-1px);
+    }
+
+    /* DOCUMENT SPOTLIGHT DARK PANEL */
+    .dark-spotlight-panel {
+      background-color: #0f172a;
+      color: #ffffff;
+      border-radius: var(--radius-xl);
+      padding: 3.5rem 2.5rem;
+      margin: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mock-doc {
+      background-color: #ffffff;
+      color: #0f172a;
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
+      width: 240px;
+    }
+
+    /* FAQ ACCORDION */
+    .faq-item {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background-color: var(--bg-surface);
+      overflow: hidden;
+      transition: border-color var(--transition-fast);
+    }
+    .faq-item.open { border-color: var(--accent-primary); }
+
+    .faq-question {
+      width: 100%;
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 1.0625rem;
+      text-align: left;
+      min-height: 44px;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1), padding 300ms ease;
+      padding: 0 1.25rem;
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 16rem;
+      padding-bottom: 1.25rem;
+    }
+
+    /* SEO CONTENT BOX & FORMULAS */
+    .seo-content-box {
+      line-height: 1.8;
+      font-size: 0.9375rem;
+      color: var(--text-main);
+    }
+    .seo-content-box h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--text-main);
+    }
+    .seo-content-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 1.25rem 0 0.375rem;
+    }
+    .seo-content-box p { margin-bottom: 0.875rem; color: var(--text-muted); }
+    .seo-content-box ul, .seo-content-box ol { margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-muted); }
+    .seo-content-box li { margin-bottom: 0.375rem; }
+
+    .formula-card {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      font-family: monospace;
+      font-size: 0.9375rem;
+      color: var(--accent-primary);
+      font-weight: 700;
+      margin: 1rem 0;
+    }
+
+    /* Form Controls & Inputs */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-surface);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      transition: border-color var(--transition-fast);
+    }
+    .form-input:focus { border-color: var(--accent-primary); }
+
+    .form-slider {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--border-color);
+      accent-color: var(--accent-primary);
+      cursor: pointer;
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem; }
+    th { background-color: var(--bg-subtle); color: var(--text-muted); font-weight: 700; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-color); }
+    td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-color); }
+
+    @media (min-width: 1024px) {
+      .sticky-results { position: sticky; top: 5.5rem; }
+    }
+
+    /* FOOTER */
+    .footer-accent-line {
+      height: 3px;
+      width: 100%;
+      background: linear-gradient(90deg, #4f46e5 0%, #10b981 50%, #f59e0b 100%);
+    }
+
+    .footer-container {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-color);
+      padding: 4.5rem 0 2.5rem;
+    }
+
+    .footer-col-heading {
+      font-size: 0.875rem;
+      font-weight: 800;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+    .footer-links-list a {
+      transition: color var(--transition-fast), transform var(--transition-fast);
+      display: inline-block;
+    }
+    .footer-links-list a:hover {
+      color: var(--accent-primary);
+      transform: translateX(2px);
+    }
+
+    /* MOBILE RESPONSIVE ENHANCEMENTS */
+    @media (max-width: 640px) {
+      .hero-section { padding: 2.5rem 0 3rem; }
+      .gradient-headline { font-size: 2rem !important; }
+      .search-input-box { padding: 0.625rem 0.875rem; min-height: 48px; }
+      .search-input-box input { font-size: 0.9375rem; }
+      .kbd-chip { display: none; }
+      .dark-spotlight-panel { padding: 2rem 1.25rem; text-align: center; }
+      .dark-spotlight-panel h2 { font-size: 1.625rem !important; }
+      .mock-doc { width: 100%; max-width: 280px; margin: 1.5rem auto 0; }
+      #a4-preview { padding: 1.25rem !important; font-size: 0.875rem; }
+      #a4-preview h2 { font-size: 1.125rem !important; }
+      .footer-container { padding: 3rem 0 2rem; }
+    }
+
+    @media (max-width: 1023px) {
+      .dark-spotlight-panel { text-align: center; }
+      .dark-spotlight-panel .flex-wrap { justify-content: center; }
+    }
+
+    /* Reduced Motion Respect */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .hero-card { animation: none !important; }
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(30px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#/" class="logo">
+        <span style="font-size: 1.5rem;">⚡</span>
+        <span class="logo-text"><span class="logo-ink">Financers</span><span class="logo-slot">Lot</span></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links" aria-label="Main Navigation">
+        <div class="mega-menu-trigger">
+          <a href="#/calculators" style="display: flex; align-items: center; gap: 0.25rem;">
+            Calculators <span style="font-size: 0.75rem;">▼</span>
+          </a>
+
+          <!-- MEGA MENU (4 Columns) -->
+          <div class="mega-menu">
+            <div>
+              <div class="mega-col-title">Vehicle & Trailers</div>
+              <div class="mega-list">
+                <a href="#/tool/toyota-finance-calculator">Toyota Finance</a>
+                <a href="#/tool/audi-finance-calculator">Audi Finance</a>
+                <a href="#/tool/bmw-finance-calculator">BMW Finance</a>
+                <a href="#/tool/car-finance-calculator-bi-weekly">Bi-Weekly Loan</a>
+                <a href="#/tool/john-deere-financing-calculator">John Deere</a>
+                <a href="#/calculators" style="font-weight: 700; color: var(--accent-primary); margin-top: 0.5rem;">View all 29 tools →</a>
+              </div>
+            </div>
+            <div>
+              <div class="mega-col-title">Home & Property</div>
+              <div class="mega-list">
+                <a href="#/tool/seller-financing-calculator">Seller Financing</a>
+                <a href="#/tool/finance-of-america-reverse-mortgage-calculator">Reverse Mortgage</a>
+                <a href="#/tool/roof-financing-calculator">Roof Financing</a>
+                <a href="#/tool/hvac-financing-calculator">HVAC Financing</a>
+                <a href="#/tool/adu-financing-calculator">ADU Construction</a>
+                <a href="#/calculators" style="font-weight: 700; color: var(--accent-primary); margin-top: 0.5rem;">View all 10 tools →</a>
+              </div>
+            </div>
+            <div>
+              <div class="mega-col-title">Business & Commercial</div>
+              <div class="mega-list">
+                <a href="#/tool/invoice-finance-calculator">Invoice Finance</a>
+                <a href="#/tool/asset-finance-calculator">Asset Financing</a>
+                <a href="#/tool/development-finance-calculator">Development Loan</a>
+                <a href="#/tool/supply-chain-finance-calculator">Supply Chain</a>
+                <a href="#/tool/pwc-finance-calculator">Business APR Solver</a>
+                <a href="#/calculators" style="font-weight: 700; color: var(--accent-primary); margin-top: 0.5rem;">View all 6 tools →</a>
+              </div>
+            </div>
+            <div>
+              <div class="mega-col-title">Personal & Learning</div>
+              <div class="mega-list">
+                <a href="#/tool/zoya-finance-zakat-calculator">Zakat Calculator</a>
+                <a href="#/tool/what-is-pmt-in-finance-calculator">PMT Explainer</a>
+                <a href="#/tool/finance-calculator-ti-84">TI-84 TVM Solver</a>
+                <a href="#/tool/personal-finance-club-calculator">Personal Finance Club</a>
+                <a href="#/tool/divorce-finance-calculator">Divorce Settlement</a>
+                <a href="#/calculators" style="font-weight: 700; color: var(--accent-primary); margin-top: 0.5rem;">View all 6 tools →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#/generators">Generators</a>
+        <a href="#/guides">Guides</a>
+        <a href="#/faq">FAQ</a>
+      </nav>
+
+      <!-- Right Controls -->
+      <div class="flex items-center gap-3">
+        <select id="currency-select" class="select-currency" aria-label="Select Currency">
+          <option value="USD">USD ($)</option>
+          <option value="CAD">CAD (CA$)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="INR">INR (₹)</option>
+        </select>
+
+        <button id="theme-toggle" class="btn btn-secondary btn-sm" aria-label="Toggle Theme">
+          🌙 Dark
+        </button>
+
+        <a href="#/calculators" class="btn btn-primary btn-sm">Browse tools</a>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="hamburger-btn" class="hamburger-btn btn-secondary" aria-label="Open Mobile Menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE FULL-SCREEN MENU DRAWER -->
+  <div id="mobile-drawer" class="mobile-drawer">
+    <div class="flex justify-between items-center" style="border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+      <span class="logo"><span>⚡</span><span class="logo-text"><span class="logo-ink">Financers</span><span class="logo-slot">Lot</span></span></span>
+      <button id="close-drawer-btn" style="font-size: 1.5rem;">✕</button>
+    </div>
+    <div class="flex flex-col gap-4" style="font-weight: 700; font-size: 1.125rem;">
+      <a href="#/calculators" onclick="closeDrawer()">Browse 60+ Calculators</a>
+      <a href="#/generators" onclick="closeDrawer()">8 Document Generators</a>
+      <a href="#/guides" onclick="closeDrawer()">Financial Guides</a>
+      <a href="#/faq" onclick="closeDrawer()">FAQ</a>
+      <a href="#/about" onclick="closeDrawer()">About Us</a>
+      <a href="#/contact" onclick="closeDrawer()">Contact Us</a>
+    </div>
+  </div>
+
+  <!-- MAIN APP ROUTER VIEW -->
+  <main id="app-root">
+    <!-- Views rendered dynamically via Router -->
+  </main>
+
+  <!-- MODERN ENHANCED FOOTER -->
+  <div class="footer-accent-line"></div>
+  <footer class="footer-container">
+    <div class="container">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+        
+        <!-- Column 1: Brand & Mission -->
+        <div class="lg:col-span-1 flex flex-col gap-4">
+          <a href="#/" class="logo">
+            <span>⚡</span>
+            <span class="logo-text"><span class="logo-ink">Financers</span><span class="logo-slot">Lot</span></span>
+          </a>
+          <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6;">
+            Every finance tool you need in one slot. Free, instant, and 100% private in-browser calculations.
+          </p>
+          <div style="display: inline-flex; align-items: center; gap: 0.375rem; font-size: 0.75rem; font-weight: 700; color: var(--color-green); background: var(--color-green-light); padding: 0.25rem 0.625rem; border-radius: var(--radius-full); width: fit-content;">
+            🔒 100% Client-Side
+          </div>
+        </div>
+
+        <!-- Column 2: Vehicle & Equipment -->
+        <div class="footer-links-list">
+          <div class="footer-col-heading">Vehicle & Equipment</div>
+          <a href="#/tool/toyota-finance-calculator">Toyota Finance</a>
+          <a href="#/tool/bmw-finance-calculator">BMW Finance</a>
+          <a href="#/tool/ford-finance-calculator">Ford Finance</a>
+          <a href="#/tool/car-finance-calculator-bi-weekly">Bi-Weekly Loan</a>
+          <a href="#/tool/john-deere-financing-calculator">John Deere Equipment</a>
+          <a href="#/tool/bobcat-finance-calculator">Bobcat Financing</a>
+        </div>
+
+        <!-- Column 3: Home & Property -->
+        <div class="footer-links-list">
+          <div class="footer-col-heading">Home & Property</div>
+          <a href="#/tool/seller-financing-calculator">Seller Financing</a>
+          <a href="#/tool/finance-of-america-reverse-mortgage-calculator">Reverse Mortgage</a>
+          <a href="#/tool/roof-financing-calculator">Roof Replacement Loan</a>
+          <a href="#/tool/hvac-financing-calculator">HVAC Financing</a>
+          <a href="#/tool/adu-financing-calculator">ADU Construction</a>
+        </div>
+
+        <!-- Column 4: Business & Generators -->
+        <div class="footer-links-list">
+          <div class="footer-col-heading">Business & Generators</div>
+          <a href="#/tool/invoice-finance-calculator">Invoice Factoring</a>
+          <a href="#/generator/invoice">Tax Invoice PDF</a>
+          <a href="#/generator/rent-receipt">Rent Receipt (HRA)</a>
+          <a href="#/generator/salary-slip">Salary Slip Generator</a>
+          <a href="#/generator/purchase-order">Purchase Order (PO)</a>
+          <a href="#/generator/zakat-summary">Zakat Certificate</a>
+        </div>
+
+        <!-- Column 5: Company & Legal -->
+        <div class="footer-links-list">
+          <div class="footer-col-heading">Company & Legal</div>
+          <a href="#/about">About FinancersLot</a>
+          <a href="#/privacy">Privacy Policy</a>
+          <a href="#/disclaimer">Disclaimer</a>
+          <a href="#/contact">Contact Us</a>
+          <a href="#/faq">FAQ</a>
+        </div>
+
+      </div>
+
+      <div style="border-top: 1px solid var(--border-color); margin-top: 3.5rem; padding-top: 1.5rem; color: var(--text-muted); font-size: 0.8125rem; text-align: center; line-height: 1.6;">
+        <p>All results are estimates for information only, not financial advice. Brand names are used only to describe the type of loan; FinancersLot is not affiliated with any brand.</p>
+        <p style="margin-top: 0.5rem;">© <span id="year-span">2026</span> FinancersLot. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT APP LOGIC -->
+  <script>
+    document.getElementById('year-span').textContent = new Date().getFullYear();
+
+    /* ==========================================================================
+       GLOBAL STATE & CURRENCY CONVERSION
+       ========================================================================== */
+    const state = {
+      currency: 'USD',
+      theme: localStorage.getItem('fin_theme') || 'system',
+      activeTool: null,
+      donutChart: null,
+      lineChart: null,
+      debouncedTimer: null,
+      docItems: [{ desc: 'Financial Consulting & Advisory Services', qty: 1, rate: 1500 }]
+    };
+
+    const currencyData = {
+      USD: { symbol: '$', rate: 1.0, locale: 'en-US' },
+      CAD: { symbol: 'CA$', rate: 1.35, locale: 'en-US' },
+      GBP: { symbol: '£', rate: 0.79, locale: 'en-GB' },
+      INR: { symbol: '₹', rate: 83.5, locale: 'en-IN' }
+    };
+
+    const currencySelect = document.getElementById('currency-select');
+    try {
+      const savedCurr = localStorage.getItem('fin_currency');
+      if (savedCurr && currencyData[savedCurr]) {
+        state.currency = savedCurr;
+        currencySelect.value = savedCurr;
+      }
+    } catch (e) {
+      console.warn('localStorage disabled');
+    }
+
+    currencySelect.addEventListener('change', (e) => {
+      state.currency = e.target.value;
+      try { localStorage.setItem('fin_currency', state.currency); } catch (e) {}
+      updateCurrencyFigures();
+      if (state.activeTool) recalculateTool(state.activeTool);
+    });
+
+    function updateCurrencyFigures() {
+      const curr = currencyData[state.currency];
+      document.querySelectorAll('.currency-symbol').forEach(el => el.textContent = curr.symbol);
+
+      document.querySelectorAll('.count-up').forEach(el => {
+        const baseTarget = parseFloat(el.getAttribute('data-target')) || 0;
+        const decimals = parseInt(el.getAttribute('data-decimals')) || 0;
+        const converted = baseTarget * curr.rate;
+        el.textContent = new Intl.NumberFormat(curr.locale, { maximumFractionDigits: decimals, minimumFractionDigits: decimals }).format(converted);
+      });
+    }
+
+    function formatCurrency(amt) {
+      if (isNaN(amt) || !isFinite(amt)) return `${currencyData[state.currency].symbol}0`;
+      const curr = currencyData[state.currency];
+      return new Intl.NumberFormat(curr.locale, { style: 'currency', currency: state.currency, maximumFractionDigits: 2, minimumFractionDigits: 0 }).format(amt * curr.rate);
+    }
+
+    function formatNumber(num) {
+      if (isNaN(num) || !isFinite(num)) return '0';
+      const curr = currencyData[state.currency];
+      return new Intl.NumberFormat(curr.locale, { maximumFractionDigits: 2 }).format(num * curr.rate);
+    }
+
+    // Theme Switcher
+    const themeBtn = document.getElementById('theme-toggle');
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeBtn.textContent = '☀️ Light';
+      } else if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeBtn.textContent = '🌙 Dark';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'system');
+        themeBtn.textContent = '🌙 Dark';
+      }
+    }
+    themeBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem('fin_theme', next); } catch (e) {}
+      applyTheme(next);
+      if (state.activeTool) renderToolPageView(document.getElementById('app-root'), state.activeTool.slug);
+    });
+
+    /* DYNAMIC SEO MANAGER FOR GOOGLE & LLMs / AI OVERVIEWS */
+    function setSEO({ title, description, path = '', schemaData = null }) {
+      document.title = title;
+      
+      const fullUrl = `https://financerslot.com/#${path}`;
+      document.getElementById('canonical-url').setAttribute('href', fullUrl);
+      
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', description);
+
+      document.getElementById('og-title').setAttribute('content', title);
+      document.getElementById('og-desc').setAttribute('content', description);
+      document.getElementById('og-url').setAttribute('content', fullUrl);
+
+      document.getElementById('twitter-title').setAttribute('content', title);
+      document.getElementById('twitter-desc').setAttribute('content', description);
+
+      // Inject structured JSON-LD schema
+      const schemaScript = document.getElementById('json-ld-schema');
+      if (schemaScript) {
+        const schemaObj = schemaData || {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": title,
+          "description": description,
+          "url": fullUrl
+        };
+        schemaScript.textContent = JSON.stringify(schemaObj);
+      }
+    }
+
+    /* Keyboard shortcut for search */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        const inp = document.getElementById('hero-search-input');
+        if (inp) inp.focus();
+      }
+    });
+
+    /* Toast Notification Engine */
+    function showToast(message, type = 'success') {
+      let toastContainer = document.getElementById('toast-container');
+      if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        toastContainer.style.cssText = 'position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none;';
+        document.body.appendChild(toastContainer);
+      }
+
+      const toast = document.createElement('div');
+      toast.className = 'card';
+      toast.style.cssText = 'background: var(--bg-surface); border: 1px solid var(--accent-primary); box-shadow: var(--shadow-lg); padding: 0.75rem 1.25rem; border-radius: var(--radius-md); font-weight: 700; font-size: 0.875rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem; pointer-events: auto; animation: slideInRight 300ms ease;';
+      toast.innerHTML = `<span>⚡</span><span>${message}</span>`;
+      toastContainer.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        toast.style.transition = 'all 300ms ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    /* Step 1 Live Micro-Search */
+    function onStep1SearchInput(val) {
+      const container = document.getElementById('how-step1-chips');
+      if (!container) return;
+      const q = val.toLowerCase().trim();
+      if (!q) {
+        container.innerHTML = `
+          <a href="#/tool/toyota-finance-calculator" class="chip-btn" style="font-size: 0.6875rem; padding: 0.15rem 0.5rem;">🚗 Toyota</a>
+          <a href="#/tool/seller-financing-calculator" class="chip-btn" style="font-size: 0.6875rem; padding: 0.15rem 0.5rem;">🏠 Seller Finance</a>
+          <a href="#/generator/invoice" class="chip-btn" style="font-size: 0.6875rem; padding: 0.15rem 0.5rem;">📄 Invoice</a>
+        `;
+        return;
+      }
+      const filteredTools = TOOLS_DATA.filter(t => t.title.toLowerCase().includes(q) || t.category.toLowerCase().includes(q)).slice(0, 3);
+      const filteredGens = GENERATORS.filter(g => g.title.toLowerCase().includes(q)).slice(0, 2);
+      
+      let html = '';
+      filteredTools.forEach(t => {
+        html += `<a href="#/tool/${t.slug}" class="chip-btn" style="font-size: 0.6875rem; padding: 0.15rem 0.5rem;">⚡ ${t.title.split(' ')[0]}</a>`;
+      });
+      filteredGens.forEach(g => {
+        html += `<a href="#/generator/${g.slug}" class="chip-btn" style="font-size: 0.6875rem; padding: 0.15rem 0.5rem;">📄 ${g.title.split(' ')[0]}</a>`;
+      });
+
+      if (!html) {
+        html = `<span style="font-size: 0.6875rem; color: var(--text-muted);">No quick match</span>`;
+      }
+      container.innerHTML = html;
+    }
+
+    /* Step 2 Live Micro Slider Math */
+    function onStep2SliderChange(val) {
+      const price = parseFloat(val) || 25000;
+      document.getElementById('how-step2-val').textContent = formatCurrency(price);
+      
+      // Amortized payment formula for 5.5% APR over 60 mos
+      const r = (0.055) / 12;
+      const pmt = (price * r) / (1 - Math.pow(1 + r, -60));
+      document.getElementById('how-step2-pmt').textContent = formatCurrency(pmt) + '/mo';
+
+      // Step 3 bar update dynamically based on price ratio
+      const totalPaid = pmt * 60;
+      const pPct = Math.min(95, Math.max(50, Math.round((price / totalPaid) * 100)));
+      const iPct = 100 - pPct;
+
+      const bar1 = document.getElementById('how-step3-bar1');
+      const bar2 = document.getElementById('how-step3-bar2');
+      const pct1 = document.getElementById('how-step3-pct1');
+      const pct2 = document.getElementById('how-step3-pct2');
+
+      if (bar1 && bar2) {
+        bar1.style.width = pPct + '%';
+        bar2.style.width = iPct + '%';
+        if (pct1) pct1.textContent = pPct + '%';
+        if (pct2) pct2.textContent = iPct + '%';
+      }
+    }
+
+    /* Step 3 Toggle View */
+    let step3State = 0;
+    function toggleStep3View() {
+      step3State = (step3State + 1) % 2;
+      const label = document.getElementById('how-step3-label');
+      if (label) {
+        label.textContent = step3State === 0 ? '60 Months Schedule' : 'Bi-Weekly Schedule';
+      }
+      showToast(step3State === 0 ? 'Switched to Monthly Amortization View' : 'Switched to Accelerated Bi-Weekly Amortization View');
+    }
+
+    /* Step 4 Demo Exports */
+    function triggerStep4DemoPdf() {
+      showToast('📄 Demo A4 Loan Amortization PDF Generated!');
+    }
+    function triggerStep4DemoCsv() {
+      showToast('📊 Sample Loan Schedule CSV Exported!');
+    }
+
+    /* ==========================================================================
+       CALCULATION ENGINES (13 Engines)
+       ========================================================================== */
+    function engineAmortizedLoan(params) {
+      const price = parseFloat(params.price) || 0;
+      const down = parseFloat(params.down) || 0;
+      const tradeIn = parseFloat(params.tradeIn) || 0;
+      const payoff = parseFloat(params.payoff) || 0;
+      const taxPct = parseFloat(params.taxPct) || 0;
+      const fees = parseFloat(params.fees) || 0;
+      const apr = parseFloat(params.apr) || 0;
+      const termVal = parseFloat(params.term) || 60;
+      const termUnit = params.termUnit || 'months';
+      const frequency = params.frequency || 'monthly';
+      const residual = parseFloat(params.residual) || 0;
+
+      const taxAmount = price * (taxPct / 100);
+      const netTradeIn = tradeIn - payoff;
+      const amountFinanced = Math.max(0, price + taxAmount + fees - down - netTradeIn);
+
+      let freqPerYear = 12;
+      if (frequency === 'biweekly') freqPerYear = 26;
+      if (frequency === 'weekly') freqPerYear = 52;
+
+      const totalMonths = termUnit === 'years' ? termVal * 12 : termVal;
+      const totalPeriods = Math.round((totalMonths / 12) * freqPerYear);
+
+      const r = (apr / 100) / freqPerYear;
+      const residualPV = residual > 0 && totalPeriods > 0 ? residual / Math.pow(1 + r, totalPeriods) : 0;
+      const amortizablePrincipal = Math.max(0, amountFinanced - residualPV);
+
+      let pmt = 0;
+      if (totalPeriods > 0) {
+        pmt = r === 0 ? amortizablePrincipal / totalPeriods : (amortizablePrincipal * r) / (1 - Math.pow(1 + r, -totalPeriods));
+      }
+
+      const totalPayments = pmt * totalPeriods + residual;
+      const totalInterest = Math.max(0, totalPayments - amountFinanced);
+      const totalCost = price + taxAmount + fees + totalInterest;
+
+      let balance = amountFinanced;
+      const schedule = [];
+      for (let i = 1; i <= totalPeriods; i++) {
+        const interestForPeriod = balance * r;
+        let principalForPeriod = pmt - interestForPeriod;
+        if (i === totalPeriods && residual === 0) principalForPeriod = balance;
+        balance = Math.max(0, balance - principalForPeriod);
+        schedule.push({ period: i, payment: pmt, interest: interestForPeriod, principal: principalForPeriod, balance: balance });
+      }
+
+      return { amountFinanced, pmt, totalInterest, totalCost, schedule };
+    }
+
+    function engineSellerFinancing(params) {
+      const price = parseFloat(params.price) || 300000;
+      const down = parseFloat(params.down) || 60000;
+      const rate = parseFloat(params.rate) || 6.5;
+      const amortYears = parseFloat(params.amortYears) || 30;
+      const balloonYears = parseFloat(params.balloonYears) || 5;
+
+      const loanAmt = Math.max(0, price - down);
+      const r = (rate / 100) / 12;
+      const totalAmortMonths = amortYears * 12;
+      const balloonMonths = balloonYears * 12;
+
+      const pmt = r === 0 ? loanAmt / totalAmortMonths : (loanAmt * r) / (1 - Math.pow(1 + r, -totalAmortMonths));
+      let balance = loanAmt;
+      const schedule = [];
+
+      for (let i = 1; i <= balloonMonths; i++) {
+        const interest = balance * r;
+        const principal = pmt - interest;
+        balance = Math.max(0, balance - principal);
+        schedule.push({ period: i, payment: pmt, interest, principal, balance });
+      }
+
+      const balloonBalance = schedule[balloonMonths - 1] ? schedule[balloonMonths - 1].balance : 0;
+      const totalInterest = (pmt * balloonMonths + balloonBalance) - loanAmt;
+
+      return { amountFinanced: loanAmt, pmt, totalInterest, totalCost: balloonBalance, schedule };
+    }
+
+    function engineReverseMortgage(params) {
+      const homeValue = parseFloat(params.homeValue) || 400000;
+      const age = parseFloat(params.age) || 68;
+      const rate = parseFloat(params.rate) || 6.0;
+      const limit = parseFloat(params.limit) || 1149825;
+      const existingMortgage = parseFloat(params.existingMortgage) || 50000;
+
+      const maxEligible = Math.min(homeValue, limit);
+      let plf = Math.max(0.15, Math.min(0.75, 0.35 + (age - 62) * 0.012 - (rate - 5.0) * 0.03));
+      const grossLimit = maxEligible * plf;
+      const netProceeds = Math.max(0, grossLimit - existingMortgage);
+      const monthlyPayout = netProceeds / (Math.max(5, 95 - age) * 12);
+
+      return { amountFinanced: grossLimit, pmt: monthlyPayout, totalInterest: netProceeds, totalCost: homeValue, schedule: [] };
+    }
+
+    function engineFinanceCharge(params) {
+      const amount = parseFloat(params.amount) || 100000;
+      const rate = parseFloat(params.rate) || 6.5;
+      const termYears = parseFloat(params.termYears) || 15;
+      const points = parseFloat(params.points) || 1.0;
+      const fees = parseFloat(params.fees) || 1500;
+
+      const totalPrepaid = amount * (points / 100) + fees;
+      const netProceeds = amount - totalPrepaid;
+      const months = termYears * 12;
+      const r = (rate / 100) / 12;
+      const pmt = r === 0 ? amount / months : (amount * r) / (1 - Math.pow(1 + r, -months));
+
+      let minRate = 0, maxRate = 0.5;
+      for (let i = 0; i < 40; i++) {
+        const testR = ((minRate + maxRate) / 2) / 12;
+        const pv = testR === 0 ? pmt * months : pmt * (1 - Math.pow(1 + testR, -months)) / testR;
+        if (pv > netProceeds) minRate = (minRate + maxRate) / 2; else maxRate = (minRate + maxRate) / 2;
+      }
+      const apr = ((minRate + maxRate) / 2) * 100;
+
+      return { amountFinanced: netProceeds, pmt, totalInterest: (pmt * months) - netProceeds, totalCost: apr, schedule: [] };
+    }
+
+    function engineInvoiceFinance(params) {
+      const val = parseFloat(params.invoiceVal) || 50000;
+      const adv = parseFloat(params.advanceRate) || 85;
+      const fee = parseFloat(params.factoringFee) || 2.5;
+      const days = parseFloat(params.daysToPay) || 45;
+
+      const cash = val * (adv / 100);
+      const totalFee = val * (fee / 100);
+      const rebate = val - cash - totalFee;
+      const eac = (totalFee / cash) * (365 / days) * 100;
+
+      return { amountFinanced: cash, pmt: rebate, totalInterest: totalFee, totalCost: eac, schedule: [] };
+    }
+
+    function engineZakat(params) {
+      const cash = parseFloat(params.cash) || 0;
+      const gold = parseFloat(params.goldGrams) || 0;
+      const silver = parseFloat(params.silverGrams) || 0;
+      const inv = parseFloat(params.investments) || 0;
+      const liab = parseFloat(params.liabilities) || 0;
+
+      const total = cash + (gold * 75) + (silver * 0.85) + inv;
+      const net = Math.max(0, total - liab);
+      const nisab = 612.36 * 0.85;
+      const zakat = net >= nisab ? net * 0.025 : 0;
+
+      return { amountFinanced: net, pmt: zakat, totalInterest: nisab, totalCost: total, schedule: [] };
+    }
+
+    /* ==========================================================================
+       60+ TOOLS REGISTRY DATA
+       ========================================================================== */
+    const TOOLS_DATA = [
+      // VEHICLE FINANCING (21)
+      { slug: 'toyota-finance-calculator', title: 'Toyota Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 32000, apr: 4.99, term: 60 }, desc: 'Estimate loan payments and interest for Toyota vehicles.' },
+      { slug: 'audi-finance-calculator', title: 'Audi Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 55000, apr: 5.99, term: 60 }, desc: 'Calculate monthly payments for Audi luxury cars.' },
+      { slug: 'bmw-finance-calculator', title: 'BMW Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 62000, apr: 5.49, term: 60 }, desc: 'Calculate financing costs for BMW sedans and SAVs.' },
+      { slug: 'ford-finance-calculator', title: 'Ford Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 45000, apr: 6.29, term: 72 }, desc: 'Plan loan payments for Ford F-150 and SUVs.' },
+      { slug: 'hyundai-finance-calculator', title: 'Hyundai Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 28000, apr: 4.49, term: 60 }, desc: 'Calculate auto loan terms for Hyundai models.' },
+      { slug: 'kia-finance-calculator', title: 'Kia Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 27000, apr: 4.79, term: 60 }, desc: 'Estimate monthly financing costs for Kia vehicles.' },
+      { slug: 'lexus-finance-calculator', title: 'Lexus Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 58000, apr: 5.29, term: 60 }, desc: 'Luxury car loan payment estimator for Lexus.' },
+      { slug: 'lamborghini-finance-calculator', title: 'Lamborghini Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 280000, apr: 7.99, term: 60, residual: 80000 }, desc: 'Exotic car financing with balloon residual payments.' },
+      { slug: 'mercedes-benz-finance-calculator', title: 'Mercedes Benz Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 65000, apr: 5.79, term: 60 }, desc: 'Estimate terms for Mercedes-Benz luxury models.' },
+      { slug: 'nissan-finance-calculator', title: 'Nissan Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 29000, apr: 5.19, term: 60 }, desc: 'Calculate auto loan payments for Nissan cars.' },
+      { slug: 'porsche-finance-calculator', title: 'Porsche Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 120000, apr: 6.49, term: 60 }, desc: 'Calculate loan payments for Porsche sports cars.' },
+      { slug: 'subaru-finance-calculator', title: 'Subaru Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 31000, apr: 4.99, term: 60 }, desc: 'Plan financing for Subaru AWD crossovers.' },
+      { slug: 'land-rover-finance-calculator', title: 'Land Rover Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 85000, apr: 6.99, term: 60 }, desc: 'Calculate Range Rover luxury SUV financing.' },
+      { slug: 'mazda-finance-calculator', title: 'Mazda Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 30000, apr: 4.69, term: 60 }, desc: 'Estimate financing costs for Mazda CX-5 and CX-30.' },
+      { slug: 'volkswagen-finance-calculator', title: 'Volkswagen Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 33000, apr: 5.29, term: 60 }, desc: 'Calculate VW loan payments and trade-in value.' },
+      { slug: 'volvo-finance-calculator', title: 'Volvo Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 52000, apr: 5.49, term: 60 }, desc: 'Estimate loan payments for Volvo vehicles.' },
+      { slug: 'classic-car-financing-calculator', title: 'Classic Car Financing Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 45000, apr: 7.49, term: 84 }, desc: 'Calculate extended vintage car loan payments.' },
+      { slug: 'collector-car-financing-calculator', title: 'Collector Car Financing Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 95000, apr: 7.29, term: 84 }, desc: 'Finance high-value collector vehicles.' },
+      { slug: 'exotic-car-financing-calculator', title: 'Exotic Car Financing Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 220000, apr: 7.99, term: 60, residual: 60000 }, desc: 'Exotic vehicle loan calculator with residual options.' },
+      { slug: 'van-finance-calculator', title: 'Van Finance Calculator', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 42000, apr: 6.49, term: 60 }, desc: 'Commercial van loan financing calculator.' },
+      { slug: 'car-finance-calculator-bi-weekly', title: 'Car Finance Calculator Bi Weekly', category: 'Vehicle Financing', engine: 'amortized_loan', defaults: { price: 35000, apr: 5.99, term: 60, frequency: 'biweekly' }, desc: 'Accelerated bi-weekly payments and interest savings.' },
+
+      // EQUIPMENT & TRAILERS (8)
+      { slug: 'john-deere-financing-calculator', title: 'John Deere Financing Calculator', category: 'Equipment & Trailers', engine: 'amortized_loan', defaults: { price: 65000, apr: 5.29, term: 60 }, desc: 'Tractor and agricultural equipment financing payments.' },
+      { slug: 'kubota-finance-calculator', title: 'Kubota Finance Calculator', category: 'Equipment & Trailers', engine: 'amortized_loan', defaults: { price: 38000, apr: 4.99, term: 60 }, desc: 'Kubota tractor and utility vehicle financing.' },
+      { slug: 'bobcat-finance-calculator', title: 'Bobcat Finance Calculator', category: 'Equipment & Trailers', engine: 'amortized_loan', defaults: { price: 55000, apr: 5.99, term: 60 }, desc: 'Compact construction equipment financing.' },
+      { slug: 'excavator-finance-calculator', title: 'Excavator Finance Calculator', category: 'Equipment & Trailers', engine: 'amortized_loan', defaults: { price: 110000, apr: 6.49, term: 72 }, desc: 'Heavy machinery and excavator loan payment estimator.' },
+      { slug: 'farm-equipment-finance-calculator', title: 'Farm Equipment Finance Calculator', category: 'Equipment & Trailers', engine: 'amortized_loan', defaults: { price: 140000, apr: 5.79, term: 84 }, desc: 'Agri-business farm machinery loan calculator.' },
+      { slug: 'dump-trailer-financing-calculator', title: 'Dump Trailer Financing Calculator', category: 'Equipment & Trailers', engine: 'amortized_loan', defaults: { price: 14000, apr: 7.99, term: 48 }, desc: 'Commercial dump trailer loan calculator.' },
+      { slug: 'horse-trailer-financing-calculator', title: 'Horse Trailer Financing Calculator', category: 'Equipment & Trailers', engine: 'amortized_loan', defaults: { price: 28000, apr: 6.99, term: 60 }, desc: 'Calculate horse and livestock trailer payments.' },
+      { slug: 'metal-building-finance-calculator', title: 'Metal Building Finance Calculator', category: 'Equipment & Trailers', engine: 'amortized_loan', defaults: { price: 35000, apr: 7.49, term: 120 }, desc: 'Metal building, garage, and barn loan payments.' },
+
+      // RECREATION & LIFESTYLE (9)
+      { slug: 'harley-finance-calculator', title: 'Harley Finance Calculator', category: 'Recreation & Lifestyle', engine: 'amortized_loan', defaults: { price: 22000, apr: 6.99, term: 60 }, desc: 'Harley-Davidson motorcycle loan payment estimator.' },
+      { slug: 'yamaha-finance-calculator', title: 'Yamaha Finance Calculator', category: 'Recreation & Lifestyle', engine: 'amortized_loan', defaults: { price: 15000, apr: 6.49, term: 48 }, desc: 'Powersports, ATV, and motorcycle financing.' },
+      { slug: 'snowmobile-financing-calculator', title: 'Snowmobile Financing Calculator', category: 'Recreation & Lifestyle', engine: 'amortized_loan', defaults: { price: 14000, apr: 7.29, term: 48 }, desc: 'Estimate winter sports snowmobile financing.' },
+      { slug: 'jet-ski-finance-calculator', title: 'Jet Ski Finance Calculator', category: 'Recreation & Lifestyle', engine: 'amortized_loan', defaults: { price: 16000, apr: 7.49, term: 60 }, desc: 'Personal watercraft and Jet Ski loan calculator.' },
+      { slug: 'golf-cart-financing-calculator', title: 'Golf Cart Financing Calculator', category: 'Recreation & Lifestyle', engine: 'amortized_loan', defaults: { price: 11000, apr: 7.99, term: 36 }, desc: 'Electric and gas golf cart financing estimator.' },
+      { slug: 'hot-tub-financing-calculator', title: 'Hot Tub Financing Calculator', category: 'Recreation & Lifestyle', engine: 'amortized_loan', defaults: { price: 9500, apr: 8.99, term: 36 }, desc: 'Calculate home spa and hot tub loan payments.' },
+      { slug: 'rv-financing-canada-calculator', title: 'RV Financing Canada Calculator', category: 'Recreation & Lifestyle', engine: 'amortized_loan', defaults: { price: 75000, apr: 6.99, term: 180, taxPct: 13 }, desc: 'Canadian RV loan calculator with GST/PST tax.' },
+      { slug: 'timeshare-financing-calculator', title: 'Timeshare Financing Calculator', category: 'Recreation & Lifestyle', engine: 'amortized_loan', defaults: { price: 24000, apr: 12.99, term: 120 }, desc: 'Vacation timeshare mortgage calculator.' },
+      { slug: 'engagement-ring-financing-calculator', title: 'Engagement Ring Financing Calculator', category: 'Recreation & Lifestyle', engine: 'amortized_loan', defaults: { price: 6500, apr: 9.99, term: 24 }, desc: 'Jewelry and engagement ring loan calculator.' },
+
+      // HOME & PROPERTY (10)
+      { slug: 'roof-financing-calculator', title: 'Roof Financing Calculator', category: 'Home & Property', engine: 'amortized_loan', defaults: { price: 15000, apr: 7.99, term: 60 }, desc: 'Calculate roof replacement home loan payments.' },
+      { slug: 'hvac-financing-calculator', title: 'HVAC Financing Calculator', category: 'Home & Property', engine: 'amortized_loan', defaults: { price: 9000, apr: 6.99, term: 48 }, desc: 'Heating and AC replacement financing estimator.' },
+      { slug: 'adu-financing-calculator', title: 'ADU Financing Calculator', category: 'Home & Property', engine: 'amortized_loan', defaults: { price: 150000, apr: 6.75, term: 240 }, desc: 'Accessory Dwelling Unit (ADU) loan calculator.' },
+      { slug: 'tiny-house-financing-calculator', title: 'Tiny House Financing Calculator', category: 'Home & Property', engine: 'amortized_loan', defaults: { price: 65000, apr: 7.49, term: 120 }, desc: 'Tiny home RV or personal loan financing.' },
+      { slug: 'park-model-home-financing-calculator', title: 'Park Model Home Financing Calculator', category: 'Home & Property', engine: 'amortized_loan', defaults: { price: 85000, apr: 7.29, term: 180 }, desc: 'Park model resort home mortgage calculator.' },
+      { slug: 'service-finance-calculator', title: 'Service Finance Calculator', category: 'Home & Property', engine: 'amortized_loan', defaults: { price: 12000, apr: 8.49, term: 60 }, desc: 'Home contractor and HVAC service loan calculator.' },
+      { slug: 'seller-financing-calculator', title: 'Seller Financing Calculator', category: 'Home & Property', engine: 'seller_financing', defaults: { price: 300000, down: 60000, rate: 6.5, amortYears: 30, balloonYears: 5 }, desc: 'Owner financing calculator with balloon analysis.' },
+      { slug: 'seller-financing-mortgage-calculator', title: 'Seller Financing Mortgage Calculator', category: 'Home & Property', engine: 'seller_financing', defaults: { price: 400000, down: 80000, rate: 6.75, amortYears: 30, balloonYears: 7 }, desc: 'Private seller mortgage amortization calculator.' },
+      { slug: 'finance-of-america-reverse-mortgage-calculator', title: 'Finance of America Reverse Mortgage Calculator', category: 'Home & Property', engine: 'reverse_mortgage', defaults: { homeValue: 450000, age: 68, rate: 6.25, existingMortgage: 40000 }, desc: 'HECM reverse mortgage net proceeds estimator.' },
+      { slug: 'calculating-finance-charge-mortgage-loan', title: 'Calculating Finance Charge Mortgage Loan', category: 'Home & Property', engine: 'finance_charge', defaults: { amount: 250000, rate: 6.5, termYears: 30, points: 1.0, fees: 2500 }, desc: 'Calculate finance charges and true APR with fees.' },
+
+      // BUSINESS & COMMERCIAL (6)
+      { slug: 'invoice-finance-calculator', title: 'Invoice Finance Calculator', category: 'Business & Commercial', engine: 'invoice_finance', defaults: { invoiceVal: 75000, advanceRate: 85, factoringFee: 2.5, daysToPay: 45 }, desc: 'Invoice factoring and cash advance cost calculator.' },
+      { slug: 'asset-finance-calculator', title: 'Asset Finance Calculator', category: 'Business & Commercial', engine: 'amortized_loan', defaults: { price: 120000, apr: 6.25, term: 60 }, desc: 'Commercial asset and machinery loan calculator.' },
+      { slug: 'development-finance-calculator', title: 'Development Finance Calculator', category: 'Business & Commercial', engine: 'amortized_loan', defaults: { price: 500000, apr: 8.5, term: 24 }, desc: 'Property development loan interest and drawdowns.' },
+      { slug: 'supply-chain-finance-calculator', title: 'Supply Chain Finance Calculator', category: 'Business & Commercial', engine: 'invoice_finance', defaults: { invoiceVal: 150000, advanceRate: 90, factoringFee: 1.8, daysToPay: 60 }, desc: 'Early payment discount and supply chain estimator.' },
+      { slug: 'pwc-finance-calculator', title: 'PwC Finance Calculator', category: 'Business & Commercial', engine: 'finance_charge', defaults: { amount: 500000, rate: 7.2, termYears: 10, points: 0.5, fees: 5000 }, desc: 'Enterprise business loan finance charge and APR.' },
+      { slug: 'mccarthy-finance-calculator', title: 'McCarthy Finance Calculator', category: 'Business & Commercial', engine: 'amortized_loan', defaults: { price: 200000, apr: 6.75, term: 84 }, desc: 'Commercial equipment loan cash flow calculator.' },
+
+      // PERSONAL & LEARNING (6)
+      { slug: 'personal-finance-club-calculator', title: 'Personal Finance Club Calculator', category: 'Personal & Learning', engine: 'amortized_loan', defaults: { price: 10000, apr: 0, term: 12 }, desc: 'Budgeting and debt payoff toolkit.' },
+      { slug: 'divorce-finance-calculator', title: 'Divorce Finance Calculator', category: 'Personal & Learning', engine: 'seller_financing', defaults: { price: 500000, down: 250000, rate: 5.0, amortYears: 15, balloonYears: 10 }, desc: 'Asset split and divorce settlement financial divider.' },
+      { slug: 'zoya-finance-zakat-calculator', title: 'Zoya Finance Zakat Calculator', category: 'Personal & Learning', engine: 'zakat', defaults: { cash: 5000, goldGrams: 50, silverGrams: 200, investments: 25000, liabilities: 3000 }, desc: 'Calculate Zakat liability by Islamic guidelines.' },
+      { slug: 'what-is-pmt-in-finance-calculator', title: 'What Is PMT in Finance Calculator', category: 'Personal & Learning', engine: 'amortized_loan', defaults: { price: 100000, apr: 6.0, term: 360 }, desc: 'Interactive PMT function explainer and formula.' },
+      { slug: 'finance-calculator-ti-84', title: 'Finance Calculator TI 84', category: 'Personal & Learning', engine: 'amortized_loan', defaults: { price: 50000, apr: 7.5, term: 60 }, desc: 'TI-84 style TVM (Time Value of Money) solver.' },
+      { slug: 'finance-calculator-ai', title: 'Finance Calculator AI', category: 'Personal & Learning', engine: 'amortized_loan', defaults: { price: 30000, apr: 6.0, term: 60 }, desc: 'Plain-English AI financial loan parser.' }
+    ];
+
+    const GENERATORS = [
+      { slug: 'invoice', title: 'Tax Invoice Generator', desc: 'Create professional GST / Non-GST business invoices with PDF download.' },
+      { slug: 'quotation', title: 'Price Quotation Generator', desc: 'Generate clean sales proposals and price quotes for clients.' },
+      { slug: 'receipt', title: 'Payment Receipt Generator', desc: 'Create official payment confirmation receipts instantly.' },
+      { slug: 'rent-receipt', title: 'Rent Receipt Generator', desc: 'Generate monthly landlord rent receipts for HRA tax exemption claims.' },
+      { slug: 'salary-slip', title: 'Employee Salary Slip Generator', desc: 'Create detailed monthly pay slips with earnings and deductions.' },
+      { slug: 'purchase-order', title: 'Purchase Order Generator', desc: 'Generate official PO procurement documents for vendors.' },
+      { slug: 'amortization-statement', title: 'Amortization Statement', desc: 'Generate printable loan repayment schedules for banking records.' },
+      { slug: 'zakat-summary', title: 'Zakat Summary Statement', desc: 'Generate an official printable Zakat distribution certificate.' }
+    ];
+
+    const GUIDES = [
+      { slug: 'apr-vs-interest-rate', title: 'Understanding Auto Loan APR vs. Interest Rate', time: '5 min read', tag: 'Vehicle Loan', desc: 'Learn why APR includes dealer doc fees and finance charges, giving you the true cost of your vehicle.' },
+      { slug: 'seller-financing-balloons', title: 'How Seller Financing Balloon Payments Work', time: '6 min read', tag: 'Real Estate', desc: 'A complete breakdown of owner-financing balloon structures, refinancing risks, and amortization.' },
+      { slug: 'zakat-calculation-guide-2026', title: 'Zakat Nisab & Wealth Calculation Guide 2026', time: '4 min read', tag: 'Islamic Finance', desc: 'Updated gold and silver Nisab thresholds and rules for stock, retirement, and cash Zakat deductions.' },
+      { slug: 'invoice-factoring-rates', title: 'Invoice Factoring Costs & Advance Rates Explained', time: '7 min read', tag: 'Business', desc: 'Understand advance rates, factoring fees, recourse vs non-recourse, and effective annual costs.' }
+    ];
+
+    /* ==========================================================================
+       ROUTER & VIEW CONTROLLER
+       ========================================================================== */
+    function router() {
+      const hash = window.location.hash || '#/';
+      const root = document.getElementById('app-root');
+      root.innerHTML = '';
+      state.activeTool = null;
+
+      if (hash === '#/' || hash === '#') {
+        renderHomepageView(root);
+      } else if (hash === '#/calculators') {
+        renderCalculatorsListView(root);
+      } else if (hash === '#/generators') {
+        renderGeneratorsListView(root);
+      } else if (hash.startsWith('#/tool/')) {
+        const slug = hash.replace('#/tool/', '').split('?')[0];
+        renderToolPageView(root, slug);
+      } else if (hash.startsWith('#/generator/')) {
+        const slug = hash.replace('#/generator/', '');
+        renderGeneratorPageView(root, slug);
+      } else if (hash === '#/guides' || hash.startsWith('#/guides/')) {
+        renderGuidesPageView(root, hash.replace('#/guides/', ''));
+      } else if (hash === '#/faq') {
+        renderFAQPageView(root);
+      } else if (hash === '#/about') {
+        renderInfoPageView(root, 'About FinancerSlot', 'FinancerSlot is a free, privacy-first platform providing over 60 financial calculators and document generators. All calculations execute 100% inside your browser using client-side JavaScript — no personal data or financial figures are ever sent to external servers.');
+      } else if (hash === '#/privacy') {
+        renderInfoPageView(root, 'Privacy Policy', 'Your privacy is guaranteed. FinancerSlot does not collect, track, or store your loan balances, income figures, or document uploads. All calculations and PDF renderings occur locally in your browser session.');
+      } else if (hash === '#/disclaimer') {
+        renderInfoPageView(root, 'Financial Disclaimer', 'All calculation results, amortization tables, and document previews on FinancerSlot are provided strictly for informational and educational purposes. FinancerSlot is not a financial institution, lender, or registered tax advisor. Brand names are used solely for identification.');
+      } else if (hash === '#/contact') {
+        renderContactPageView(root);
+      } else {
+        renderHomepageView(root);
+      }
+
+      window.scrollTo(0, 0);
+    }
+
+    window.addEventListener('hashchange', router);
+
+    /* ==========================================================================
+       HOMEPAGE VIEW
+       ========================================================================== */
+    function renderHomepageView(container) {
+      setSEO({
+        title: 'FinancerSlot — Free Financial Calculators & Document Generators',
+        description: 'Instant, exact calculators and document generators for auto loans, seller financing, mortgages, equipment, zakat, and tax invoices — 100% private in browser.',
+        path: '/',
+        schemaData: {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "FinancerSlot",
+          "url": "https://financerslot.com/",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://financerslot.com/#/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
+      });
+
+      container.innerHTML = `
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+          <div class="hero-grid-pattern"></div>
+          <div class="container flex flex-col items-center justify-center text-center gap-5" style="position: relative; z-index: 10;">
+            
+            <div class="pill-badge" style="background: var(--accent-light); color: var(--accent-primary); font-size: 0.8125rem; font-weight: 700; padding: 0.375rem 1rem;">
+              Free · No signup · Built for everyone
+            </div>
+
+            <h1 class="hero-headline">
+              Every finance tool you need, in one slot.
+            </h1>
+
+            <p style="font-size: 1.125rem; color: var(--text-muted); max-width: 38rem; line-height: 1.6; margin: 0 auto;">
+              Calculate loans, investments and tax. Generate invoices, receipts and salary slips. Fast, free and private.
+            </p>
+
+            <div style="width: 100%; position: relative; margin-top: 0.5rem;">
+              <div class="hero-search-box">
+                <input type="text" id="hero-search-input" placeholder="Search EMI, SIP, GST, invoice..." autocomplete="off" />
+                <button class="hero-search-btn" onclick="const q=document.getElementById('hero-search-input').value; if(q) window.location.hash='#/calculators';">Search</button>
+              </div>
+              <div id="hero-search-dropdown" class="search-dropdown" style="max-width: 38rem; margin: 0 auto; left: 0; right: 0;"></div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-2" style="margin-top: 0.5rem;">
+              <button class="chip-btn" onclick="window.location.hash='#/tool/toyota-finance-calculator'">EMI</button>
+              <button class="chip-btn" onclick="window.location.hash='#/tool/personal-finance-club-calculator'">SIP</button>
+              <button class="chip-btn" onclick="window.location.hash='#/tool/calculating-finance-charge-mortgage-loan'">Income tax</button>
+              <button class="chip-btn" onclick="window.location.hash='#/generator/invoice'">GST</button>
+              <button class="chip-btn" onclick="window.location.hash='#/generator/invoice'">Invoice</button>
+              <button class="chip-btn" onclick="window.location.hash='#/generator/salary-slip'">Salary</button>
+            </div>
+
+            <!-- HERO METRIC CARDS -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" style="width: 100%; margin-top: 2.5rem;">
+              <div class="hero-card flex flex-col gap-2 text-left" style="border-left: 4px solid var(--accent-primary); cursor: pointer;" onclick="window.location.hash='#/tool/toyota-finance-calculator'">
+                <div class="flex justify-between items-center"><span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">Toyota Auto Loan</span><span style="font-size: 0.75rem; color: var(--color-green); font-weight: 700;">60 mos</span></div>
+                <div class="flex items-baseline justify-between"><div style="font-size: 1.5rem; font-weight: 800; color: var(--text-main);"><span class="currency-symbol">$</span><span class="count-up" data-target="579.98" data-decimals="2">0.00</span><span style="font-size: 0.875rem; font-weight: 600; color: var(--text-muted);">/mo</span></div></div>
+              </div>
+              <div class="hero-card flex flex-col gap-2 text-left" style="border-left: 4px solid var(--color-amber); cursor: pointer;" onclick="window.location.hash='#/tool/seller-financing-calculator'">
+                <div class="flex justify-between items-center"><span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">Seller Note Balloon</span><span style="font-size: 0.75rem; color: var(--color-amber); font-weight: 700;">Year 5</span></div>
+                <div class="flex items-baseline justify-between"><div style="font-size: 1.5rem; font-weight: 800; color: var(--text-main);"><span class="currency-symbol">$</span><span class="count-up" data-target="184200" data-decimals="0">0</span></div></div>
+              </div>
+              <div class="hero-card flex flex-col gap-2 text-left" style="border-left: 4px solid var(--color-green); cursor: pointer;" onclick="window.location.hash='#/tool/invoice-finance-calculator'">
+                <div class="flex justify-between items-center"><span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">Invoice Advance</span><span style="font-size: 0.75rem; color: var(--color-green); font-weight: 700;">85% Adv</span></div>
+                <div class="flex items-baseline justify-between"><div style="font-size: 1.5rem; font-weight: 800; color: var(--text-main);"><span class="currency-symbol">$</span><span class="count-up" data-target="42500" data-decimals="0">0</span></div></div>
+              </div>
+              <div class="hero-card flex flex-col gap-2 text-left" style="border-left: 4px solid var(--accent-primary); cursor: pointer;" onclick="window.location.hash='#/tool/finance-of-america-reverse-mortgage-calculator'">
+                <div class="flex justify-between items-center"><span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">Reverse Mortgage Net</span><span style="font-size: 0.75rem; color: var(--accent-primary); font-weight: 700;">Age 68</span></div>
+                <div class="flex items-baseline justify-between"><div style="font-size: 1.5rem; font-weight: 800; color: var(--text-main);"><span class="currency-symbol">$</span><span class="count-up" data-target="215000" data-decimals="0">0</span></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TRUST STRIP -->
+        <section class="container">
+          <div class="trust-strip">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+              <div><div style="font-size: 2rem; font-weight: 800; color: var(--accent-primary);">60+</div><div style="font-size: 0.875rem; font-weight: 700; color: var(--text-muted);">Financial Tools</div></div>
+              <div><div style="font-size: 2rem; font-weight: 800; color: var(--color-green);">No Signup</div><div style="font-size: 0.875rem; font-weight: 700; color: var(--text-muted);">Zero Accounts Needed</div></div>
+              <div><div style="font-size: 2rem; font-weight: 800; color: var(--color-amber);">100%</div><div style="font-size: 0.875rem; font-weight: 700; color: var(--text-muted);">In Your Browser</div></div>
+              <div><div style="font-size: 2rem; font-weight: 800; color: var(--text-main);">PDF & CSV</div><div style="font-size: 0.875rem; font-weight: 700; color: var(--text-muted);">Instant Downloads</div></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VISUAL CATEGORY GRID -->
+        <section class="container" style="margin-bottom: 4rem;">
+          <div style="margin-bottom: 1.5rem;">
+            <h2 style="font-size: 1.75rem; font-weight: 800;">Browse By Category</h2>
+            <p style="color: var(--text-muted); font-size: 0.9375rem;">Explore curated financial calculators tailored to your financing needs.</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a href="#/calculators" class="card cat-card-vehicle card-hover flex flex-col justify-between gap-4">
+              <div>
+                <span style="font-size: 2rem;">🚘</span>
+                <h3 style="font-size: 1.25rem; font-weight: 800; margin-top: 0.5rem;">Vehicle & Trailers</h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">29 calculators for Toyota, BMW, Audi, bi-weekly payments, and classic cars.</p>
+              </div>
+              <span style="font-size: 0.875rem; font-weight: 800; color: var(--accent-primary);">View 29 Tools →</span>
+            </a>
+            <a href="#/calculators" class="card cat-card-equipment card-hover flex flex-col justify-between gap-4">
+              <div>
+                <span style="font-size: 2rem;">🚜</span>
+                <h3 style="font-size: 1.25rem; font-weight: 800; margin-top: 0.5rem;">Equipment & Trailers</h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">8 tools for John Deere, Kubota, excavators, dump trailers, and metal buildings.</p>
+              </div>
+              <span style="font-size: 0.875rem; font-weight: 800; color: var(--color-green);">View 8 Tools →</span>
+            </a>
+            <a href="#/calculators" class="card cat-card-recreation card-hover flex flex-col justify-between gap-4">
+              <div>
+                <span style="font-size: 2rem;">🏍️</span>
+                <h3 style="font-size: 1.25rem; font-weight: 800; margin-top: 0.5rem;">Recreation & Lifestyle</h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">9 calculators for Harley, RV Canada, jet skis, snowmobiles, and timeshares.</p>
+              </div>
+              <span style="font-size: 0.875rem; font-weight: 800; color: var(--color-amber);">View 9 Tools →</span>
+            </a>
+            <a href="#/calculators" class="card cat-card-home card-hover flex flex-col justify-between gap-4">
+              <div>
+                <span style="font-size: 2rem;">🏡</span>
+                <h3 style="font-size: 1.25rem; font-weight: 800; margin-top: 0.5rem;">Home & Property</h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">10 tools for seller financing, reverse mortgages, roofing, and HVAC loans.</p>
+              </div>
+              <span style="font-size: 0.875rem; font-weight: 800; color: var(--color-green);">View 10 Tools →</span>
+            </a>
+            <a href="#/calculators" class="card cat-card-business card-hover flex flex-col justify-between gap-4">
+              <div>
+                <span style="font-size: 2rem;">💼</span>
+                <h3 style="font-size: 1.25rem; font-weight: 800; margin-top: 0.5rem;">Business & Commercial</h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">6 tools for invoice factoring, asset finance, development, and PwC APR.</p>
+              </div>
+              <span style="font-size: 0.875rem; font-weight: 800; color: var(--accent-primary);">View 6 Tools →</span>
+            </a>
+            <a href="#/calculators" class="card cat-card-personal card-hover flex flex-col justify-between gap-4">
+              <div>
+                <span style="font-size: 2rem;">🌙</span>
+                <h3 style="font-size: 1.25rem; font-weight: 800; margin-top: 0.5rem;">Personal & Learning</h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">6 calculators for Zakat, PMT formula, TI-84 TVM solver, and divorce splits.</p>
+              </div>
+              <span style="font-size: 0.875rem; font-weight: 800; color: #f43f5e;">View 6 Tools →</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- POPULAR TOOLS TABBED GRID -->
+        <section id="tools-grid-section" class="container" style="margin-bottom: 5rem;">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" style="margin-bottom: 1.5rem;">
+            <div><h2 style="font-size: 2rem; font-weight: 800;">Popular Financial Calculators</h2></div>
+            <div class="flex flex-wrap gap-2">
+              <button class="tab-btn active" onclick="filterTab('all', this)">All</button>
+              <button class="tab-btn" onclick="filterTab('Vehicle Financing', this)">Vehicle</button>
+              <button class="tab-btn" onclick="filterTab('Home & Property', this)">Home</button>
+              <button class="tab-btn" onclick="filterTab('Equipment & Trailers', this)">Equipment</button>
+              <button class="tab-btn" onclick="filterTab('Business & Commercial', this)">Business</button>
+            </div>
+          </div>
+          <div id="popular-tools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </section>
+
+        <!-- DARK SAAS DOCUMENT SPOTLIGHT PANEL -->
+        <section class="container">
+          <div class="dark-spotlight-panel grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7 flex flex-col gap-4">
+              <span class="pill-badge" style="background-color: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(52, 211, 153, 0.3); width: fit-content;">
+                📄 8 Document Generators
+              </span>
+              <h2 style="font-size: 2.25rem; font-weight: 800; line-height: 1.2;">
+                Generate Professional Financial Documents in Seconds.
+              </h2>
+              <p style="color: #94a3b8; font-size: 1.0625rem; line-height: 1.6;">
+                Create Tax Invoices, Rent Receipts for HRA tax exemption, Employee Salary Slips, Purchase Orders, and Zakat Statements instantly. Export high-res A4 PDFs with your logo and zero watermark.
+              </p>
+              <div class="flex flex-wrap gap-3" style="margin-top: 0.5rem;">
+                <a href="#/generator/invoice" class="btn btn-primary btn-sm">📄 Tax Invoice PDF</a>
+                <a href="#/generator/rent-receipt" class="btn btn-secondary btn-sm" style="color: #0f172a;">🏠 Rent Receipt</a>
+                <a href="#/generator/salary-slip" class="btn btn-secondary btn-sm" style="color: #0f172a;">💼 Salary Slip</a>
+                <a href="#/generator/purchase-order" class="btn btn-secondary btn-sm" style="color: #0f172a;">📦 Purchase Order</a>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 flex justify-center">
+              <div class="mock-doc flex flex-col gap-3">
+                <div class="flex justify-between items-center" style="border-bottom: 2px solid #0f172a; padding-bottom: 0.5rem;">
+                  <span style="font-weight: 800; font-size: 0.875rem;">TAX INVOICE</span>
+                  <span style="font-size: 0.75rem; color: #64748b;">#INV-2026</span>
+                </div>
+                <div style="font-size: 0.75rem; color: #475569;">
+                  <strong>Billed To:</strong> Acme Corporation<br />
+                  <strong>Date:</strong> Oct 4, 2026
+                </div>
+                <div style="border-top: 1px dashed #cbd5e1; border-bottom: 1px dashed #cbd5e1; padding: 0.5rem 0; font-size: 0.75rem;">
+                  <div class="flex justify-between"><span>Financial Consulting</span><span>$1,500.00</span></div>
+                  <div class="flex justify-between"><span>Tax Advisory</span><span>$450.00</span></div>
+                </div>
+                <div class="flex justify-between items-center" style="font-weight: 800; font-size: 0.875rem;">
+                  <span>Total Amount:</span>
+                  <span style="color: #4f46e5;">$1,950.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4-STEP HOW IT WORKS PROCESS WITH LIVE INTERACTIVE MICRO-DEMOS & ARCHITECTURE STRIP -->
+        <section class="container" style="margin-bottom: 6rem; position: relative;">
+          
+          <!-- Section Header -->
+          <div class="text-center flex flex-col items-center gap-3" style="margin-bottom: 3.5rem;">
+            <div class="pill-badge" style="background: var(--accent-light); color: var(--accent-primary);">
+              <span>⚡</span>
+              <span>Instant · 100% In-Browser · Zero Registration</span>
+            </div>
+            <h2 style="font-size: clamp(1.875rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em;">How FinancersLot Works in Seconds</h2>
+            <p style="color: var(--text-muted); max-width: 38rem; font-size: 1rem; line-height: 1.6;">
+              No accounts, zero data collection, and 0ms server delay. Execute exact financial math, interactive charts, and print high-res PDFs in 4 simple steps.
+            </p>
+          </div>
+
+          <!-- Step Cards Grid (4 Columns) with Animated Connector Line -->
+          <div style="position: relative;">
+            <!-- Connector Line (Desktop) -->
+            <div style="display: none;" class="lg:block">
+              <div style="position: absolute; top: 2.25rem; left: 12%; right: 12%; height: 3px; background: linear-gradient(90deg, var(--accent-primary) 0%, #10b981 33%, #f59e0b 66%, #a855f7 100%); z-index: 1; border-radius: 2px; opacity: 0.35;"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" style="position: relative; z-index: 2;">
+              
+              <!-- Step 1: Select Tool -->
+              <div class="step-card">
+                <div class="flex justify-between items-center">
+                  <div class="step-num-badge">01</div>
+                  <span style="font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Step 1</span>
+                </div>
+                <div>
+                  <h3 style="font-size: 1.125rem; font-weight: 800; margin-bottom: 0.375rem;">1. Select Your Tool</h3>
+                  <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;">Choose from 60+ financial calculators or 8 document generators.</p>
+                </div>
+                <!-- Interactive Micro Search -->
+                <div class="step-mini-widget flex flex-col gap-2">
+                  <div class="flex items-center gap-2" style="background: var(--bg-surface); padding: 0.375rem 0.625rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                    <span style="font-size: 0.75rem;">🔍</span>
+                    <input type="text" id="how-step1-search" placeholder="Type e.g. 'Toyota'..." style="border: none; background: transparent; font-size: 0.75rem; outline: none; width: 100%; font-weight: 600; color: var(--text-main);" oninput="onStep1SearchInput(this.value)" />
+                  </div>
+                  <div id="how-step1-chips" class="flex flex-wrap gap-1">
+                    <a href="#/tool/toyota-finance-calculator" class="chip-btn" style="font-size: 0.6875rem; padding: 0.15rem 0.5rem;">🚗 Toyota</a>
+                    <a href="#/tool/seller-financing-calculator" class="chip-btn" style="font-size: 0.6875rem; padding: 0.15rem 0.5rem;">🏠 Seller Finance</a>
+                    <a href="#/generator/invoice" class="chip-btn" style="font-size: 0.6875rem; padding: 0.15rem 0.5rem;">📄 Invoice</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2: Live Parameters -->
+              <div class="step-card">
+                <div class="flex justify-between items-center">
+                  <div class="step-num-badge" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">02</div>
+                  <span style="font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Step 2</span>
+                </div>
+                <div>
+                  <h3 style="font-size: 1.125rem; font-weight: 800; margin-bottom: 0.375rem;">2. Adjust Parameters</h3>
+                  <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;">Drag loan sliders or APR % for instant real-time repayment recalculation.</p>
+                </div>
+                <!-- Interactive Live Slider -->
+                <div class="step-mini-widget flex flex-col gap-2">
+                  <div class="flex justify-between items-center" style="font-size: 0.75rem; font-weight: 700;">
+                    <span style="color: var(--text-muted);">Loan: <strong id="how-step2-val" style="color: var(--text-main);">$25,000</strong></span>
+                    <span id="how-step2-pmt" style="color: var(--color-green); font-weight: 800;">$477.53/mo</span>
+                  </div>
+                  <input type="range" min="5000" max="60000" step="1000" value="25000" class="form-slider" style="height: 5px;" oninput="onStep2SliderChange(this.value)" />
+                </div>
+              </div>
+
+              <!-- Step 3: Analyze Visual Charts -->
+              <div class="step-card">
+                <div class="flex justify-between items-center">
+                  <div class="step-num-badge" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);">03</div>
+                  <span style="font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Step 3</span>
+                </div>
+                <div>
+                  <h3 style="font-size: 1.125rem; font-weight: 800; margin-bottom: 0.375rem;">3. Visual Breakdowns</h3>
+                  <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;">Review interactive principal vs. interest breakdown charts & schedule tables.</p>
+                </div>
+                <!-- Interactive Breakdown Widget -->
+                <div class="step-mini-widget flex flex-col gap-1.5">
+                  <div class="flex justify-between items-center" style="font-size: 0.6875rem; font-weight: 700;">
+                    <span style="color: var(--accent-primary);">■ Principal (<span id="how-step3-pct1">84%</span>)</span>
+                    <span style="color: var(--color-amber);">■ Interest (<span id="how-step3-pct2">16%</span>)</span>
+                  </div>
+                  <div style="height: 6px; width: 100%; background: var(--border-color); border-radius: 3px; overflow: hidden; display: flex;">
+                    <div id="how-step3-bar1" style="width: 84%; background: var(--accent-primary); height: 100%; transition: width 300ms ease;"></div>
+                    <div id="how-step3-bar2" style="width: 16%; background: var(--color-amber); height: 100%; transition: width 300ms ease;"></div>
+                  </div>
+                  <div class="flex justify-between items-center" style="font-size: 0.6875rem; color: var(--text-muted); margin-top: 2px;">
+                    <span id="how-step3-label">60 Months Schedule</span>
+                    <button onclick="toggleStep3View()" class="btn btn-secondary btn-sm" style="font-size: 0.625rem; padding: 1px 6px; min-height: 20px;">Toggle</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4: Export Reports -->
+              <div class="step-card">
+                <div class="flex justify-between items-center">
+                  <div class="step-num-badge" style="background: linear-gradient(135deg, #a855f7 0%, #c084fc 100%); box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);">04</div>
+                  <span style="font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Step 4</span>
+                </div>
+                <div>
+                  <h3 style="font-size: 1.125rem; font-weight: 800; margin-bottom: 0.375rem;">4. Export PDF & CSV</h3>
+                  <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;">Download print-ready A4 PDF reports or complete CSV loan schedules instantly.</p>
+                </div>
+                <!-- Interactive Demo Action Buttons -->
+                <div class="step-mini-widget flex justify-between items-center gap-2">
+                  <button onclick="triggerStep4DemoPdf()" class="btn btn-primary btn-sm" style="font-size: 0.6875rem; padding: 0.35rem 0.5rem; min-height: 28px; width: 100%;">📄 Demo PDF</button>
+                  <button onclick="triggerStep4DemoCsv()" class="btn btn-secondary btn-sm" style="font-size: 0.6875rem; padding: 0.35rem 0.5rem; min-height: 28px; width: 100%;">📊 Export CSV</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ARCHITECTURAL TRUST CARDS STRIP -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" style="margin-top: 2.5rem;">
+            <div class="card flex flex-col gap-2" style="background-color: var(--bg-surface); border: 1px solid var(--border-color); padding: 1.25rem;">
+              <div class="flex items-center gap-2">
+                <span style="font-size: 1.25rem;">🔒</span>
+                <strong style="font-size: 0.9375rem; font-weight: 800;">100% Client-Side Privacy</strong>
+              </div>
+              <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;">
+                All calculations run locally inside JavaScript. No financial data is ever transmitted or stored on remote servers.
+              </p>
+            </div>
+
+            <div class="card flex flex-col gap-2" style="background-color: var(--bg-surface); border: 1px solid var(--border-color); padding: 1.25rem;">
+              <div class="flex items-center gap-2">
+                <span style="font-size: 1.25rem;">⚡</span>
+                <strong style="font-size: 0.9375rem; font-weight: 800;">0ms Processing Latency</strong>
+              </div>
+              <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;">
+                Instant mathematical evaluations for PMT, balloon amortizations, and compound interest rate formulas.
+              </p>
+            </div>
+
+            <div class="card flex flex-col gap-2" style="background-color: var(--bg-surface); border: 1px solid var(--border-color); padding: 1.25rem;">
+              <div class="flex items-center gap-2">
+                <span style="font-size: 1.25rem;">🌐</span>
+                <strong style="font-size: 0.9375rem; font-weight: 800;">Multi-Currency Converter</strong>
+              </div>
+              <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;">
+                Seamlessly toggle between USD ($), CAD (CA$), GBP (£), and INR (₹) with real-time symbol adaptation.
+              </p>
+            </div>
+
+            <div class="card flex flex-col gap-2" style="background-color: var(--bg-surface); border: 1px solid var(--border-color); padding: 1.25rem;">
+              <div class="flex items-center gap-2">
+                <span style="font-size: 1.25rem;">📄</span>
+                <strong style="font-size: 0.9375rem; font-weight: 800;">Print-Ready A4 PDFs</strong>
+              </div>
+              <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;">
+                Generate high-resolution vector PDF invoices, rent receipts, pay slips, and loan amortization reports.
+              </p>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- GUIDES & EXPLAINERS -->
+        <section class="container" style="margin-bottom: 5rem;">
+          <div class="flex items-center justify-between" style="margin-bottom: 1.5rem;">
+            <div>
+              <h2 style="font-size: 2rem; font-weight: 800;">Financial Guides & Explainers</h2>
+              <p style="color: var(--text-muted); font-size: 0.9375rem;">Clear, breakdown articles written by financial experts.</p>
+            </div>
+            <a href="#/guides" class="btn btn-secondary btn-sm">View All Guides →</a>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            ${GUIDES.map(g => `
+              <a href="#/guides/${g.slug}" class="card card-hover flex flex-col justify-between gap-3">
+                <div>
+                  <div class="flex justify-between items-center" style="margin-bottom: 0.5rem;">
+                    <span class="pill-badge" style="font-size: 0.75rem;">${g.tag}</span>
+                    <span style="font-size: 0.75rem; color: var(--text-muted);">${g.time}</span>
+                  </div>
+                  <h3 style="font-size: 1rem; font-weight: 800;">${g.title}</h3>
+                  <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.375rem;">${g.desc}</p>
+                </div>
+                <span style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary);">Read Guide →</span>
+              </a>
+            `).join('')}
+          </div>
+        </section>
+
+        <!-- FAQ ACCORDION -->
+        <section class="container" style="margin-bottom: 5rem;">
+          <div class="text-center" style="margin-bottom: 2.5rem;">
+            <h2 style="font-size: 2rem; font-weight: 800;">Frequently Asked Questions</h2>
+            <p style="color: var(--text-muted);">Everything you need to know about FinancerSlot.</p>
+          </div>
+          <div class="flex flex-col gap-4" style="max-width: 48rem; margin: 0 auto;">
+            <div class="faq-item open">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span>Are the financial calculators 100% free?</span>
+                <span>▼</span>
+              </button>
+              <div class="faq-answer">
+                Yes! All 60+ financial calculators and 8 document generators are completely free to use with zero registration, subscription fees, or paywalls.
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span>Is my financial data kept private?</span>
+                <span>▼</span>
+              </button>
+              <div class="faq-answer">
+                Absolutly. Every single calculation and PDF generation is executed locally inside your Web Browser using JavaScript. We never upload or store your financial figures on any server.
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span>Can I generate PDF rent receipts for HRA tax claims?</span>
+                <span>▼</span>
+              </button>
+              <div class="faq-answer">
+                Yes, our Rent Receipt Generator creates clean, compliant monthly or quarterly receipts complete with Landlord PAN, property address, and tenant receipt confirmation.
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span>How is seller financing balloon payment calculated?</span>
+                <span>▼</span>
+              </button>
+              <div class="faq-answer">
+                Seller financing calculators use full 30-year amortization rates to determine monthly principal and interest payments, then compute the exact remaining principal balance due at the agreed balloon term (e.g. 5 or 7 years).
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA BANNER -->
+        <section class="container" style="margin-bottom: 5rem;">
+          <div class="card flex flex-col items-center justify-center text-center gap-4" style="background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg-surface) 100%); padding: 3.5rem 2rem; border-color: var(--accent-ring);">
+            <h2 style="font-size: 2.25rem; font-weight: 800;">Ready to Calculate or Generate Documents?</h2>
+            <p style="color: var(--text-muted); max-width: 32rem;">Explore 60+ calculators or generate business PDF tax invoices in seconds.</p>
+            <div class="flex flex-wrap gap-3">
+              <a href="#/calculators" class="btn btn-primary">Browse 60+ Calculators</a>
+              <a href="#/generators" class="btn btn-secondary">Create Tax Invoice</a>
+            </div>
+          </div>
+        </section>
+      `;
+
+      renderPopularTools();
+      animateCountUp();
+      setupSearchEngine('hero-search-input', 'hero-search-dropdown');
+    }
+
+    /* ==========================================================================
+       CALCULATORS DIRECTORY VIEW
+       ========================================================================== */
+    function renderCalculatorsListView(container) {
+      setSEO({
+        title: 'All 60+ Financial Calculators — Auto Loans, Mortgages, Equipment | FinancerSlot',
+        description: 'Browse 60+ free online financial calculators for vehicle financing, seller financing, reverse mortgages, equipment loans, zakat, and PMT formulas.',
+        path: '/calculators',
+        schemaData: {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "All 60+ Financial Calculators",
+          "description": "Directory of free online auto loan, seller financing, mortgage, and equipment calculators."
+        }
+      });
+
+      container.innerHTML = `
+        <div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+          <div class="flex flex-col gap-4" style="margin-bottom: 2rem;">
+            <h1 style="font-size: 2.25rem; font-weight: 800;">All 60+ Financial Calculators</h1>
+            <p style="color: var(--text-muted); font-size: 1rem;">Select any tool to calculate monthly payments, total interest, balloon balances, and download amortization schedules.</p>
+            
+            <div class="search-input-box" style="max-width: 32rem;">
+              <span style="font-size: 1.25rem;">🔍</span>
+              <input type="text" id="calc-list-search" placeholder="Filter calculators..." />
+            </div>
+          </div>
+
+          <div id="calculators-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            ${TOOLS_DATA.map(t => `
+              <a href="#/tool/${t.slug}" class="card card-hover flex flex-col justify-between gap-3">
+                <div>
+                  <span class="pill-badge" style="font-size: 0.75rem;">${t.category}</span>
+                  <h3 style="font-size: 1.125rem; font-weight: 800; margin-top: 0.5rem;">${t.title}</h3>
+                  <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">${t.desc}</p>
+                </div>
+                <span style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary);">Calculate Loan →</span>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      `;
+
+      const searchInput = document.getElementById('calc-list-search');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const q = e.target.value.toLowerCase();
+          const filtered = TOOLS_DATA.filter(t => t.title.toLowerCase().includes(q) || t.category.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q));
+          document.getElementById('calculators-grid').innerHTML = filtered.map(t => `
+            <a href="#/tool/${t.slug}" class="card card-hover flex flex-col justify-between gap-3">
+              <div>
+                <span class="pill-badge" style="font-size: 0.75rem;">${t.category}</span>
+                <h3 style="font-size: 1.125rem; font-weight: 800; margin-top: 0.5rem;">${t.title}</h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">${t.desc}</p>
+              </div>
+              <span style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary);">Calculate Loan →</span>
+            </a>
+          `).join('');
+        });
+      }
+    }
+
+    /* ==========================================================================
+       GENERATORS DIRECTORY VIEW
+       ========================================================================== */
+    function renderGeneratorsListView(container) {
+      setSEO({
+        title: '8 Financial Document Generators — Tax Invoices, Rent Receipts, Salary Slips | FinancerSlot',
+        description: 'Generate, print, and download clean A4 PDF business tax invoices, HRA rent receipts, salary payslips, purchase orders, and Zakat summary certificates.',
+        path: '/generators',
+        schemaData: {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "8 Financial Document Generators",
+          "description": "Free online PDF document generators for business invoices, rent receipts, salary slips, and POs."
+        }
+      });
+
+      container.innerHTML = `
+        <div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+          <h1 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 0.5rem;">8 Financial Document Generators</h1>
+          <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 2rem;">Generate, print, and download clean PDF business invoices, rent receipts, and salary slips.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            ${GENERATORS.map(g => `
+              <a href="#/generator/${g.slug}" class="card card-hover flex flex-col justify-between gap-4" style="border-top: 4px solid var(--color-green);">
+                <div>
+                  <span class="pill-badge" style="background-color: var(--color-green-light); color: var(--color-green); font-size: 0.75rem;">PDF Generator</span>
+                  <h3 style="font-size: 1.25rem; font-weight: 800; margin-top: 0.75rem;">${g.title}</h3>
+                  <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.375rem;">${g.desc}</p>
+                </div>
+                <span style="font-size: 0.875rem; font-weight: 800; color: var(--color-green);">Create PDF Document →</span>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    /* ==========================================================================
+       CALCULATOR TOOL PAGE VIEW (Dynamic per Engine + Rich SEO Content)
+       ========================================================================== */
+    function renderToolPageView(container, slug) {
+      const tool = TOOLS_DATA.find(t => t.slug === slug) || TOOLS_DATA[0];
+      state.activeTool = tool;
+
+      setSEO({
+        title: `${tool.title} — Free Online Payment & APR Estimator | FinancerSlot`,
+        description: `Free online ${tool.title}. ${tool.desc} Calculate monthly payments, interest, balloon schedules, and download PDF reports 100% in-browser.`,
+        path: `/tool/${tool.slug}`,
+        schemaData: {
+          "@context": "https://schema.org",
+          "@type": "FinancialProduct",
+          "name": tool.title,
+          "description": tool.desc,
+          "category": tool.category,
+          "provider": {
+            "@type": "Organization",
+            "name": "FinancerSlot",
+            "url": "https://financerslot.com"
+          }
+        }
+      });
+
+      container.innerHTML = `
+        <div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+          <article class="flex flex-col gap-6">
+            <!-- Breadcrumbs -->
+            <nav aria-label="Breadcrumb" style="font-size: 0.875rem; font-weight: 600; color: var(--text-muted);">
+              <a href="#/">Home</a> / <a href="#/calculators">Calculators</a> / <span>${tool.category}</span>
+            </nav>
+
+            <div>
+              <h1 style="font-size: 2.25rem; font-weight: 800;">${tool.title}</h1>
+              <p style="color: var(--text-muted); font-size: 1rem;">${tool.desc}</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div class="lg:col-span-6 card flex flex-col gap-4">
+                <div class="flex items-center justify-between" style="border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
+                  <h2 style="font-size: 1.125rem; font-weight: 700;">Calculator Parameters</h2>
+                  <button id="reset-btn" class="btn btn-secondary btn-sm">🔄 Reset</button>
+                </div>
+                <div id="inputs-box">${renderToolInputsHTML(tool)}</div>
+              </div>
+
+              <div class="lg:col-span-6 card sticky-results flex flex-col gap-6">
+                <div class="flex items-center justify-between" style="border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
+                  <h2 style="font-size: 1.125rem; font-weight: 700;">Results Summary</h2>
+                  <span class="pill-badge" style="font-size: 0.75rem;">Live Calculate</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="card flex flex-col gap-1" style="background-color: var(--bg-subtle);">
+                    <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);" id="lbl-res-pmt">Estimated Payment</span>
+                    <span id="res-pmt" style="font-size: 1.5rem; font-weight: 800; color: var(--accent-primary);">$0</span>
+                  </div>
+                  <div class="card flex flex-col gap-1" style="background-color: var(--bg-subtle);">
+                    <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);" id="lbl-res-interest">Total Interest</span>
+                    <span id="res-interest" style="font-size: 1.5rem; font-weight: 800; color: var(--color-amber);">$0</span>
+                  </div>
+                  <div class="card flex flex-col gap-1" style="background-color: var(--bg-subtle);">
+                    <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);" id="lbl-res-principal">Amount Financed</span>
+                    <span id="res-principal" style="font-size: 1.25rem; font-weight: 800;">$0</span>
+                  </div>
+                  <div class="card flex flex-col gap-1" style="background-color: var(--bg-subtle);">
+                    <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);" id="lbl-res-total">Total Cost</span>
+                    <span id="res-total" style="font-size: 1.25rem; font-weight: 800;">$0</span>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div style="position: relative; height: 180px;"><canvas id="donut-canvas"></canvas></div>
+                  <div style="position: relative; height: 180px;"><canvas id="line-canvas"></canvas></div>
+                </div>
+
+                <div class="flex flex-wrap gap-2" style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                  <button id="dl-pdf-btn" class="btn btn-primary btn-sm">📄 Download PDF Report</button>
+                  <button id="dl-csv-btn" class="btn btn-secondary btn-sm">📊 Download CSV Schedule</button>
+                  <button id="share-btn" class="btn btn-secondary btn-sm">🔗 Share Link</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- AMORTIZATION TABLE -->
+            <div class="card flex flex-col gap-4" style="margin-top: 1rem;">
+              <h3 style="font-weight: 800; font-size: 1.125rem;">Amortization Schedule Preview</h3>
+              <div class="table-container" style="max-height: 20rem; overflow-y: auto;">
+                <table>
+                  <thead>
+                    <tr><th>Period</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Remaining Balance</th></tr>
+                  </thead>
+                  <tbody id="schedule-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- RICH SEO EXPLAINER & FORMULA SECTION FOR AI OVERVIEWS & GOOGLE -->
+            <section class="card seo-content-box" style="margin-top: 1.5rem;">
+              <h2>How the ${tool.title} Works</h2>
+              <p>The <strong>${tool.title}</strong> is designed to calculate exact monthly repayment obligations, total compound interest expenses, and principal balance reduction over time. Using standardized financial formulas, this calculator helps buyers and business owners structure optimal financing terms.</p>
+
+              <h2>Formula & Financial Mathematics</h2>
+              <p>Monthly loan payments ($PMT$) are derived using the standard annuity amortization formula:</p>
+              
+              <div class="formula-card">
+                PMT = P * [ r(1 + r)^n ] / [ (1 + r)^n - 1 ]
+              </div>
+
+              <p>Where:</p>
+              <ul>
+                <li><strong>P</strong> = Principal amount financed (Purchase price minus down payment and trade-in credit).</li>
+                <li><strong>r</strong> = Periodic interest rate per payment cycle ($APR / 12$).</li>
+                <li><strong>n</strong> = Total number of payment periods (Loan term in months).</li>
+              </ul>
+
+              <h2>Step-by-Step Instructions</h2>
+              <ol>
+                <li>Enter the <strong>Vehicle or Asset Purchase Price</strong>.</li>
+                <li>Specify any upfront <strong>Down Payment</strong> or net trade-in allowance.</li>
+                <li>Set the annual <strong>Interest Rate (APR %)</strong> offered by your lender.</li>
+                <li>Select the desired <strong>Loan Term (Months)</strong>.</li>
+                <li>Review the live updated monthly payment, total interest charges, and amortization schedule table.</li>
+              </ol>
+
+              <h2>Frequently Asked Questions</h2>
+              <div class="flex flex-col gap-3" style="margin-top: 1rem;">
+                <div class="faq-item open">
+                  <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>What credit score is required for optimal financing rates?</span>
+                    <span>▼</span>
+                  </button>
+                  <div class="faq-answer">
+                    Lenders typically offer prime interest rates to borrowers with credit scores of 720 or above. Scores between 660 and 719 receive standard competitive rates.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>Does down payment reduce total interest paid?</span>
+                    <span>▼</span>
+                  </button>
+                  <div class="faq-answer">
+                    Yes! Increasing your down payment directly lowers the principal amount ($P$), which significantly reduces total interest charges compounded over the life of the loan.
+                  </div>
+                </div>
+              </div>
+            </section>
+          </article>
+        </div>
+      `;
+
+      bindToolEvents(tool);
+      recalculateTool(tool);
+    }
+
+    function renderToolInputsHTML(tool) {
+      const d = tool.defaults || {};
+      if (tool.engine === 'zakat') {
+        return `
+          <div class="form-group"><label class="form-label">Cash & Bank Balances</label><input type="number" id="inp-cash" class="form-input" value="${d.cash || 5000}" /></div>
+          <div class="form-group"><label class="form-label">Gold Grams</label><input type="number" id="inp-goldGrams" class="form-input" value="${d.goldGrams || 50}" /></div>
+          <div class="form-group"><label class="form-label">Silver Grams</label><input type="number" id="inp-silverGrams" class="form-input" value="${d.silverGrams || 200}" /></div>
+          <div class="form-group"><label class="form-label">Investments & Shares</label><input type="number" id="inp-investments" class="form-input" value="${d.investments || 25000}" /></div>
+          <div class="form-group"><label class="form-label">Deductible Liabilities</label><input type="number" id="inp-liabilities" class="form-input" value="${d.liabilities || 3000}" /></div>
+        `;
+      } else if (tool.engine === 'seller_financing') {
+        return `
+          <div class="form-group"><label class="form-label">Property Purchase Price</label><input type="number" id="inp-price" class="form-input" value="${d.price || 300000}" /></div>
+          <div class="form-group"><label class="form-label">Down Payment</label><input type="number" id="inp-down" class="form-input" value="${d.down || 60000}" /></div>
+          <div class="form-group"><label class="form-label">Seller Interest Rate (%)</label><input type="number" step="0.1" id="inp-rate" class="form-input" value="${d.rate || 6.5}" /></div>
+          <div class="form-group"><label class="form-label">Amortization Period (Years)</label><input type="number" id="inp-amortYears" class="form-input" value="${d.amortYears || 30}" /></div>
+          <div class="form-group"><label class="form-label">Balloon Payment Term (Years)</label><input type="number" id="inp-balloonYears" class="form-input" value="${d.balloonYears || 5}" /></div>
+        `;
+      } else if (tool.engine === 'reverse_mortgage') {
+        return `
+          <div class="form-group"><label class="form-label">Estimated Home Value</label><input type="number" id="inp-homeValue" class="form-input" value="${d.homeValue || 450000}" /></div>
+          <div class="form-group"><label class="form-label">Youngest Borrower Age</label><input type="number" id="inp-age" class="form-input" value="${d.age || 68}" /></div>
+          <div class="form-group"><label class="form-label">Expected Interest Rate (%)</label><input type="number" step="0.1" id="inp-rate" class="form-input" value="${d.rate || 6.25}" /></div>
+          <div class="form-group"><label class="form-label">Existing Mortgage Payoff</label><input type="number" id="inp-existingMortgage" class="form-input" value="${d.existingMortgage || 40000}" /></div>
+        `;
+      } else if (tool.engine === 'invoice_finance') {
+        return `
+          <div class="form-group"><label class="form-label">Total Invoice Value</label><input type="number" id="inp-invoiceVal" class="form-input" value="${d.invoiceVal || 75000}" /></div>
+          <div class="form-group"><label class="form-label">Advance Rate (%)</label><input type="number" id="inp-advanceRate" class="form-input" value="${d.advanceRate || 85}" /></div>
+          <div class="form-group"><label class="form-label">Factoring Fee (%)</label><input type="number" step="0.1" id="inp-factoringFee" class="form-input" value="${d.factoringFee || 2.5}" /></div>
+          <div class="form-group"><label class="form-label">Days Until Customer Payment</label><input type="number" id="inp-daysToPay" class="form-input" value="${d.daysToPay || 45}" /></div>
+        `;
+      }
+
+      return `
+        <div class="form-group">
+          <div class="form-label"><span>Price / Loan Amount</span><span id="lbl-price">$${formatNumber(d.price || 30000)}</span></div>
+          <input type="number" id="inp-price" class="form-input" value="${d.price || 30000}" min="500" max="500000" />
+          <input type="range" id="slider-price" class="form-slider" value="${d.price || 30000}" min="500" max="500000" step="500" />
+        </div>
+        <div class="form-group">
+          <div class="form-label"><span>Down Payment</span><span id="lbl-down">$${formatNumber(d.down || 3000)}</span></div>
+          <input type="number" id="inp-down" class="form-input" value="${d.down || 3000}" min="0" max="100000" />
+          <input type="range" id="slider-down" class="form-slider" value="${d.down || 3000}" min="0" max="100000" step="250" />
+        </div>
+        <div class="form-group">
+          <div class="form-label"><span>Interest Rate (APR %)</span><span id="lbl-apr">${d.apr || 5.99}%</span></div>
+          <input type="number" step="0.1" id="inp-apr" class="form-input" value="${d.apr || 5.99}" min="0" max="40" />
+          <input type="range" step="0.1" id="slider-apr" class="form-slider" value="${d.apr || 5.99}" min="0" max="40" />
+        </div>
+        <div class="form-group">
+          <div class="form-label"><span>Term (Months)</span><span id="lbl-term">${d.term || 60} mos</span></div>
+          <input type="number" id="inp-term" class="form-input" value="${d.term || 60}" min="12" max="120" />
+          <input type="range" id="slider-term" class="form-slider" value="${d.term || 60}" min="12" max="120" step="6" />
+        </div>
+      `;
+    }
+
+    function bindToolEvents(tool) {
+      document.querySelectorAll('#inputs-box input').forEach(inp => {
+        inp.addEventListener('input', () => {
+          if (inp.id.startsWith('inp-')) {
+            const sl = document.getElementById(inp.id.replace('inp-', 'slider-'));
+            if (sl) sl.value = inp.value;
+          }
+          if (inp.id.startsWith('slider-')) {
+            const bx = document.getElementById(inp.id.replace('slider-', 'inp-'));
+            if (bx) bx.value = inp.value;
+          }
+          clearTimeout(state.debouncedTimer);
+          state.debouncedTimer = setTimeout(() => recalculateTool(tool), 80);
+        });
+      });
+
+      document.getElementById('reset-btn').addEventListener('click', () => renderToolPageView(document.getElementById('app-root'), tool.slug));
+      document.getElementById('dl-pdf-btn').addEventListener('click', () => downloadPDF(tool));
+      document.getElementById('dl-csv-btn').addEventListener('click', () => downloadCSV(tool));
+      document.getElementById('share-btn').addEventListener('click', () => {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Share link copied to clipboard!');
+      });
+    }
+
+    function collectInputs() {
+      const data = {};
+      document.querySelectorAll('#inputs-box input').forEach(i => {
+        if (i.id.startsWith('inp-')) data[i.id.replace('inp-', '')] = i.value;
+      });
+      return data;
+    }
+
+    function recalculateTool(tool) {
+      const inputs = collectInputs();
+      let res;
+      if (tool.engine === 'zakat') res = engineZakat(inputs);
+      else if (tool.engine === 'seller_financing') res = engineSellerFinancing(inputs);
+      else if (tool.engine === 'reverse_mortgage') res = engineReverseMortgage(inputs);
+      else if (tool.engine === 'finance_charge') res = engineFinanceCharge(inputs);
+      else if (tool.engine === 'invoice_finance') res = engineInvoiceFinance(inputs);
+      else res = engineAmortizedLoan(inputs);
+
+      document.getElementById('res-pmt').textContent = formatCurrency(res.pmt);
+      document.getElementById('res-interest').textContent = formatCurrency(res.totalInterest);
+      document.getElementById('res-principal').textContent = formatCurrency(res.amountFinanced);
+      document.getElementById('res-total').textContent = formatCurrency(res.totalCost);
+
+      renderCharts(res);
+      renderTable(res.schedule);
+    }
+
+    function renderCharts(res) {
+      const donutCtx = document.getElementById('donut-canvas').getContext('2d');
+      if (state.donutChart) state.donutChart.destroy();
+      state.donutChart = new Chart(donutCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Principal', 'Interest'],
+          datasets: [{ data: [res.amountFinanced, res.totalInterest], backgroundColor: ['#6366f1', '#fbbf24'] }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+      });
+
+      const lineCtx = document.getElementById('line-canvas').getContext('2d');
+      if (state.lineChart) state.lineChart.destroy();
+      const points = (res.schedule || []).filter((_, i) => i % 6 === 0);
+      state.lineChart = new Chart(lineCtx, {
+        type: 'line',
+        data: {
+          labels: points.map(p => `P${p.period}`),
+          datasets: [{ label: 'Remaining Balance', data: points.map(p => p.balance), borderColor: '#34d399', fill: false }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+      });
+    }
+
+    function renderTable(schedule) {
+      const tbody = document.getElementById('schedule-tbody');
+      if (!tbody || !schedule) return;
+      tbody.innerHTML = schedule.slice(0, 48).map(r => `
+        <tr>
+          <td>${r.period}</td>
+          <td>${formatCurrency(r.payment)}</td>
+          <td>${formatCurrency(r.principal)}</td>
+          <td>${formatCurrency(r.interest)}</td>
+          <td>${formatCurrency(r.balance)}</td>
+        </tr>
+      `).join('');
+    }
+
+    function downloadCSV(tool) {
+      const inputs = collectInputs();
+      const res = engineAmortizedLoan(inputs);
+      let csv = 'Period,Payment,Principal,Interest,Balance\n';
+      (res.schedule || []).forEach(r => { csv += `${r.period},${r.payment.toFixed(2)},${r.principal.toFixed(2)},${r.interest.toFixed(2)},${r.balance.toFixed(2)}\n`; });
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `${tool.slug}-schedule.csv`;
+      a.click();
+    }
+
+    function downloadPDF(tool) {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.setFontSize(18);
+      doc.text(tool.title, 14, 20);
+      doc.setFontSize(11);
+      doc.text(`Estimated Payment: ${document.getElementById('res-pmt').textContent}`, 14, 32);
+      doc.text(`Total Interest: ${document.getElementById('res-interest').textContent}`, 14, 40);
+      doc.text(`Amount Financed: ${document.getElementById('res-principal').textContent}`, 14, 48);
+      doc.save(`${tool.slug}-report.pdf`);
+    }
+
+    /* ==========================================================================
+       DOCUMENT GENERATOR PAGE VIEW (8 Templates)
+       ========================================================================== */
+    function renderGeneratorPageView(container, slug) {
+      const gen = GENERATORS.find(g => g.slug === slug) || GENERATORS[0];
+
+      setSEO({
+        title: `${gen.title} — Free Printable PDF Generator | FinancerSlot`,
+        description: `Create, edit, and download clean A4 PDF documents with ${gen.title}. ${gen.desc} 100% free and client-side private.`,
+        path: `/generator/${gen.slug}`,
+        schemaData: {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": gen.title,
+          "description": gen.desc,
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "All"
+        }
+      });
+
+      container.innerHTML = `
+        <div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+          <h1 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 1.5rem;">${gen.title}</h1>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-5 card flex flex-col gap-4">
+              <h2 style="font-weight: 700; font-size: 1.125rem;">Document Details</h2>
+              <div id="gen-form-box">${renderGeneratorForm(slug)}</div>
+              
+              <h3 style="font-weight: 700; font-size: 1rem; margin-top: 0.5rem;">Line Items</h3>
+              <div id="line-items-list" class="flex flex-col gap-2"></div>
+              <button id="add-item-btn" class="btn btn-secondary btn-sm">+ Add Line Item</button>
+
+              <button id="gen-pdf-btn" class="btn btn-primary" style="margin-top: 1rem;">📄 Download Printable PDF</button>
+            </div>
+
+            <!-- LIVE A4 PRINTABLE PREVIEW -->
+            <div class="lg:col-span-7 flex justify-center">
+              <div id="a4-preview" class="card" style="width: 100%; max-width: 520px; min-height: 650px; background: #ffffff; color: #0f172a; padding: 2.25rem; font-family: sans-serif; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+                ${renderGeneratorPreview(slug)}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      bindGeneratorEvents(gen, slug);
+    }
+
+    function renderGeneratorForm(slug) {
+      if (slug === 'rent-receipt') {
+        return `
+          <div class="form-group"><label class="form-label">Tenant Name</label><input type="text" id="doc-tenant" class="form-input" value="John Doe" /></div>
+          <div class="form-group"><label class="form-label">Landlord Name</label><input type="text" id="doc-landlord" class="form-input" value="Robert Smith" /></div>
+          <div class="form-group"><label class="form-label">Property Address</label><input type="text" id="doc-address" class="form-input" value="124 Park Avenue, Apt 4B" /></div>
+          <div class="form-group"><label class="form-label">Rental Month / Period</label><input type="text" id="doc-month" class="form-input" value="October 2026" /></div>
+          <div class="form-group"><label class="form-label">Landlord PAN / Tax ID</label><input type="text" id="doc-pan" class="form-input" value="ABCDE1234F" /></div>
+        `;
+      } else if (slug === 'salary-slip') {
+        return `
+          <div class="form-group"><label class="form-label">Company Name</label><input type="text" id="doc-company" class="form-input" value="Apex Financial Services" /></div>
+          <div class="form-group"><label class="form-label">Employee Name</label><input type="text" id="doc-emp-name" class="form-input" value="Sarah Jenkins" /></div>
+          <div class="form-group"><label class="form-label">Employee ID & Designation</label><input type="text" id="doc-emp-id" class="form-input" value="EMP-8092 · Financial Analyst" /></div>
+          <div class="form-group"><label class="form-label">Pay Period</label><input type="text" id="doc-pay-period" class="form-input" value="October 2026" /></div>
+        `;
+      }
+
+      return `
+        <div class="form-group"><label class="form-label">Sender / Business Name</label><input type="text" id="doc-sender" class="form-input" value="Acme Financial Corp" /></div>
+        <div class="form-group"><label class="form-label">Client / Customer Name</label><input type="text" id="doc-client" class="form-input" value="Global Tech Solutions" /></div>
+      `;
+    }
+
+    function renderGeneratorPreview(slug) {
+      if (slug === 'rent-receipt') {
+        return `
+          <div class="flex justify-between items-center" style="border-bottom: 2px solid #0f172a; padding-bottom: 1rem;">
+            <div>
+              <h2 style="font-size: 1.5rem; font-weight: 800; color: #0f172a;">RENT RECEIPT</h2>
+              <p style="font-size: 0.8125rem; color: #64748b;">HRA Tax Exemption Compliant</p>
+            </div>
+            <div style="text-align: right; font-size: 0.8125rem;">
+              <p>Date: ${new Date().toLocaleDateString()}</p>
+              <p>Receipt #: <strong id="prev-ref">#RR-2026-10</strong></p>
+            </div>
+          </div>
+          <div style="margin: 1.5rem 0; font-size: 0.9375rem; line-height: 1.8;">
+            <p>Received with thanks from <strong id="prev-tenant" style="color: #4f46e5;">John Doe</strong> the sum of <strong id="prev-total" style="color: #10b981;">$1,500.00</strong> towards rent for premises at <span id="prev-address" style="font-weight: 600;">124 Park Avenue, Apt 4B</span> for the month of <span id="prev-month" style="font-weight: 600;">October 2026</span>.</p>
+          </div>
+          <div style="border-top: 1px solid #e2e8f0; padding-top: 1rem; margin-top: 2rem; font-size: 0.875rem;">
+            <p><strong>Landlord Name:</strong> <span id="prev-landlord">Robert Smith</span></p>
+            <p><strong>Landlord PAN / Tax ID:</strong> <span id="prev-pan">ABCDE1234F</span></p>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="flex justify-between items-center" style="border-bottom: 2px solid #0f172a; padding-bottom: 1rem;">
+          <div>
+            <h2 id="prev-title" style="font-size: 1.5rem; font-weight: 800;">FINANCIAL DOCUMENT</h2>
+            <p id="prev-sender" style="font-weight: 600; color: #475569;">Acme Financial Corp</p>
+          </div>
+          <div style="text-align: right; font-size: 0.8125rem;">
+            <p>Date: ${new Date().toLocaleDateString()}</p>
+            <p>Ref: #FIN-2026-001</p>
+          </div>
+        </div>
+
+        <div style="margin: 1.5rem 0;">
+          <p style="font-size: 0.875rem; color: #64748b; font-weight: 700;">Recipient:</p>
+          <p id="prev-client" style="font-size: 1.125rem; font-weight: 700;">Global Tech Solutions</p>
+        </div>
+
+        <table style="width: 100%; margin: 1.5rem 0; border-collapse: collapse;">
+          <thead>
+            <tr style="border-bottom: 1px solid #cbd5e1; text-align: left;">
+              <th style="padding: 0.5rem 0;">Description</th>
+              <th style="padding: 0.5rem 0; text-align: right;">Amount</th>
+            </tr>
+          </thead>
+          <tbody id="prev-tbody"></tbody>
+        </table>
+
+        <div style="border-top: 2px solid #0f172a; padding-top: 1rem; text-align: right;">
+          <span style="font-size: 1.25rem; font-weight: 800;">Total Amount: </span>
+          <span id="prev-total" style="font-size: 1.25rem; font-weight: 800; color: #4f46e5;">$0.00</span>
+        </div>
+      `;
+    }
+
+    function bindGeneratorEvents(gen, slug) {
+      const itemsList = document.getElementById('line-items-list');
+
+      function renderItemsUI() {
+        if (!itemsList) return;
+        itemsList.innerHTML = state.docItems.map((item, idx) => `
+          <div class="flex items-center gap-2">
+            <input type="text" class="form-input item-desc" data-idx="${idx}" value="${item.desc}" placeholder="Description" />
+            <input type="number" class="form-input item-rate" data-idx="${idx}" value="${item.rate}" style="width: 110px;" />
+          </div>
+        `).join('');
+
+        itemsList.querySelectorAll('.item-desc').forEach(i => i.addEventListener('input', e => {
+          state.docItems[e.target.dataset.idx].desc = e.target.value;
+          updatePreview();
+        }));
+        itemsList.querySelectorAll('.item-rate').forEach(i => i.addEventListener('input', e => {
+          state.docItems[e.target.dataset.idx].rate = parseFloat(e.target.value) || 0;
+          updatePreview();
+        }));
+      }
+
+      function updatePreview() {
+        if (slug === 'rent-receipt') {
+          const tenant = document.getElementById('doc-tenant');
+          const landlord = document.getElementById('doc-landlord');
+          const address = document.getElementById('doc-address');
+          const month = document.getElementById('doc-month');
+          const pan = document.getElementById('doc-pan');
+
+          if (tenant) document.getElementById('prev-tenant').textContent = tenant.value;
+          if (landlord) document.getElementById('prev-landlord').textContent = landlord.value;
+          if (address) document.getElementById('prev-address').textContent = address.value;
+          if (month) document.getElementById('prev-month').textContent = month.value;
+          if (pan) document.getElementById('prev-pan').textContent = pan.value;
+
+          let total = 0;
+          state.docItems.forEach(i => total += i.rate);
+          document.getElementById('prev-total').textContent = formatCurrency(total);
+        } else {
+          const sender = document.getElementById('doc-sender');
+          const client = document.getElementById('doc-client');
+          if (sender) document.getElementById('prev-sender').textContent = sender.value;
+          if (client) document.getElementById('prev-client').textContent = client.value;
+
+          let total = 0;
+          const tbody = document.getElementById('prev-tbody');
+          if (tbody) {
+            tbody.innerHTML = state.docItems.map(i => {
+              total += i.rate;
+              return `
+                <tr>
+                  <td style="padding: 0.5rem 0;">${i.desc}</td>
+                  <td style="padding: 0.5rem 0; text-align: right; font-weight: 700;">${formatCurrency(i.rate)}</td>
+                </tr>
+              `;
+            }).join('');
+          }
+          document.getElementById('prev-total').textContent = formatCurrency(total);
+        }
+      }
+
+      document.querySelectorAll('#gen-form-box input').forEach(inp => inp.addEventListener('input', updatePreview));
+      const addBtn = document.getElementById('add-item-btn');
+      if (addBtn) {
+        addBtn.addEventListener('click', () => {
+          state.docItems.push({ desc: 'Additional Service Item', rate: 500 });
+          renderItemsUI();
+          updatePreview();
+        });
+      }
+
+      renderItemsUI();
+      updatePreview();
+
+      const pdfBtn = document.getElementById('gen-pdf-btn');
+      if (pdfBtn) {
+        pdfBtn.addEventListener('click', () => {
+          html2canvas(document.getElementById('a4-preview')).then(canvas => {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 10, 10, 190, 0);
+            pdf.save(`${gen.slug}-document.pdf`);
+          });
+        });
+      }
+    }
+
+    /* ==========================================================================
+       INFORMATIONAL & GUIDES VIEWS
+       ========================================================================== */
+    function renderGuidesPageView(container, slug) {
+      const guide = GUIDES.find(g => g.slug === slug) || GUIDES[0];
+
+      setSEO({
+        title: `${guide.title} — FinancerSlot Financial Guides`,
+        description: guide.desc,
+        path: `/guides/${guide.slug}`,
+        schemaData: {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": guide.title,
+          "description": guide.desc,
+          "author": { "@type": "Organization", "name": "FinancerSlot" }
+        }
+      });
+
+      container.innerHTML = `
+        <div class="container" style="padding-top: 2rem; padding-bottom: 4rem; max-width: 52rem;">
+          <article>
+            <div style="margin-bottom: 1rem; font-size: 0.875rem; color: var(--text-muted);">
+              <a href="#/">Home</a> / <a href="#/guides">Guides</a> / <span>${guide.tag}</span>
+            </div>
+            <span class="pill-badge" style="margin-bottom: 0.75rem;">${guide.time}</span>
+            <h1 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 1rem;">${guide.title}</h1>
+            <p style="font-size: 1.125rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">${guide.desc}</p>
+            
+            <div class="card flex flex-col gap-4" style="line-height: 1.8;">
+              <h2 style="font-size: 1.25rem; font-weight: 800;">Key Financial Concepts</h2>
+              <p>1. Always compare the APR (Annual Percentage Rate) rather than just the stated interest rate, as APR accounts for prepaid finance charges, dealer documentation fees, and loan origination costs.</p>
+              <p>2. For seller financing, make sure the balloon payment schedule and refinancing terms are clearly documented in the promissory note.</p>
+              <p>3. Use client-side calculators to test multiple interest rate and term scenarios before signing agreement contracts.</p>
+              <a href="#/calculators" class="btn btn-primary" style="width: fit-content; margin-top: 1rem;">Browse Related Calculators →</a>
+            </div>
+          </article>
+        </div>
+      `;
+    }
+
+    function renderFAQPageView(container) {
+      setSEO({
+        title: 'Frequently Asked Questions — FinancerSlot',
+        description: 'Answers to common questions about FinancerSlot free calculators, document generators, client-side privacy, and PDF exports.',
+        path: '/faq',
+        schemaData: {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Are the financial calculators 100% free?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes, all 60+ calculators and 8 document generators are completely free to use with zero registration." }
+            },
+            {
+              "@type": "Question",
+              "name": "Is my financial data kept private?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every calculation is executed locally inside your web browser." }
+            }
+          ]
+        }
+      });
+
+      container.innerHTML = `
+        <div class="container" style="padding-top: 2rem; padding-bottom: 4rem; max-width: 52rem;">
+          <h1 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 1.5rem;">Frequently Asked Questions</h1>
+          <div class="flex flex-col gap-4">
+            <div class="card flex flex-col gap-2">
+              <h3 style="font-size: 1.125rem; font-weight: 700;">Are the financial calculators 100% free?</h3>
+              <p style="color: var(--text-muted);">Yes, all 60+ calculators and 8 document generators are 100% free with zero paywalls or subscriptions.</p>
+            </div>
+            <div class="card flex flex-col gap-2">
+              <h3 style="font-size: 1.125rem; font-weight: 700;">Is my financial information safe?</h3>
+              <p style="color: var(--text-muted);">Yes. All math runs locally inside your web browser. No figures leave your device.</p>
+            </div>
+            <div class="card flex flex-col gap-2">
+              <h3 style="font-size: 1.125rem; font-weight: 700;">Can I export PDF reports and CSV schedules?</h3>
+              <p style="color: var(--text-muted);">Yes, every calculator includes instant PDF report and CSV schedule download buttons.</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderInfoPageView(container, title, bodyContent) {
+      setSEO({
+        title: `${title} — FinancerSlot`,
+        description: bodyContent,
+        path: `/${title.toLowerCase().replace(/\s+/g, '-')}`
+      });
+
+      container.innerHTML = `
+        <div class="container" style="padding-top: 2rem; padding-bottom: 4rem; max-width: 52rem;">
+          <h1 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 1.5rem;">${title}</h1>
+          <div class="card flex flex-col gap-4" style="line-height: 1.8; font-size: 1.0625rem;">
+            <p>${bodyContent}</p>
+            <p style="color: var(--text-muted); font-size: 0.9375rem;">If you have any questions or feedback regarding FinancerSlot, please reach out via our contact page.</p>
+            <a href="#/" class="btn btn-secondary" style="width: fit-content;">Back to Homepage</a>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderContactPageView(container) {
+      setSEO({
+        title: 'Contact Us — FinancerSlot',
+        description: 'Get in touch with FinancerSlot team for support, tool suggestions, or feedback.',
+        path: '/contact'
+      });
+
+      container.innerHTML = `
+        <div class="container" style="padding-top: 2rem; padding-bottom: 4rem; max-width: 42rem;">
+          <h1 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 1rem;">Contact Us</h1>
+          <p style="color: var(--text-muted); margin-bottom: 2rem;">Have questions, tool suggestions, or feedback? Send us a message!</p>
+          <div class="card flex flex-col gap-4">
+            <div class="form-group"><label class="form-label">Your Name</label><input type="text" class="form-input" placeholder="Jane Doe" /></div>
+            <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="jane@example.com" /></div>
+            <div class="form-group"><label class="form-label">Message</label><textarea class="form-input" rows="4" placeholder="How can we help?"></textarea></div>
+            <button class="btn btn-primary" onclick="alert('Thank you for reaching out! We will reply shortly.')">Send Message</button>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ==========================================================================
+       POPULAR TOOLS GRID RENDER & SEARCH
+       ========================================================================== */
+    function renderPopularTools(categoryFilter = 'all', searchQuery = '') {
+      const grid = document.getElementById('popular-tools-grid');
+      if (!grid) return;
+
+      let filtered = TOOLS_DATA;
+      if (categoryFilter !== 'all') filtered = filtered.filter(t => t.category === categoryFilter);
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter(t => t.title.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q));
+      }
+
+      grid.innerHTML = filtered.slice(0, 18).map(t => `
+        <a href="#/tool/${t.slug}" class="tool-row">
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">${t.category}</div>
+            <div style="font-weight: 800; font-size: 1rem; color: var(--text-main); margin-top: 2px;">${t.title}</div>
+            <div style="font-size: 0.8125rem; color: var(--text-muted);">${t.desc}</div>
+          </div>
+          <span style="font-weight: 800; color: var(--accent-primary); font-size: 1.125rem; margin-left: 0.5rem;">→</span>
+        </a>
+      `).join('');
+    }
+
+    function filterTab(category, btnEl) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btnEl.classList.add('active');
+      const input = document.getElementById('hero-search-input');
+      renderPopularTools(category, input ? input.value.trim() : '');
+    }
+
+    function setupSearchEngine(inputId, dropdownId) {
+      const input = document.getElementById(inputId);
+      const dropdown = document.getElementById(dropdownId);
+      if (!input || !dropdown) return;
+
+      input.addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        renderPopularTools('all', q);
+        if (!q) return dropdown.classList.remove('open');
+        const matches = TOOLS_DATA.filter(t => t.title.toLowerCase().includes(q) || t.category.toLowerCase().includes(q)).slice(0, 7);
+        dropdown.innerHTML = matches.map(m => `
+          <div class="search-result-item" onclick="window.location.hash='#/tool/${m.slug}'; document.getElementById('${dropdownId}').classList.remove('open');">
+            <div>
+              <strong>${m.title}</strong>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">${m.category}</div>
+            </div>
+            <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent-primary);">Calculate →</span>
+          </div>
+        `).join('');
+        dropdown.classList.add('open');
+      });
+    }
+
+    function animateCountUp() {
+      document.querySelectorAll('.count-up').forEach(el => {
+        const target = parseFloat(el.getAttribute('data-target')) || 0;
+        const decimals = parseInt(el.getAttribute('data-decimals')) || 0;
+        const curr = currencyData[state.currency];
+        const converted = target * curr.rate;
+        el.textContent = new Intl.NumberFormat(curr.locale, { maximumFractionDigits: decimals, minimumFractionDigits: decimals }).format(converted);
+      });
+    }
+
+    function toggleFaq(buttonEl) {
+      const faqItem = buttonEl.parentElement;
+      const isOpen = faqItem.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('open'));
+      if (!isOpen) faqItem.classList.add('open');
+    }
+
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    document.getElementById('hamburger-btn').addEventListener('click', () => mobileDrawer.classList.add('open'));
+    document.getElementById('close-drawer-btn').addEventListener('click', closeDrawer);
+    function closeDrawer() { mobileDrawer.classList.remove('open'); }
+
+    /* INITIALIZATION */
+    window.addEventListener('DOMContentLoaded', () => {
+      applyTheme(state.theme);
+      router();
+    });
+  </script>
+</body>
+</html>
