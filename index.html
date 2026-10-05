@@ -884,13 +884,24 @@
       transform: translateX(2px);
     }
 
-    /* COMPREHENSIVE MOBILE RESPONSIVE ENHANCEMENTS */
+    /* COMPREHENSIVE MOBILE RESPONSIVE & ZERO-OVERFLOW ENHANCEMENTS */
+    html, body {
+      overflow-x: hidden !important;
+      width: 100% !important;
+      max-width: 100vw !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
     @media (max-width: 768px) {
       body { -webkit-tap-highlight-color: transparent; }
-      .container { padding: 0 1rem; }
-      .nav-inner { height: 3.75rem; }
-      .hero-section { padding: 2.25rem 0 3rem; }
-      .hero-headline { font-size: clamp(1.75rem, 7.5vw, 2.75rem) !important; line-height: 1.15; }
+      .container { padding: 0 1rem !important; max-width: 100% !important; box-sizing: border-box !important; }
+      .nav-inner { height: 3.75rem; padding: 0 1rem; gap: 0.5rem; justify-content: space-between; }
+      
+      .desktop-control { display: none !important; }
+
+      .hero-section { padding: 2rem 0 2.5rem; width: 100% !important; max-width: 100vw !important; box-sizing: border-box !important; overflow: hidden !important; }
+      .hero-headline { font-size: clamp(1.625rem, 6.5vw, 2.5rem) !important; line-height: 1.15; max-width: 100% !important; word-break: break-word; }
       
       .hero-search-box {
         flex-direction: column;
@@ -898,15 +909,18 @@
         padding: 0.5rem;
         gap: 0.5rem;
         min-height: auto;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
       }
       .hero-search-box input {
         font-size: 16px !important;
         padding: 0.5rem;
-        width: 100%;
+        width: 100% !important;
         text-align: center;
       }
       .hero-search-btn {
-        width: 100%;
+        width: 100% !important;
         border-radius: var(--radius-md);
         min-height: 44px;
       }
@@ -1041,19 +1055,19 @@
       </nav>
 
       <!-- Right Controls -->
-      <div class="flex items-center gap-3">
-        <select id="currency-select" class="select-currency" aria-label="Select Currency">
+      <div class="flex items-center gap-2">
+        <select id="currency-select" class="select-currency desktop-control" aria-label="Select Currency">
           <option value="USD">USD ($)</option>
           <option value="CAD">CAD (CA$)</option>
           <option value="GBP">GBP (£)</option>
           <option value="INR">INR (₹)</option>
         </select>
 
-        <button id="theme-toggle" class="btn btn-secondary btn-sm" aria-label="Toggle Theme">
+        <button id="theme-toggle" class="btn btn-secondary btn-sm desktop-control" aria-label="Toggle Theme">
           🌙 Dark
         </button>
 
-        <a href="/calculators" class="btn btn-primary btn-sm">Browse tools</a>
+        <a href="/calculators" class="btn btn-primary btn-sm desktop-control">Browse tools</a>
 
         <!-- Mobile Hamburger Button -->
         <button id="hamburger-btn" class="hamburger-btn btn-secondary" aria-label="Open Mobile Menu">
@@ -1067,10 +1081,21 @@
   <div id="mobile-drawer" class="mobile-drawer">
     <div class="flex justify-between items-center" style="border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
       <span class="logo"><span>⚡</span><span class="logo-text"><span class="logo-ink">Financers</span><span class="logo-slot">Lot</span></span></span>
-      <button id="close-drawer-btn" style="font-size: 1.5rem;">✕</button>
+      <button id="close-drawer-btn" style="font-size: 1.5rem; padding: 0.5rem;" aria-label="Close Menu">✕</button>
     </div>
     <div class="flex flex-col gap-4" style="font-weight: 700; font-size: 1.125rem;">
-      <a href="/calculators" onclick="closeDrawer()">Browse 60+ Calculators</a>
+      <div class="flex gap-2 items-center" style="border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+        <select id="mobile-currency-select" class="select-currency" style="width: 100%; min-height: 44px;" aria-label="Select Currency">
+          <option value="USD">USD ($)</option>
+          <option value="CAD">CAD (CA$)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="INR">INR (₹)</option>
+        </select>
+        <button id="mobile-theme-toggle" class="btn btn-secondary" style="min-height: 44px; white-space: nowrap;" aria-label="Toggle Theme">
+          🌙 Dark
+        </button>
+      </div>
+      <a href="/calculators" onclick="closeDrawer()" class="btn btn-primary" style="width: 100%; text-align: center; min-height: 44px;">Browse 60+ Calculators</a>
       <a href="/generators" onclick="closeDrawer()">8 Document Generators</a>
       <a href="/guides" onclick="closeDrawer()">Financial Guides</a>
       <a href="/faq" onclick="closeDrawer()">FAQ</a>
@@ -1180,22 +1205,30 @@
     };
 
     const currencySelect = document.getElementById('currency-select');
+    const mobileCurrencySelect = document.getElementById('mobile-currency-select');
+
     try {
       const savedCurr = localStorage.getItem('fin_currency');
       if (savedCurr && currencyData[savedCurr]) {
         state.currency = savedCurr;
-        currencySelect.value = savedCurr;
+        if (currencySelect) currencySelect.value = savedCurr;
+        if (mobileCurrencySelect) mobileCurrencySelect.value = savedCurr;
       }
     } catch (e) {
       console.warn('localStorage disabled');
     }
 
-    currencySelect.addEventListener('change', (e) => {
-      state.currency = e.target.value;
+    function setCurrency(val) {
+      state.currency = val;
+      if (currencySelect) currencySelect.value = val;
+      if (mobileCurrencySelect) mobileCurrencySelect.value = val;
       try { localStorage.setItem('fin_currency', state.currency); } catch (e) {}
       updateCurrencyFigures();
       if (state.activeTool) recalculateTool(state.activeTool);
-    });
+    }
+
+    if (currencySelect) currencySelect.addEventListener('change', (e) => setCurrency(e.target.value));
+    if (mobileCurrencySelect) mobileCurrencySelect.addEventListener('change', (e) => setCurrency(e.target.value));
 
     function updateCurrencyFigures() {
       const curr = currencyData[state.currency];
@@ -1223,25 +1256,31 @@
 
     // Theme Switcher
     const themeBtn = document.getElementById('theme-toggle');
+    const mobileThemeBtn = document.getElementById('mobile-theme-toggle');
+
     function applyTheme(theme) {
+      const label = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
       if (theme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
-        themeBtn.textContent = '☀️ Light';
       } else if (theme === 'light') {
         document.documentElement.setAttribute('data-theme', 'light');
-        themeBtn.textContent = '🌙 Dark';
       } else {
         document.documentElement.setAttribute('data-theme', 'system');
-        themeBtn.textContent = '🌙 Dark';
       }
+      if (themeBtn) themeBtn.textContent = label;
+      if (mobileThemeBtn) mobileThemeBtn.textContent = label;
     }
-    themeBtn.addEventListener('click', () => {
+
+    function toggleTheme() {
       const current = document.documentElement.getAttribute('data-theme');
       const next = current === 'dark' ? 'light' : 'dark';
       try { localStorage.setItem('fin_theme', next); } catch (e) {}
       applyTheme(next);
       if (state.activeTool) renderToolPageView(document.getElementById('app-root'), state.activeTool.slug);
-    });
+    }
+
+    if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+    if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', toggleTheme);
 
     /* DYNAMIC SEO MANAGER FOR GOOGLE & LLMs / AI OVERVIEWS */
     function setSEO({ title, description, path = '', schemaData = null }) {
