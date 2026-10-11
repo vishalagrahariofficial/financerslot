@@ -1476,6 +1476,313 @@
       return { amountFinanced, pmt, totalInterest, totalCost, schedule };
     }
 
+    
+    function engineFIRE(params) {
+      const expenses = parseFloat(params.expenses) || 45000;
+      const netWorth = parseFloat(params.currentNetWorth) || 120000;
+      const savings = parseFloat(params.savings) || 35000;
+      const swr = parseFloat(params.swr) || 4.0;
+      const rate = parseFloat(params.rate) || 8.0;
+
+      const fireNumber = swr > 0 ? expenses / (swr / 100) : 0;
+      let balance = netWorth;
+      let years = 0;
+      const schedule = [];
+      while (balance < fireNumber && years < 50) {
+        years++;
+        const growth = balance * (rate / 100);
+        balance += growth + savings;
+        schedule.push({ period: years, payment: savings, principal: Math.round(savings * years), interest: Math.round(growth), balance: Math.round(balance) });
+      }
+
+      return {
+        pmt: fireNumber,
+        totalInterest: years,
+        amountFinanced: netWorth,
+        totalCost: expenses,
+        isInterestYears: true,
+        schedule,
+        labels: { pmt: 'FIRE Target Number', interest: 'Years to Financial Independence', principal: 'Current Net Worth', total: 'Annual Living Expenses' },
+        donutLabels: ['Current Net Worth', 'Remaining Gap to Goal'],
+        donutData: [netWorth, Math.max(0, fireNumber - netWorth)],
+        lineLabel: 'Net Worth Accumulation'
+      };
+    }
+
+    function engineDividend(params) {
+      const principal = parseFloat(params.principal) || 50000;
+      const contrib = parseFloat(params.contribution) || 6000;
+      const divYield = parseFloat(params.yield) || 4.5;
+      const growth = parseFloat(params.growth) || 5.0;
+      const years = parseFloat(params.years) || 20;
+
+      let portfolio = principal;
+      let totalDividends = 0;
+      let totalInvested = principal;
+      let currentYieldRate = divYield / 100;
+      const schedule = [];
+
+      for (let y = 1; y <= years; y++) {
+        const annualDiv = portfolio * currentYieldRate;
+        totalDividends += annualDiv;
+        portfolio += annualDiv + contrib;
+        totalInvested += contrib;
+        currentYieldRate *= (1 + (growth / 100));
+        schedule.push({ period: y, payment: contrib, principal: Math.round(annualDiv), interest: Math.round(totalDividends), balance: Math.round(portfolio) });
+      }
+
+      const annualIncome = portfolio * currentYieldRate;
+      return {
+        pmt: annualIncome,
+        totalInterest: totalDividends,
+        amountFinanced: totalInvested,
+        totalCost: portfolio,
+        schedule,
+        labels: { pmt: 'Future Annual Dividend Income', interest: 'Total Cumulative Dividends', principal: 'Total Capital Invested', total: 'Ending Portfolio Value' },
+        donutLabels: ['Invested Capital', 'Cumulative Dividends'],
+        donutData: [totalInvested, Math.round(totalDividends)],
+        lineLabel: 'Portfolio Value'
+      };
+    }
+
+    function engineSIP(params) {
+      const sip = parseFloat(params.monthlyInvestment) || 500;
+      const rate = parseFloat(params.rate) || 12.0;
+      const years = parseFloat(params.years) || 15;
+
+      const i = (rate / 100) / 12;
+      const n = years * 12;
+      const invested = sip * n;
+      const futureVal = i > 0 ? sip * ((Math.pow(1 + i, n) - 1) / i) * (1 + i) : invested;
+      const wealthGain = futureVal - invested;
+
+      const schedule = [];
+      let balance = 0;
+      for (let y = 1; y <= years; y++) {
+        const months = y * 12;
+        const curInv = sip * months;
+        const curVal = i > 0 ? sip * ((Math.pow(1 + i, months) - 1) / i) * (1 + i) : curInv;
+        schedule.push({ period: y, payment: sip * 12, principal: curInv, interest: curVal - curInv, balance: Math.round(curVal) });
+      }
+
+      return {
+        pmt: futureVal,
+        totalInterest: wealthGain,
+        amountFinanced: invested,
+        totalCost: futureVal,
+        schedule,
+        labels: { pmt: 'Expected Maturity Wealth', interest: 'Estimated Wealth Gain', principal: 'Total Amount Invested', total: 'Total Future Wealth' },
+        donutLabels: ['Amount Invested', 'Wealth Gain'],
+        donutData: [invested, Math.round(wealthGain)],
+        lineLabel: 'Portfolio Growth'
+      };
+    }
+
+    function engineCompoundInterest(params) {
+      const principal = parseFloat(params.principal) || 10000;
+      const contrib = parseFloat(params.contrib) || 200;
+      const rate = parseFloat(params.rate) || 8.0;
+      const years = parseFloat(params.years) || 10;
+
+      const monthlyRate = (rate / 100) / 12;
+      const months = years * 12;
+      let balance = principal;
+      let totalDeposits = principal;
+      const schedule = [];
+
+      for (let m = 1; m <= months; m++) {
+        balance = balance * (1 + monthlyRate) + contrib;
+        totalDeposits += contrib;
+        if (m % 12 === 0) {
+          const yr = m / 12;
+          schedule.push({ period: yr, payment: contrib * 12, principal: totalDeposits, interest: balance - totalDeposits, balance: Math.round(balance) });
+        }
+      }
+
+      const interestEarned = Math.max(0, balance - totalDeposits);
+      return {
+        pmt: balance,
+        totalInterest: interestEarned,
+        amountFinanced: totalDeposits,
+        totalCost: balance,
+        schedule,
+        labels: { pmt: 'Total Future Balance', interest: 'Total Interest Earned', principal: 'Total Deposits', total: 'Future Wealth' },
+        donutLabels: ['Total Deposits', 'Interest Earned'],
+        donutData: [totalDeposits, Math.round(interestEarned)],
+        lineLabel: 'Balance Over Time'
+      };
+    }
+
+    function engineCAGR(params) {
+      const initVal = parseFloat(params.initialVal) || 10000;
+      const finalVal = parseFloat(params.finalVal) || 25000;
+      const years = parseFloat(params.years) || 5;
+
+      const cagr = (initVal > 0 && years > 0) ? (Math.pow(finalVal / initVal, 1 / years) - 1) * 100 : 0;
+      const profit = finalVal - initVal;
+      const schedule = [];
+      const growthRate = cagr / 100;
+      for (let y = 1; y <= years; y++) {
+        const val = initVal * Math.pow(1 + growthRate, y);
+        schedule.push({ period: y, payment: 0, principal: initVal, interest: val - initVal, balance: Math.round(val) });
+      }
+
+      return {
+        pmt: cagr,
+        isPercent: true,
+        totalInterest: profit,
+        amountFinanced: initVal,
+        totalCost: finalVal,
+        schedule,
+        labels: { pmt: 'Compound Annual Growth (CAGR)', interest: 'Net Total Profit', principal: 'Initial Investment', total: 'Ending Portfolio Value' },
+        donutLabels: ['Initial Capital', 'Net Profit'],
+        donutData: [initVal, Math.max(0, profit)],
+        lineLabel: 'Compounded Value'
+      };
+    }
+
+    function engineRetirement401k(params) {
+      const salary = parseFloat(params.salary) || 85000;
+      const contribPct = parseFloat(params.contribPct) || 10;
+      const matchPct = parseFloat(params.matchPct) || 50;
+      const matchLimit = parseFloat(params.matchLimit) || 6;
+      const rate = parseFloat(params.rate) || 8.0;
+      const years = parseFloat(params.years) || 30;
+
+      const empMonthly = (salary * (contribPct / 100)) / 12;
+      const matchRate = Math.min(contribPct, matchLimit) * (matchPct / 100);
+      const matchMonthly = (salary * (matchRate / 100)) / 12;
+      const totalMonthly = empMonthly + matchMonthly;
+
+      const r = (rate / 100) / 12;
+      const months = years * 12;
+      let balance = 0;
+      let totalEmp = 0;
+      let totalMatch = 0;
+      const schedule = [];
+
+      for (let m = 1; m <= months; m++) {
+        balance = balance * (1 + r) + totalMonthly;
+        totalEmp += empMonthly;
+        totalMatch += matchMonthly;
+        if (m % 12 === 0) {
+          const yr = m / 12;
+          schedule.push({ period: yr, payment: Math.round(totalMonthly * 12), principal: Math.round(totalEmp), interest: Math.round(balance - totalEmp), balance: Math.round(balance) });
+        }
+      }
+
+      return {
+        pmt: balance,
+        totalInterest: balance - totalEmp,
+        amountFinanced: totalEmp,
+        totalCost: (balance * 0.04) / 12,
+        schedule,
+        labels: { pmt: 'Total 401(k) Nest Egg', interest: 'Match & Growth Earnings', principal: 'Your Total Contributions', total: 'Monthly Retirement Income (4% Rule)' },
+        donutLabels: ['Your Contributions', 'Match & Growth'],
+        donutData: [Math.round(totalEmp), Math.round(balance - totalEmp)],
+        lineLabel: 'Nest Egg Growth'
+      };
+    }
+
+    function engineDebtPayoff(params) {
+      const balance = parseFloat(params.balance) || 8500;
+      const apr = parseFloat(params.apr) || 21.99;
+      const payment = parseFloat(params.payment) || 350;
+
+      const r = (apr / 100) / 12;
+      let curBal = balance;
+      let months = 0;
+      let totalInterest = 0;
+      const schedule = [];
+
+      while (curBal > 0 && months < 360) {
+        months++;
+        const interest = curBal * r;
+        totalInterest += interest;
+        const principalPaid = Math.min(curBal, payment - interest);
+        if (principalPaid <= 0) break; // Negative amortization
+        curBal -= principalPaid;
+        schedule.push({ period: months, payment: payment, principal: Math.round(principalPaid), interest: Math.round(interest), balance: Math.round(curBal) });
+      }
+
+      return {
+        pmt: months,
+        isYears: false,
+        totalInterest: totalInterest,
+        amountFinanced: balance,
+        totalCost: balance + totalInterest,
+        schedule,
+        labels: { pmt: 'Months to Debt-Free', interest: 'Total Interest Paid', principal: 'Original Debt Principal', total: 'Total Amount Paid' },
+        donutLabels: ['Original Debt', 'Interest Paid'],
+        donutData: [balance, Math.round(totalInterest)],
+        lineLabel: 'Remaining Debt Balance'
+      };
+    }
+
+    function engineSalary(params) {
+      const gross = parseFloat(params.gross) || 85000;
+      const taxRate = parseFloat(params.taxRate) || 22;
+      const deductions = parseFloat(params.deductions) || 5000;
+
+      const taxable = Math.max(0, gross - deductions);
+      const totalTax = taxable * (taxRate / 100);
+      const netAnnual = gross - totalTax;
+      const netMonthly = netAnnual / 12;
+
+      return {
+        pmt: netAnnual,
+        totalInterest: totalTax,
+        amountFinanced: netMonthly,
+        totalCost: gross,
+        schedule: [
+          { period: 1, payment: gross / 12, principal: netMonthly, interest: totalTax / 12, balance: netAnnual },
+          { period: 2, payment: gross / 26, principal: netAnnual / 26, interest: totalTax / 26, balance: netAnnual },
+          { period: 3, payment: gross / 52, principal: netAnnual / 52, interest: totalTax / 52, balance: netAnnual }
+        ],
+        labels: { pmt: 'Net Take-Home (Annual)', interest: 'Total Estimated Taxes', principal: 'Monthly Take-Home Pay', total: 'Gross Annual Salary' },
+        donutLabels: ['Take-Home Pay', 'Taxes Withheld'],
+        donutData: [Math.round(netAnnual), Math.round(totalTax)],
+        lineLabel: 'Monthly Take-Home'
+      };
+    }
+
+    function engineNameGen(params) {
+      const prefixes = ['Fin', 'Apex', 'Nova', 'Vanguard', 'Prime', 'Omni', 'Cred', 'Vault', 'Crest', 'Sterling'];
+      const suffixes = ['Pay', 'Capital', 'Finance', 'Trust', 'Ledger', 'Mint', 'Stack', 'Bridge', 'Flow', 'Nest'];
+      const schedule = [];
+      for (let i = 1; i <= 6; i++) {
+        schedule.push({ period: i, payment: 0, principal: 0, interest: 0, balance: 100 });
+      }
+      return {
+        pmt: 100,
+        totalInterest: 0,
+        amountFinanced: 1,
+        totalCost: 1,
+        schedule,
+        labels: { pmt: 'Generator Status', interest: 'Names Pool Size', principal: 'Active Category', total: 'Quality Score' },
+        donutLabels: ['Brand Availability', 'Domain Matches'],
+        donutData: [85, 15],
+        lineLabel: 'Brand Affinity'
+      };
+    }
+
+    function engineDocumentGen(params) {
+      const amt = parseFloat(params.amount) || 12500;
+      return {
+        pmt: amt,
+        totalInterest: amt * 0.1,
+        amountFinanced: amt * 0.9,
+        totalCost: amt,
+        schedule: [
+          { period: 1, payment: amt, principal: amt * 0.9, interest: amt * 0.1, balance: 0 }
+        ],
+        labels: { pmt: 'Document Total', interest: 'Taxes / Fees', principal: 'Net Subtotal', total: 'Final Due Amount' },
+        donutLabels: ['Net Subtotal', 'Taxes & Fees'],
+        donutData: [amt * 0.9, amt * 0.1],
+        lineLabel: 'Invoice Amount'
+      };
+    }
+
     function engineSellerFinancing(params) {
       const price = parseFloat(params.price) || 300000;
       const down = parseFloat(params.down) || 60000;
@@ -8486,7 +8793,82 @@
       { slug: 'zoya-finance-zakat-calculator', title: 'Zoya Finance Zakat Calculator', category: 'Personal & Learning', engine: 'zakat', defaults: { cash: 5000, goldGrams: 50, silverGrams: 200, investments: 25000, liabilities: 3000 }, desc: 'Calculate Zakat liability by Islamic guidelines.' },
       { slug: 'what-is-pmt-in-finance-calculator', title: 'What Is PMT in Finance Calculator', category: 'Personal & Learning', engine: 'amortized_loan', defaults: { price: 100000, apr: 6.0, term: 360 }, desc: 'Interactive PMT function explainer and formula.' },
       { slug: 'finance-calculator-ti-84', title: 'Finance Calculator TI 84', category: 'Personal & Learning', engine: 'amortized_loan', defaults: { price: 50000, apr: 7.5, term: 60 }, desc: 'TI-84 style TVM (Time Value of Money) solver.' },
-      { slug: 'finance-calculator-ai', title: 'Finance Calculator AI', category: 'Personal & Learning', engine: 'amortized_loan', defaults: { price: 30000, apr: 6.0, term: 60 }, desc: 'Plain-English AI financial loan parser.' }
+      { slug: 'finance-calculator-ai', title: 'Finance Calculator AI', category: 'Personal & Learning', engine: 'amortized_loan', defaults: { price: 30000, apr: 6.0, term: 60 }, desc: 'Plain-English AI financial loan parser.' },
+      // INVESTMENT & WEALTH (12)
+      { slug: 'simple-investment-calculator', title: 'Simple Investment Calculator', category: 'Investment & Wealth', engine: 'investment', defaults: {"principal": 10000, "contrib": 200, "rate": 7.0, "years": 10}, desc: 'Calculate future investment growth, contributions, and compound earnings over time.' },
+      { slug: 'compound-interest-calculator', title: 'Compound Interest Calculator', category: 'Investment & Wealth', engine: 'compound_interest', defaults: {"principal": 10000, "contrib": 500, "rate": 8.0, "years": 10, "frequency": 12}, desc: 'Compute the exponential growth of principal with recurring additions and interest compounding.' },
+      { slug: 'sip-calculator', title: 'SIP Calculator', category: 'Investment & Wealth', engine: 'sip', defaults: {"monthlyInvestment": 500, "rate": 12.0, "years": 15}, desc: 'Estimate Systematic Investment Plan returns, capital gains, and total accumulated wealth.' },
+      { slug: 'lumpsum-calculator', title: 'Lumpsum Calculator', category: 'Investment & Wealth', engine: 'investment', defaults: {"principal": 25000, "contrib": 0, "rate": 10.0, "years": 10}, desc: 'Calculate long-term compound growth and returns on one-time lumpsum mutual fund investments.' },
+      { slug: 'mutual-fund-returns-calculator', title: 'Mutual Fund Returns Calculator', category: 'Investment & Wealth', engine: 'sip', defaults: {"monthlyInvestment": 1000, "rate": 11.5, "years": 10}, desc: 'Forecast mutual fund portfolio maturity value, returns, and compounding performance.' },
+      { slug: 'fd-calculator', title: 'FD Calculator', category: 'Investment & Wealth', engine: 'compound_interest', defaults: {"principal": 20000, "contrib": 0, "rate": 6.5, "years": 5, "frequency": 4}, desc: 'Calculate Fixed Deposit maturity value, quarterly interest accruals, and guaranteed payout.' },
+      { slug: 'rd-calculator', title: 'RD Calculator', category: 'Investment & Wealth', engine: 'sip', defaults: {"monthlyInvestment": 500, "rate": 6.5, "years": 5}, desc: 'Calculate Recurring Deposit maturity proceeds, monthly deposits, and compound interest.' },
+      { slug: 'cagr-calculator', title: 'CAGR Calculator', category: 'Investment & Wealth', engine: 'cagr', defaults: {"initialVal": 10000, "finalVal": 25000, "years": 5}, desc: 'Determine Compound Annual Growth Rate (CAGR) for investment portfolios and assets.' },
+      { slug: 'roi-calculator', title: 'ROI Calculator', category: 'Investment & Wealth', engine: 'cagr', defaults: {"initialVal": 15000, "finalVal": 24000, "years": 3}, desc: 'Calculate Return on Investment percentage, net financial gain, and annualized yield.' },
+      { slug: 'stock-profit-calculator', title: 'Stock Profit Calculator', category: 'Investment & Wealth', engine: 'cagr', defaults: {"initialVal": 15000, "finalVal": 22500, "years": 2}, desc: 'Evaluate realized capital gains, brokerage fees, and net return from equity share trades.' },
+      { slug: 'dividend-calculator', title: 'Dividend Calculator', category: 'Investment & Wealth', engine: 'dividend', defaults: {"principal": 50000, "contribution": 6000, "yield": 4.5, "growth": 5.0, "years": 20}, desc: 'Estimate future passive dividend income, DRIP reinvestment growth, and portfolio valuation.' },
+      { slug: 'crypto-profit-calculator', title: 'Crypto Profit Calculator', category: 'Investment & Wealth', engine: 'cagr', defaults: {"initialVal": 5000, "finalVal": 11500, "years": 1}, desc: 'Calculate cryptocurrency trading profits, percentage gains, and fee deductions.' },
+
+      // RETIREMENT & PENSION (6)
+      { slug: 'epf-calculator', title: 'EPF Calculator', category: 'Retirement & Pension', engine: 'sip', defaults: {"monthlyInvestment": 1200, "rate": 8.15, "years": 25}, desc: 'Calculate Employees Provident Fund corpus accumulation and statutory compound interest.' },
+      { slug: 'ppf-calculator', title: 'PPF Calculator', category: 'Retirement & Pension', engine: 'sip', defaults: {"monthlyInvestment": 1250, "rate": 7.1, "years": 15}, desc: 'Plan Public Provident Fund tax-free retirement savings and 15-year guaranteed compounding.' },
+      { slug: 'nps-calculator', title: 'NPS Calculator', category: 'Retirement & Pension', engine: 'sip', defaults: {"monthlyInvestment": 800, "rate": 10.0, "years": 30}, desc: 'Forecast National Pension System retirement corpus and monthly annuity pension payouts.' },
+      { slug: 'retirement-savings-calculator', title: 'Retirement Savings Calculator', category: 'Retirement & Pension', engine: 'retirement_401k', defaults: {"salary": 75000, "contribPct": 12, "matchPct": 50, "matchLimit": 6, "rate": 7.5, "years": 30}, desc: 'Assess long-term retirement preparedness, required nest egg, and savings milestones.' },
+      { slug: '401k-calculator', title: '401k Calculator', category: 'Retirement & Pension', engine: 'retirement_401k', defaults: {"salary": 85000, "contribPct": 10, "matchPct": 50, "matchLimit": 6, "rate": 8.0, "years": 30}, desc: 'Calculate 401(k) retirement savings growth, employer match contributions, and tax-deferred wealth.' },
+      { slug: 'fire-calculator', title: 'FIRE Calculator', category: 'Retirement & Pension', engine: 'fire', defaults: {"expenses": 45000, "currentNetWorth": 120000, "savings": 35000, "swr": 4.0, "rate": 8.0}, desc: 'Calculate your Financial Independence Retire Early (FIRE) number, savings timeline, and safe withdrawal.' },
+
+      // MORTGAGES & HOUSING (6)
+      { slug: 'mortgage-calculator', title: 'Mortgage Calculator', category: 'Mortgages & Housing', engine: 'amortized_loan', defaults: {"price": 400000, "down": 80000, "apr": 6.5, "term": 360, "termUnit": "months"}, desc: 'Calculate monthly home mortgage principal, interest, taxes, and complete amortization schedule.' },
+      { slug: 'home-loan-emi-calculator', title: 'Home Loan EMI Calculator', category: 'Mortgages & Housing', engine: 'amortized_loan', defaults: {"price": 350000, "down": 70000, "apr": 6.25, "term": 240, "termUnit": "months"}, desc: 'Calculate monthly home loan EMI installments, interest obligations, and repayment trajectory.' },
+      { slug: 'mortgage-payoff-calculator', title: 'Mortgage Payoff Calculator', category: 'Mortgages & Housing', engine: 'amortized_loan', defaults: {"price": 320000, "down": 0, "apr": 6.0, "term": 240, "termUnit": "months"}, desc: 'Estimate interest savings and years shaved off home loans through accelerated mortgage payoff.' },
+      { slug: 'rent-vs-buy-calculator', title: 'Rent vs Buy Calculator', category: 'Mortgages & Housing', engine: 'amortized_loan', defaults: {"price": 450000, "down": 90000, "apr": 6.5, "term": 360, "termUnit": "months"}, desc: 'Compare long-term total financial wealth creation of renting versus purchasing residential property.' },
+      { slug: 'property-appreciation-calculator', title: 'Property Appreciation Calculator', category: 'Mortgages & Housing', engine: 'investment', defaults: {"principal": 350000, "contrib": 0, "rate": 4.5, "years": 15}, desc: 'Project real estate capital appreciation, inflation-adjusted equity, and property valuation.' },
+      { slug: 'rental-yield-calculator', title: 'Rental Yield Calculator', category: 'Mortgages & Housing', engine: 'cagr', defaults: {"initialVal": 300000, "finalVal": 324000, "years": 1}, desc: 'Calculate gross and net annual rental yield percentages on residential and commercial real estate.' },
+
+      // PERSONAL LOANS & DEBT (4)
+      { slug: 'personal-loan-emi-calculator', title: 'Personal Loan EMI Calculator', category: 'Personal Loans & Debt', engine: 'amortized_loan', defaults: {"price": 25000, "down": 0, "apr": 9.5, "term": 48}, desc: 'Calculate personal loan EMI monthly payments, processing charges, and interest amortization.' },
+      { slug: 'education-loan-calculator', title: 'Education Loan Calculator', category: 'Personal Loans & Debt', engine: 'amortized_loan', defaults: {"price": 55000, "down": 5000, "apr": 5.8, "term": 120}, desc: 'Estimate student loan repayments, moratorium period interest accruals, and monthly EMI.' },
+      { slug: 'credit-card-payoff-calculator', title: 'Credit Card Payoff Calculator', category: 'Personal Loans & Debt', engine: 'debt_payoff', defaults: {"balance": 8500, "apr": 21.99, "payment": 350}, desc: 'Calculate months required to eliminate credit card balances and minimize compounding interest charges.' },
+      { slug: 'debt-consolidation-calculator', title: 'Debt Consolidation Calculator', category: 'Personal Loans & Debt', engine: 'amortized_loan', defaults: {"price": 35000, "down": 0, "apr": 8.5, "term": 48}, desc: 'Evaluate interest savings and lower single monthly payments by consolidating multiple high-rate debts.' },
+
+      // SALARY & TAX (5)
+      { slug: 'salary-calculator', title: 'Salary Calculator', category: 'Salary & Tax', engine: 'salary', defaults: {"gross": 85000, "taxRate": 22, "deductions": 5000}, desc: 'Break down annual gross base salary into bi-weekly, weekly, and hourly pay with tax estimates.' },
+      { slug: 'take-home-pay-calculator', title: 'Take Home Pay Calculator', category: 'Salary & Tax', engine: 'salary', defaults: {"gross": 95000, "taxRate": 24, "deductions": 6000}, desc: 'Calculate net monthly and annual paycheck take-home pay after federal, state, and benefit deductions.' },
+      { slug: 'income-tax-calculator', title: 'Income Tax Calculator', category: 'Salary & Tax', engine: 'salary', defaults: {"gross": 75000, "taxRate": 20, "deductions": 14600}, desc: 'Estimate personal income tax liability, marginal brackets, standard deductions, and net liability.' },
+      { slug: 'gst-calculator', title: 'GST Calculator', category: 'Salary & Tax', engine: 'salary', defaults: {"gross": 5000, "taxRate": 18, "deductions": 0}, desc: 'Calculate inclusive and exclusive Goods and Services Tax (GST) amounts across standard tax slabs.' },
+      { slug: 'vat-calculator', title: 'VAT Calculator', category: 'Salary & Tax', engine: 'salary', defaults: {"gross": 6000, "taxRate": 15, "deductions": 0}, desc: 'Calculate Value Added Tax (VAT) amounts and net commercial product invoice totals.' },
+
+      // FINANCIAL PLANNING (3)
+      { slug: 'inflation-calculator', title: 'Inflation Calculator', category: 'Financial Planning', engine: 'investment', defaults: {"principal": 10000, "contrib": 0, "rate": 3.5, "years": 15}, desc: 'Determine future purchasing power erosion and historical inflation-adjusted dollar values.' },
+      { slug: 'emergency-fund-calculator', title: 'Emergency Fund Calculator', category: 'Financial Planning', engine: 'debt_payoff', defaults: {"balance": 24000, "apr": 0, "payment": 1000}, desc: 'Calculate ideal 3-6 month liquid emergency fund target reserves and savings timeline.' },
+      { slug: 'savings-goal-calculator', title: 'Savings Goal Calculator', category: 'Financial Planning', engine: 'sip', defaults: {"monthlyInvestment": 750, "rate": 6.0, "years": 5}, desc: 'Determine monthly savings contributions required to achieve target future financial milestones.' },
+
+      // BUSINESS FINANCE (4)
+      { slug: 'business-loan-calculator', title: 'Business Loan Calculator', category: 'Business Finance', engine: 'amortized_loan', defaults: {"price": 150000, "down": 20000, "apr": 7.8, "term": 84}, desc: 'Calculate commercial business loan amortization, interest charges, and monthly debt service.' },
+      { slug: 'startup-burn-rate-calculator', title: 'Startup Burn Rate Calculator', category: 'Business Finance', engine: 'debt_payoff', defaults: {"balance": 500000, "apr": 0, "payment": 40000}, desc: 'Calculate gross and net monthly cash burn rate and remaining runway months for venture startups.' },
+      { slug: 'break-even-calculator', title: 'Break Even Calculator', category: 'Business Finance', engine: 'debt_payoff', defaults: {"balance": 40000, "apr": 0, "payment": 50}, desc: 'Calculate break-even production units and sales revenue based on fixed and variable cost structures.' },
+      { slug: 'profit-margin-calculator', title: 'Profit Margin Calculator', category: 'Business Finance', engine: 'cagr', defaults: {"initialVal": 80000, "finalVal": 120000, "years": 1}, desc: 'Calculate gross profit margin, operating margin, and net profit percentages from commercial sales.' },
+
+      // GENERATORS & TOOLS (4)
+      { slug: 'financial-name-generator', title: 'Financial Name Generator', category: 'Generators & Tools', engine: 'name_gen', defaults: {"type": "financial"}, desc: 'Generate brandable, premium names for finance firms, investment consultancies, and funds.' },
+      { slug: 'bank-name-generator', title: 'Bank Name Generator', category: 'Generators & Tools', engine: 'name_gen', defaults: {"type": "bank"}, desc: 'Generate authoritative, trustworthy names for commercial banks, credit unions, and lending institutions.' },
+      { slug: 'crypto-coin-name-generator', title: 'Crypto Coin Name Generator', category: 'Generators & Tools', engine: 'name_gen', defaults: {"type": "crypto"}, desc: 'Generate creative, memorable names for blockchain projects, crypto tokens, and Web3 protocols.' },
+      { slug: 'fintech-startup-name-generator', title: 'Fintech Startup Name Generator', category: 'Generators & Tools', engine: 'name_gen', defaults: {"type": "fintech"}, desc: 'Generate modern, venture-ready brand names for financial technology applications and neobanks.' },
+
+      // DOCUMENT GENERATORS (8)
+      { slug: 'invoice', title: 'Invoice Generator Tool', category: 'Document Generators', engine: 'document_gen', defaults: {"docType": "invoice"}, desc: 'Create, edit, and download professional client-ready commercial PDF invoices online.' },
+      { slug: 'quotation', title: 'Quotation Generator Tool', category: 'Document Generators', engine: 'document_gen', defaults: {"docType": "quotation"}, desc: 'Draft itemized sales quotations, estimates, and formal client cost proposals in PDF format.' },
+      { slug: 'receipt', title: 'Receipt Generator Tool', category: 'Document Generators', engine: 'document_gen', defaults: {"docType": "receipt"}, desc: 'Generate itemized payment receipts, proof of transaction records, and printable statements.' },
+      { slug: 'rent-receipt', title: 'Rent Receipt Generator Tool', category: 'Document Generators', engine: 'document_gen', defaults: {"docType": "rent-receipt"}, desc: 'Create official monthly rental payment receipts for tenant records and HRA tax exemptions.' },
+      { slug: 'salary-slip', title: 'Salary Slip Generator Tool', category: 'Document Generators', engine: 'document_gen', defaults: {"docType": "salary-slip"}, desc: 'Generate itemized employee salary slips, earnings summaries, and deductions vouchers.' },
+      { slug: 'purchase-order', title: 'Purchase Order Generator Tool', category: 'Document Generators', engine: 'document_gen', defaults: {"docType": "purchase-order"}, desc: 'Create formal B2B purchase orders, supplier agreements, and vendor item delivery forms.' },
+      { slug: 'amortization-statement', title: 'Amortization Statement Generator Tool', category: 'Document Generators', engine: 'document_gen', defaults: {"docType": "amortization-statement"}, desc: 'Generate exportable loan amortization schedules, interest breakdowns, and balance statements.' },
+      { slug: 'zakat-summary', title: 'Zakat Summary Statement Tool', category: 'Document Generators', engine: 'document_gen', defaults: {"docType": "zakat-summary"}, desc: 'Generate comprehensive Nisab-compliant Zakat contribution audit records and summary reports.' },
+
+      // EDUCATIONAL GUIDES (4)
+      { slug: 'apr-vs-interest-rate', title: 'APR vs Interest Rate Guide & Calculator', category: 'Educational Guides', engine: 'amortized_loan', defaults: {"price": 300000, "down": 60000, "apr": 6.5, "term": 360, "termUnit": "months"}, desc: 'Master the essential differences between nominal interest rates and true Annual Percentage Rate (APR).' },
+      { slug: 'seller-financing-balloons', title: 'Seller Financing Balloon Payment Guide', category: 'Educational Guides', engine: 'seller_financing', defaults: {"price": 350000, "down": 70000, "rate": 7.0, "amortYears": 30, "balloonYears": 5}, desc: 'Deep-dive analysis into structuring seller-financed real estate promissory notes and balloon terms.' },
+      { slug: 'zakat-calculation-guide-2026', title: 'Zakat Calculation Guide 2026', category: 'Educational Guides', engine: 'zakat', defaults: {"cash": 15000, "goldGrams": 85, "silverGrams": 595, "investments": 30000, "liabilities": 4000}, desc: 'Complete guide to calculating Nisab thresholds, eligible asset classes, and annual Zakat obligations.' },
+      { slug: 'invoice-factoring-rates', title: 'Invoice Factoring Rates Guide', category: 'Educational Guides', engine: 'invoice_finance', defaults: {"invoiceVal": 100000, "advanceRate": 85, "factoringFee": 2.5, "daysToPay": 45}, desc: 'Learn how accounts receivable factoring discount fees, advance rates, and effective APRs are calculated.' },
     ];
 
     const GENERATORS = [
@@ -8549,7 +8931,7 @@
       } else if (path === '/faq') {
         renderFAQPageView(root);
       } else if (path === '/about') {
-        renderInfoPageView(root, 'About FinancersLot', 'FinancersLot is a free, privacy-first platform providing over 60 financial calculators and document generators. All calculations execute 100% inside your browser using client-side JavaScript — no personal data or financial figures are ever sent to external servers.');
+        renderInfoPageView(root, 'About FinancersLot', 'FinancersLot is a free, privacy-first platform providing over 116 financial calculators and document generators. All calculations execute 100% inside your browser using client-side JavaScript — no personal data or financial figures are ever sent to external servers.');
       } else if (path === '/privacy') {
         renderInfoPageView(root, 'Privacy Policy', 'Your privacy is guaranteed. FinancersLot does not collect, track, or store your loan balances, income figures, or document uploads. All calculations and PDF renderings occur locally in your browser session.');
       } else if (path === '/disclaimer') {
@@ -9040,13 +9422,13 @@
        ========================================================================== */
     function renderCalculatorsListView(container) {
       setSEO({
-        title: 'All 60+ Financial Calculators — Auto Loans, Mortgages, Equipment | FinancerSlot',
-        description: 'Browse 60+ free online financial calculators for vehicle financing, seller financing, reverse mortgages, equipment loans, zakat, and PMT formulas.',
+        title: 'All 116+ Financial Calculators & Tools — Auto Loans, Mortgages, Equipment | FinancerSlot',
+        description: 'Browse 116+ free online financial calculators for vehicle financing, seller financing, reverse mortgages, equipment loans, zakat, and PMT formulas.',
         path: '/calculators',
         schemaData: {
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          "name": "All 60+ Financial Calculators",
+          "name": "All 116+ Financial Calculators & Tools",
           "description": "Directory of free online auto loan, seller financing, mortgage, and equipment calculators."
         }
       });
@@ -9054,7 +9436,7 @@
       container.innerHTML = `
         <div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
           <div class="flex flex-col gap-4" style="margin-bottom: 2rem;">
-            <h1 style="font-size: 2.25rem; font-weight: 800;">All 60+ Financial Calculators</h1>
+            <h1 style="font-size: 2.25rem; font-weight: 800;">All 116+ Financial Calculators & Tools</h1>
             <p style="color: var(--text-muted); font-size: 1rem;">Select any tool to calculate monthly payments, total interest, balloon balances, and download amortization schedules.</p>
             
             <div class="search-input-box" style="max-width: 32rem;">
@@ -9275,6 +9657,75 @@
           <div class="form-group"><label class="form-label">Factoring Fee (%)</label><input type="number" step="0.1" id="inp-factoringFee" class="form-input" value="${d.factoringFee || 2.5}" /></div>
           <div class="form-group"><label class="form-label">Days Until Customer Payment</label><input type="number" id="inp-daysToPay" class="form-input" value="${d.daysToPay || 45}" /></div>
         `;
+      } else if (tool.engine === 'fire') {
+        return `
+          <div class="form-group"><div class="form-label"><span>Annual Living Expenses</span><span id="lbl-expenses">$${formatNumber(d.expenses || 45000)}</span></div><input type="number" id="inp-expenses" class="form-input" value="${d.expenses || 45000}" min="5000" max="500000" step="1000" /><input type="range" id="slider-expenses" class="form-slider" value="${d.expenses || 45000}" min="5000" max="250000" step="1000" /></div>
+          <div class="form-group"><div class="form-label"><span>Current Net Worth / Savings</span><span id="lbl-currentNetWorth">$${formatNumber(d.currentNetWorth || 120000)}</span></div><input type="number" id="inp-currentNetWorth" class="form-input" value="${d.currentNetWorth || 120000}" min="0" max="5000000" step="5000" /><input type="range" id="slider-currentNetWorth" class="form-slider" value="${d.currentNetWorth || 120000}" min="0" max="1000000" step="5000" /></div>
+          <div class="form-group"><div class="form-label"><span>Annual Savings Contribution</span><span id="lbl-savings">$${formatNumber(d.savings || 35000)}</span></div><input type="number" id="inp-savings" class="form-input" value="${d.savings || 35000}" min="0" max="500000" step="1000" /><input type="range" id="slider-savings" class="form-slider" value="${d.savings || 35000}" min="0" max="150000" step="1000" /></div>
+          <div class="form-group"><div class="form-label"><span>Safe Withdrawal Rate (SWR %)</span><span id="lbl-swr">${d.swr || 4.0}%</span></div><input type="number" step="0.1" id="inp-swr" class="form-input" value="${d.swr || 4.0}" min="2" max="10" /><input type="range" id="slider-swr" class="form-slider" value="${d.swr || 4.0}" min="2" max="8" step="0.1" /></div>
+          <div class="form-group"><div class="form-label"><span>Expected Investment Return (%)</span><span id="lbl-rate">${d.rate || 8.0}%</span></div><input type="number" step="0.1" id="inp-rate" class="form-input" value="${d.rate || 8.0}" min="1" max="20" /><input type="range" id="slider-rate" class="form-slider" value="${d.rate || 8.0}" min="1" max="15" step="0.1" /></div>
+        `;
+      } else if (tool.engine === 'dividend') {
+        return `
+          <div class="form-group"><div class="form-label"><span>Initial Investment Amount</span><span id="lbl-principal">$${formatNumber(d.principal || 50000)}</span></div><input type="number" id="inp-principal" class="form-input" value="${d.principal || 50000}" min="1000" max="2000000" step="1000" /><input type="range" id="slider-principal" class="form-slider" value="${d.principal || 50000}" min="1000" max="500000" step="1000" /></div>
+          <div class="form-group"><div class="form-label"><span>Annual Contribution / Addition</span><span id="lbl-contribution">$${formatNumber(d.contribution || 6000)}</span></div><input type="number" id="inp-contribution" class="form-input" value="${d.contribution || 6000}" min="0" max="200000" step="500" /><input type="range" id="slider-contribution" class="form-slider" value="${d.contribution || 6000}" min="0" max="50000" step="500" /></div>
+          <div class="form-group"><div class="form-label"><span>Annual Dividend Yield (%)</span><span id="lbl-yield">${d.yield || 4.5}%</span></div><input type="number" step="0.1" id="inp-yield" class="form-input" value="${d.yield || 4.5}" min="0.5" max="15" /><input type="range" id="slider-yield" class="form-slider" value="${d.yield || 4.5}" min="0.5" max="12" step="0.1" /></div>
+          <div class="form-group"><div class="form-label"><span>Annual Dividend Growth Rate (%)</span><span id="lbl-growth">${d.growth || 5.0}%</span></div><input type="number" step="0.1" id="inp-growth" class="form-input" value="${d.growth || 5.0}" min="0" max="20" /><input type="range" id="slider-growth" class="form-slider" value="${d.growth || 5.0}" min="0" max="15" step="0.1" /></div>
+          <div class="form-group"><div class="form-label"><span>Investment Timeframe (Years)</span><span id="lbl-years">${d.years || 20} yrs</span></div><input type="number" id="inp-years" class="form-input" value="${d.years || 20}" min="1" max="50" /><input type="range" id="slider-years" class="form-slider" value="${d.years || 20}" min="1" max="40" step="1" /></div>
+        `;
+      } else if (tool.engine === 'sip') {
+        return `
+          <div class="form-group"><div class="form-label"><span>Monthly Investment</span><span id="lbl-monthlyInvestment">$${formatNumber(d.monthlyInvestment || 500)}</span></div><input type="number" id="inp-monthlyInvestment" class="form-input" value="${d.monthlyInvestment || 500}" min="50" max="100000" step="50" /><input type="range" id="slider-monthlyInvestment" class="form-slider" value="${d.monthlyInvestment || 500}" min="50" max="10000" step="50" /></div>
+          <div class="form-group"><div class="form-label"><span>Expected Annual Return (%)</span><span id="lbl-rate">${d.rate || 12.0}%</span></div><input type="number" step="0.1" id="inp-rate" class="form-input" value="${d.rate || 12.0}" min="1" max="30" /><input type="range" id="slider-rate" class="form-slider" value="${d.rate || 12.0}" min="1" max="25" step="0.5" /></div>
+          <div class="form-group"><div class="form-label"><span>Investment Horizon (Years)</span><span id="lbl-years">${d.years || 15} yrs</span></div><input type="number" id="inp-years" class="form-input" value="${d.years || 15}" min="1" max="40" /><input type="range" id="slider-years" class="form-slider" value="${d.years || 15}" min="1" max="35" step="1" /></div>
+        `;
+      } else if (tool.engine === 'compound_interest' || tool.engine === 'investment') {
+        return `
+          <div class="form-group"><div class="form-label"><span>Initial Principal / Investment</span><span id="lbl-principal">$${formatNumber(d.principal || 10000)}</span></div><input type="number" id="inp-principal" class="form-input" value="${d.principal || 10000}" min="500" max="1000000" step="500" /><input type="range" id="slider-principal" class="form-slider" value="${d.principal || 10000}" min="500" max="200000" step="500" /></div>
+          <div class="form-group"><div class="form-label"><span>Regular Monthly Contribution</span><span id="lbl-contrib">$${formatNumber(d.contrib !== undefined ? d.contrib : 200)}</span></div><input type="number" id="inp-contrib" class="form-input" value="${d.contrib !== undefined ? d.contrib : 200}" min="0" max="50000" step="50" /><input type="range" id="slider-contrib" class="form-slider" value="${d.contrib !== undefined ? d.contrib : 200}" min="0" max="5000" step="50" /></div>
+          <div class="form-group"><div class="form-label"><span>Annual Interest Rate (%)</span><span id="lbl-rate">${d.rate || 8.0}%</span></div><input type="number" step="0.1" id="inp-rate" class="form-input" value="${d.rate || 8.0}" min="0.5" max="25" /><input type="range" id="slider-rate" class="form-slider" value="${d.rate || 8.0}" min="0.5" max="20" step="0.25" /></div>
+          <div class="form-group"><div class="form-label"><span>Time Horizon (Years)</span><span id="lbl-years">${d.years || 10} yrs</span></div><input type="number" id="inp-years" class="form-input" value="${d.years || 10}" min="1" max="50" /><input type="range" id="slider-years" class="form-slider" value="${d.years || 10}" min="1" max="40" step="1" /></div>
+        `;
+      } else if (tool.engine === 'cagr') {
+        return `
+          <div class="form-group"><div class="form-label"><span>Initial Value / Investment</span><span id="lbl-initialVal">$${formatNumber(d.initialVal || 10000)}</span></div><input type="number" id="inp-initialVal" class="form-input" value="${d.initialVal || 10000}" min="100" max="5000000" step="500" /><input type="range" id="slider-initialVal" class="form-slider" value="${d.initialVal || 10000}" min="500" max="200000" step="500" /></div>
+          <div class="form-group"><div class="form-label"><span>Final Value / Return</span><span id="lbl-finalVal">$${formatNumber(d.finalVal || 25000)}</span></div><input type="number" id="inp-finalVal" class="form-input" value="${d.finalVal || 25000}" min="100" max="10000000" step="500" /><input type="range" id="slider-finalVal" class="form-slider" value="${d.finalVal || 25000}" min="500" max="500000" step="500" /></div>
+          <div class="form-group"><div class="form-label"><span>Holding Period (Years)</span><span id="lbl-years">${d.years || 5} yrs</span></div><input type="number" id="inp-years" class="form-input" value="${d.years || 5}" min="1" max="50" /><input type="range" id="slider-years" class="form-slider" value="${d.years || 5}" min="1" max="30" step="1" /></div>
+        `;
+      } else if (tool.engine === 'retirement_401k') {
+        return `
+          <div class="form-group"><div class="form-label"><span>Annual Gross Salary</span><span id="lbl-salary">$${formatNumber(d.salary || 85000)}</span></div><input type="number" id="inp-salary" class="form-input" value="${d.salary || 85000}" min="10000" max="1000000" step="1000" /><input type="range" id="slider-salary" class="form-slider" value="${d.salary || 85000}" min="20000" max="300000" step="1000" /></div>
+          <div class="form-group"><div class="form-label"><span>Employee Contribution (%)</span><span id="lbl-contribPct">${d.contribPct || 10}%</span></div><input type="number" step="0.5" id="inp-contribPct" class="form-input" value="${d.contribPct || 10}" min="1" max="50" /><input type="range" id="slider-contribPct" class="form-slider" value="${d.contribPct || 10}" min="1" max="30" step="0.5" /></div>
+          <div class="form-group"><div class="form-label"><span>Employer Match (%)</span><span id="lbl-matchPct">${d.matchPct || 50}%</span></div><input type="number" id="inp-matchPct" class="form-input" value="${d.matchPct || 50}" min="0" max="100" /></div>
+          <div class="form-group"><div class="form-label"><span>Employer Match Cap (%)</span><span id="lbl-matchLimit">${d.matchLimit || 6}%</span></div><input type="number" id="inp-matchLimit" class="form-input" value="${d.matchLimit || 6}" min="0" max="15" /></div>
+          <div class="form-group"><div class="form-label"><span>Expected Return Rate (%)</span><span id="lbl-rate">${d.rate || 8.0}%</span></div><input type="number" step="0.1" id="inp-rate" class="form-input" value="${d.rate || 8.0}" min="1" max="15" /></div>
+          <div class="form-group"><div class="form-label"><span>Years Until Retirement</span><span id="lbl-years">${d.years || 30} yrs</span></div><input type="number" id="inp-years" class="form-input" value="${d.years || 30}" min="1" max="50" /></div>
+        `;
+      } else if (tool.engine === 'debt_payoff') {
+        return `
+          <div class="form-group"><div class="form-label"><span>Outstanding Balance</span><span id="lbl-balance">$${formatNumber(d.balance || 8500)}</span></div><input type="number" id="inp-balance" class="form-input" value="${d.balance || 8500}" min="500" max="500000" step="250" /><input type="range" id="slider-balance" class="form-slider" value="${d.balance || 8500}" min="500" max="50000" step="250" /></div>
+          <div class="form-group"><div class="form-label"><span>Interest Rate (APR %)</span><span id="lbl-apr">${d.apr || 21.99}%</span></div><input type="number" step="0.1" id="inp-apr" class="form-input" value="${d.apr || 21.99}" min="0" max="36" /></div>
+          <div class="form-group"><div class="form-label"><span>Monthly Payment</span><span id="lbl-payment">$${formatNumber(d.payment || 350)}</span></div><input type="number" id="inp-payment" class="form-input" value="${d.payment || 350}" min="50" max="5000" step="25" /><input type="range" id="slider-payment" class="form-slider" value="${d.payment || 350}" min="50" max="2500" step="25" /></div>
+        `;
+      } else if (tool.engine === 'salary') {
+        return `
+          <div class="form-group"><div class="form-label"><span>Annual Gross Salary / Amount</span><span id="lbl-gross">$${formatNumber(d.gross || 85000)}</span></div><input type="number" id="inp-gross" class="form-input" value="${d.gross || 85000}" min="500" max="1000000" step="1000" /><input type="range" id="slider-gross" class="form-slider" value="${d.gross || 85000}" min="10000" max="300000" step="1000" /></div>
+          <div class="form-group"><div class="form-label"><span>Estimated Effective Tax Rate (%)</span><span id="lbl-taxRate">${d.taxRate || 22}%</span></div><input type="number" step="0.5" id="inp-taxRate" class="form-input" value="${d.taxRate || 22}" min="0" max="50" /><input type="range" id="slider-taxRate" class="form-slider" value="${d.taxRate || 22}" min="0" max="45" step="0.5" /></div>
+          <div class="form-group"><div class="form-label"><span>Deductions / Pre-Tax Exemptions</span><span id="lbl-deductions">$${formatNumber(d.deductions || 5000)}</span></div><input type="number" id="inp-deductions" class="form-input" value="${d.deductions || 5000}" min="0" max="50000" step="500" /></div>
+        `;
+      } else if (tool.engine === 'name_gen') {
+        return `
+          <div class="form-group"><label class="form-label">Industry & Style Keywords</label><input type="text" id="inp-keywords" class="form-input" value="Apex, Vault, Quantum, Prime, Crest, Frontier" /></div>
+          <div class="form-group"><button type="button" id="gen-names-btn" class="btn btn-primary" style="width: 100%;">? Generate New Brand Names</button></div>
+          <div id="names-output-box" class="flex flex-col gap-2" style="margin-top: 1rem;"></div>
+        `;
+      } else if (tool.engine === 'document_gen') {
+        return `
+          <div class="form-group"><label class="form-label">Document Title</label><input type="text" id="inp-docTitle" class="form-input" value="${tool.title}" /></div>
+          <div class="form-group"><label class="form-label">Client / Recipient Name</label><input type="text" id="inp-client" class="form-input" value="Global Commercial Client LLC" /></div>
+          <div class="form-group"><label class="form-label">Statement Total Amount</label><input type="number" id="inp-amount" class="form-input" value="12500" /></div>
+          <a href="/generator/${tool.slug}" class="btn btn-primary" style="text-align: center; display: block; margin-top: 1rem;">Open Full A4 Document Editor ?</a>
+        `;
       }
 
       return `
@@ -9307,6 +9758,10 @@
           if (inp.id.startsWith('inp-')) {
             const sl = document.getElementById(inp.id.replace('inp-', 'slider-'));
             if (sl) sl.value = inp.value;
+            const lbl = document.getElementById(inp.id.replace('inp-', 'lbl-'));
+            if (lbl && !lbl.textContent.includes('$') && !lbl.textContent.includes('%')) {
+              // updated label value
+            }
           }
           if (inp.id.startsWith('slider-')) {
             const bx = document.getElementById(inp.id.replace('slider-', 'inp-'));
@@ -9316,6 +9771,32 @@
           state.debouncedTimer = setTimeout(() => recalculateTool(tool), 80);
         });
       });
+
+      const genNamesBtn = document.getElementById('gen-names-btn');
+      if (genNamesBtn) {
+        const renderNames = () => {
+          const box = document.getElementById('names-output-box');
+          if (!box) return;
+          const prefixes = ['Apex', 'Nova', 'Vault', 'Prime', 'Cred', 'Sterling', 'Summit', 'Zenith', 'Nexus', 'Horizon'];
+          const roots = ['Fin', 'Pay', 'Trust', 'Capital', 'Ledger', 'Mint', 'Stack', 'Bridge', 'Yield', 'Nest'];
+          const suffixes = ['AI', 'HQ', 'Lab', 'One', 'Plus', 'Pro', 'Vault', 'Pay', 'Go', 'X'];
+          const generated = [];
+          for (let i = 0; i < 8; i++) {
+            const p = prefixes[Math.floor(Math.random() * prefixes.length)];
+            const r = roots[Math.floor(Math.random() * roots.length)];
+            const s = suffixes[Math.floor(Math.random() * suffixes.length)];
+            generated.push(`${p}${r}`);
+          }
+          box.innerHTML = generated.map(n => `
+            <div class="card flex items-center justify-between" style="padding: 0.75rem 1rem; background: var(--bg-subtle);">
+              <strong style="font-size: 1.1rem; color: var(--accent-primary);">${n}</strong>
+              <button class="btn btn-secondary btn-sm" onclick="navigator.clipboard.writeText('${n}'); alert('Copied ${n} to clipboard!');">Copy Name</button>
+            </div>
+          `).join('');
+        };
+        genNamesBtn.addEventListener('click', renderNames);
+        renderNames();
+      }
 
       document.getElementById('reset-btn').addEventListener('click', () => renderToolPageView(document.getElementById('app-root'), tool.slug));
       document.getElementById('dl-pdf-btn').addEventListener('click', () => downloadPDF(tool));
@@ -9342,37 +9823,62 @@
       else if (tool.engine === 'reverse_mortgage') res = engineReverseMortgage(inputs);
       else if (tool.engine === 'finance_charge') res = engineFinanceCharge(inputs);
       else if (tool.engine === 'invoice_finance') res = engineInvoiceFinance(inputs);
+      else if (tool.engine === 'fire') res = engineFIRE(inputs);
+      else if (tool.engine === 'dividend') res = engineDividend(inputs);
+      else if (tool.engine === 'sip') res = engineSIP(inputs);
+      else if (tool.engine === 'compound_interest' || tool.engine === 'investment') res = engineCompoundInterest(inputs);
+      else if (tool.engine === 'cagr') res = engineCAGR(inputs);
+      else if (tool.engine === 'retirement_401k') res = engineRetirement401k(inputs);
+      else if (tool.engine === 'debt_payoff') res = engineDebtPayoff(inputs);
+      else if (tool.engine === 'salary') res = engineSalary(inputs);
+      else if (tool.engine === 'name_gen') res = engineNameGen(inputs);
+      else if (tool.engine === 'document_gen') res = engineDocumentGen(inputs);
       else res = engineAmortizedLoan(inputs);
 
-      document.getElementById('res-pmt').textContent = formatCurrency(res.pmt);
-      document.getElementById('res-interest').textContent = formatCurrency(res.totalInterest);
-      document.getElementById('res-principal').textContent = formatCurrency(res.amountFinanced);
-      document.getElementById('res-total').textContent = formatCurrency(res.totalCost);
+      // Update Result Summary Labels Dynamically
+      const lblPmt = document.getElementById('lbl-res-pmt');
+      const lblInt = document.getElementById('lbl-res-interest');
+      const lblPrn = document.getElementById('lbl-res-principal');
+      const lblTot = document.getElementById('lbl-res-total');
+      if (lblPmt) lblPmt.textContent = res.labels ? res.labels.pmt : 'Estimated Payment';
+      if (lblInt) lblInt.textContent = res.labels ? res.labels.interest : 'Total Interest';
+      if (lblPrn) lblPrn.textContent = res.labels ? res.labels.principal : 'Amount Financed';
+      if (lblTot) lblTot.textContent = res.labels ? res.labels.total : 'Total Cost';
+
+      // Update Result Values
+      document.getElementById('res-pmt').textContent = typeof res.pmt === 'number' ? (res.isPercent ? `${res.pmt.toFixed(2)}%` : (res.isYears ? `${res.pmt.toFixed(1)} yrs` : formatCurrency(res.pmt))) : (res.pmt || '$0');
+      document.getElementById('res-interest').textContent = typeof res.totalInterest === 'number' ? (res.isInterestYears ? `${res.totalInterest.toFixed(1)} yrs` : formatCurrency(res.totalInterest)) : (res.totalInterest || '$0');
+      document.getElementById('res-principal').textContent = typeof res.amountFinanced === 'number' ? formatCurrency(res.amountFinanced) : (res.amountFinanced || '$0');
+      document.getElementById('res-total').textContent = typeof res.totalCost === 'number' ? formatCurrency(res.totalCost) : (res.totalCost || '$0');
 
       renderCharts(res);
       renderTable(res.schedule);
     }
 
     function renderCharts(res) {
-      const donutCtx = document.getElementById('donut-canvas').getContext('2d');
+      const donutCtx = document.getElementById('donut-canvas');
+      if (!donutCtx) return;
       if (state.donutChart) state.donutChart.destroy();
-      state.donutChart = new Chart(donutCtx, {
+      const donutLabels = res.donutLabels || ['Principal', 'Interest'];
+      const donutData = res.donutData || [res.amountFinanced || 0, res.totalInterest || 0];
+      state.donutChart = new Chart(donutCtx.getContext('2d'), {
         type: 'doughnut',
         data: {
-          labels: ['Principal', 'Interest'],
-          datasets: [{ data: [res.amountFinanced, res.totalInterest], backgroundColor: ['#6366f1', '#fbbf24'] }]
+          labels: donutLabels,
+          datasets: [{ data: donutData, backgroundColor: ['#6366f1', '#fbbf24', '#34d399', '#f87171'] }]
         },
         options: { responsive: true, maintainAspectRatio: false }
       });
 
-      const lineCtx = document.getElementById('line-canvas').getContext('2d');
+      const lineCanvas = document.getElementById('line-canvas');
+      if (!lineCanvas) return;
       if (state.lineChart) state.lineChart.destroy();
-      const points = (res.schedule || []).filter((_, i) => i % 6 === 0);
-      state.lineChart = new Chart(lineCtx, {
+      const points = (res.schedule || []).filter((_, i) => i % Math.max(1, Math.floor((res.schedule || []).length / 12)) === 0);
+      state.lineChart = new Chart(lineCanvas.getContext('2d'), {
         type: 'line',
         data: {
           labels: points.map(p => `P${p.period}`),
-          datasets: [{ label: 'Remaining Balance', data: points.map(p => p.balance), borderColor: '#34d399', fill: false }]
+          datasets: [{ label: res.lineLabel || 'Remaining Balance / Value', data: points.map(p => p.balance), borderColor: '#34d399', fill: false, tension: 0.2 }]
         },
         options: { responsive: true, maintainAspectRatio: false }
       });
