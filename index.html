@@ -9944,7 +9944,13 @@
 
       container.innerHTML = `
         <div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
-          <h1 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 1.5rem;">${gen.title}</h1>
+          <!-- Breadcrumb Navigation -->
+          <nav aria-label="Breadcrumb" style="font-size: 0.875rem; font-weight: 600; color: var(--text-muted); margin-bottom: 1rem;">
+            <a href="/">Home</a> / <a href="/generators">Generators</a> / <span>${gen.title}</span>
+          </nav>
+
+          <h1 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 0.5rem;">${gen.title}</h1>
+          <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem;">${gen.desc}</p>
 
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div class="lg:col-span-5 card flex flex-col gap-4">
@@ -9955,7 +9961,7 @@
               <div id="line-items-list" class="flex flex-col gap-2"></div>
               <button id="add-item-btn" class="btn btn-secondary btn-sm">+ Add Line Item</button>
 
-              <button id="gen-pdf-btn" class="btn btn-primary" style="margin-top: 1rem;">📄 Download Printable PDF</button>
+              <button id="gen-pdf-btn" class="btn btn-primary" style="margin-top: 1rem;">⬇ Download Printable PDF</button>
             </div>
 
             <!-- LIVE A4 PRINTABLE PREVIEW -->
@@ -9965,6 +9971,11 @@
               </div>
             </div>
           </div>
+
+          <!-- RICH SEO EXPLAINER & COMPREHENSIVE GUIDE SECTION -->
+          <section class="card seo-content-box" style="margin-top: 2.5rem;">
+            ${(TOOL_ARTICLES[gen.slug] ? TOOL_ARTICLES[gen.slug].content : `<h2>How to Use the ${gen.title}</h2><p>Generate, customize, and print clean A4 documents with 100% in-browser privacy.</p>`)}
+          </section>
         </div>
       `;
 
@@ -10160,7 +10171,7 @@
       });
 
       container.innerHTML = `
-        <div class="container" style="padding-top: 2rem; padding-bottom: 4rem; max-width: 52rem;">
+        <div class="container" style="padding-top: 2rem; padding-bottom: 4rem; max-width: 56rem;">
           <article>
             <div style="margin-bottom: 1rem; font-size: 0.875rem; color: var(--text-muted);">
               <a href="/">Home</a> / <a href="/guides">Guides</a> / <span>${guide.tag}</span>
@@ -10169,13 +10180,15 @@
             <h1 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 1rem;">${guide.title}</h1>
             <p style="font-size: 1.125rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">${guide.desc}</p>
             
-            <div class="card flex flex-col gap-4" style="line-height: 1.8;">
-              <h2 style="font-size: 1.25rem; font-weight: 800;">Key Financial Concepts</h2>
-              <p>1. Always compare the APR (Annual Percentage Rate) rather than just the stated interest rate, as APR accounts for prepaid finance charges, dealer documentation fees, and loan origination costs.</p>
-              <p>2. For seller financing, make sure the balloon payment schedule and refinancing terms are clearly documented in the promissory note.</p>
-              <p>3. Use client-side calculators to test multiple interest rate and term scenarios before signing agreement contracts.</p>
-              <a href="/calculators" class="btn btn-primary" style="width: fit-content; margin-top: 1rem;">Browse Related Calculators →</a>
-            </div>
+            <!-- RICH SEO EXPLAINER & COMPREHENSIVE GUIDE SECTION -->
+            <section class="card seo-content-box" style="margin-top: 1.5rem;">
+              ${(TOOL_ARTICLES[guide.slug] ? TOOL_ARTICLES[guide.slug].content : `
+                <div class="card flex flex-col gap-4" style="line-height: 1.8;">
+                  <h2 style="font-size: 1.25rem; font-weight: 800;">Key Financial Concepts</h2>
+                  <p>Master key concepts and strategic principles for ${guide.title}.</p>
+                </div>
+              `)}
+            </section>
           </article>
         </div>
       `;
