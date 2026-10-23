@@ -1852,6 +1852,23 @@ export const calculatorCategories: CategoryDefinition[] = [
         icon: Briefcase,
         calculators: [
             {
+                id: "factory-loan-calculator",
+                name: "Factory Loan Calculator",
+                slug: "factory-loan-calculator",
+                description: "Calculate loan payments, interest costs, and amortization schedules for factory purchases and industrial facilities.",
+                formulaKey: "calculateAutoLoanWithTradeIn",
+                resultLabel: "Monthly Payment",
+                categorySlug: "business-finance",
+                categoryName: "Business Finance",
+                inputs: [
+                    { name: "price", label: "Facility Purchase Price", defaultValue: 500000, type: "currency", min: 10000, max: 10000000, step: 10000 },
+                    { name: "downPayment", label: "Down Payment", defaultValue: 100000, type: "currency", min: 0, max: 5000000, step: 5000 },
+                    { name: "rate", label: "Interest Rate (APR %)", defaultValue: 6.5, type: "percentage", min: 0, max: 25, step: 0.1 },
+                    { name: "tenureMonths", label: "Term (Months)", defaultValue: 120, type: "number", min: 12, max: 360, step: 12 }
+                ],
+                themeColor: "indigo"
+            },
+            {
                 id: "business-loan-calculator",
                 name: "Business Loan Calculator",
                 slug: "business-loan-calculator",
