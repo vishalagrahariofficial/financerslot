@@ -984,6 +984,19 @@
       to { transform: translateX(0); opacity: 1; }
     }
   </style>
+  <script>
+    (function(){
+      try {
+        var p = window.location.pathname || '/';
+        if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
+        var u = 'https://financerslot.com' + (p === '/index.html' ? '/' : p);
+        var can = document.getElementById('canonical-url');
+        if (can) can.setAttribute('href', u);
+        var og = document.getElementById('og-url');
+        if (og) og.setAttribute('content', u);
+      } catch(e){}
+    })();
+  </script>
 </head>
 <body>
 
@@ -1108,7 +1121,1098 @@
 
   <!-- MAIN APP ROUTER VIEW -->
   <main id="app-root">
-    <!-- Views rendered dynamically via Router -->
+    <!-- CRAWLABLE STATIC DIRECTORY FOR SEARCH ENGINE INDEXING (Progressively enhanced by Router) -->
+    <div class="container" style="padding-top: 2.5rem; padding-bottom: 4rem;">
+      <header style="margin-bottom: 2.5rem; text-align: center;">
+        <h1 style="font-size: 2.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.75rem;">Free Online Financial Calculators & Business Document Generators</h1>
+        <p style="font-size: 1.125rem; color: var(--text-muted); max-width: 44rem; margin: 0 auto; line-height: 1.6;">FinancersLot provides 117+ instant financial calculators and 8 free document generators for vehicle financing, seller mortgages, business equipment, taxes, and printable invoices — 100% free and client-side private.</p>
+      </header>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Vehicle Financing</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/toyota-finance-calculator" style="color: var(--text-main); text-decoration: none;">Toyota Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Estimate loan payments and interest for Toyota vehicles.</p>
+            </div>
+            <a href="/tool/toyota-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/audi-finance-calculator" style="color: var(--text-main); text-decoration: none;">Audi Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate monthly payments for Audi luxury cars.</p>
+            </div>
+            <a href="/tool/audi-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/bmw-finance-calculator" style="color: var(--text-main); text-decoration: none;">BMW Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate financing costs for BMW sedans and SAVs.</p>
+            </div>
+            <a href="/tool/bmw-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/ford-finance-calculator" style="color: var(--text-main); text-decoration: none;">Ford Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Plan loan payments for Ford F-150 and SUVs.</p>
+            </div>
+            <a href="/tool/ford-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/hyundai-finance-calculator" style="color: var(--text-main); text-decoration: none;">Hyundai Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate auto loan terms for Hyundai models.</p>
+            </div>
+            <a href="/tool/hyundai-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/kia-finance-calculator" style="color: var(--text-main); text-decoration: none;">Kia Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Estimate monthly financing costs for Kia vehicles.</p>
+            </div>
+            <a href="/tool/kia-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/lexus-finance-calculator" style="color: var(--text-main); text-decoration: none;">Lexus Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Luxury car loan payment estimator for Lexus.</p>
+            </div>
+            <a href="/tool/lexus-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/lamborghini-finance-calculator" style="color: var(--text-main); text-decoration: none;">Lamborghini Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Exotic car financing with balloon residual payments.</p>
+            </div>
+            <a href="/tool/lamborghini-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/mercedes-benz-finance-calculator" style="color: var(--text-main); text-decoration: none;">Mercedes Benz Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Estimate terms for Mercedes-Benz luxury models.</p>
+            </div>
+            <a href="/tool/mercedes-benz-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/nissan-finance-calculator" style="color: var(--text-main); text-decoration: none;">Nissan Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate auto loan payments for Nissan cars.</p>
+            </div>
+            <a href="/tool/nissan-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/porsche-finance-calculator" style="color: var(--text-main); text-decoration: none;">Porsche Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate loan payments for Porsche sports cars.</p>
+            </div>
+            <a href="/tool/porsche-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/subaru-finance-calculator" style="color: var(--text-main); text-decoration: none;">Subaru Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Plan financing for Subaru AWD crossovers.</p>
+            </div>
+            <a href="/tool/subaru-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/land-rover-finance-calculator" style="color: var(--text-main); text-decoration: none;">Land Rover Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate Range Rover luxury SUV financing.</p>
+            </div>
+            <a href="/tool/land-rover-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/mazda-finance-calculator" style="color: var(--text-main); text-decoration: none;">Mazda Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Estimate financing costs for Mazda CX-5 and CX-30.</p>
+            </div>
+            <a href="/tool/mazda-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/volkswagen-finance-calculator" style="color: var(--text-main); text-decoration: none;">Volkswagen Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate VW loan payments and trade-in value.</p>
+            </div>
+            <a href="/tool/volkswagen-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/volvo-finance-calculator" style="color: var(--text-main); text-decoration: none;">Volvo Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Estimate loan payments for Volvo vehicles.</p>
+            </div>
+            <a href="/tool/volvo-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/classic-car-financing-calculator" style="color: var(--text-main); text-decoration: none;">Classic Car Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate extended vintage car loan payments.</p>
+            </div>
+            <a href="/tool/classic-car-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/collector-car-financing-calculator" style="color: var(--text-main); text-decoration: none;">Collector Car Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Finance high-value collector vehicles.</p>
+            </div>
+            <a href="/tool/collector-car-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/exotic-car-financing-calculator" style="color: var(--text-main); text-decoration: none;">Exotic Car Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Exotic vehicle loan calculator with residual options.</p>
+            </div>
+            <a href="/tool/exotic-car-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/van-finance-calculator" style="color: var(--text-main); text-decoration: none;">Van Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Commercial van loan financing calculator.</p>
+            </div>
+            <a href="/tool/van-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vehicle Financing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/car-finance-calculator-bi-weekly" style="color: var(--text-main); text-decoration: none;">Car Finance Calculator Bi Weekly</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Accelerated bi-weekly payments and interest savings.</p>
+            </div>
+            <a href="/tool/car-finance-calculator-bi-weekly" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Equipment & Trailers</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Equipment & Trailers</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/john-deere-financing-calculator" style="color: var(--text-main); text-decoration: none;">John Deere Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Tractor and agricultural equipment financing payments.</p>
+            </div>
+            <a href="/tool/john-deere-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Equipment & Trailers</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/kubota-finance-calculator" style="color: var(--text-main); text-decoration: none;">Kubota Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Kubota tractor and utility vehicle financing.</p>
+            </div>
+            <a href="/tool/kubota-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Equipment & Trailers</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/bobcat-finance-calculator" style="color: var(--text-main); text-decoration: none;">Bobcat Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Compact construction equipment financing.</p>
+            </div>
+            <a href="/tool/bobcat-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Equipment & Trailers</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/excavator-finance-calculator" style="color: var(--text-main); text-decoration: none;">Excavator Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Heavy machinery and excavator loan payment estimator.</p>
+            </div>
+            <a href="/tool/excavator-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Equipment & Trailers</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/farm-equipment-finance-calculator" style="color: var(--text-main); text-decoration: none;">Farm Equipment Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Agri-business farm machinery loan calculator.</p>
+            </div>
+            <a href="/tool/farm-equipment-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Equipment & Trailers</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/dump-trailer-financing-calculator" style="color: var(--text-main); text-decoration: none;">Dump Trailer Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Commercial dump trailer loan calculator.</p>
+            </div>
+            <a href="/tool/dump-trailer-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Equipment & Trailers</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/horse-trailer-financing-calculator" style="color: var(--text-main); text-decoration: none;">Horse Trailer Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate horse and livestock trailer payments.</p>
+            </div>
+            <a href="/tool/horse-trailer-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Equipment & Trailers</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/metal-building-finance-calculator" style="color: var(--text-main); text-decoration: none;">Metal Building Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Metal building, garage, and barn loan payments.</p>
+            </div>
+            <a href="/tool/metal-building-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Recreation & Lifestyle</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Recreation & Lifestyle</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/harley-finance-calculator" style="color: var(--text-main); text-decoration: none;">Harley Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Harley-Davidson motorcycle loan payment estimator.</p>
+            </div>
+            <a href="/tool/harley-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Recreation & Lifestyle</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/yamaha-finance-calculator" style="color: var(--text-main); text-decoration: none;">Yamaha Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Powersports, ATV, and motorcycle financing.</p>
+            </div>
+            <a href="/tool/yamaha-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Recreation & Lifestyle</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/snowmobile-financing-calculator" style="color: var(--text-main); text-decoration: none;">Snowmobile Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Estimate winter sports snowmobile financing.</p>
+            </div>
+            <a href="/tool/snowmobile-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Recreation & Lifestyle</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/jet-ski-finance-calculator" style="color: var(--text-main); text-decoration: none;">Jet Ski Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Personal watercraft and Jet Ski loan calculator.</p>
+            </div>
+            <a href="/tool/jet-ski-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Recreation & Lifestyle</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/golf-cart-financing-calculator" style="color: var(--text-main); text-decoration: none;">Golf Cart Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Electric and gas golf cart financing estimator.</p>
+            </div>
+            <a href="/tool/golf-cart-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Recreation & Lifestyle</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/hot-tub-financing-calculator" style="color: var(--text-main); text-decoration: none;">Hot Tub Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate home spa and hot tub loan payments.</p>
+            </div>
+            <a href="/tool/hot-tub-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Recreation & Lifestyle</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/rv-financing-canada-calculator" style="color: var(--text-main); text-decoration: none;">RV Financing Canada Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Canadian RV loan calculator with GST/PST tax.</p>
+            </div>
+            <a href="/tool/rv-financing-canada-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Recreation & Lifestyle</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/timeshare-financing-calculator" style="color: var(--text-main); text-decoration: none;">Timeshare Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Vacation timeshare mortgage calculator.</p>
+            </div>
+            <a href="/tool/timeshare-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Recreation & Lifestyle</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/engagement-ring-financing-calculator" style="color: var(--text-main); text-decoration: none;">Engagement Ring Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Jewelry and engagement ring loan calculator.</p>
+            </div>
+            <a href="/tool/engagement-ring-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Home & Property</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Home & Property</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/roof-financing-calculator" style="color: var(--text-main); text-decoration: none;">Roof Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate roof replacement home loan payments.</p>
+            </div>
+            <a href="/tool/roof-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Home & Property</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/hvac-financing-calculator" style="color: var(--text-main); text-decoration: none;">HVAC Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Heating and AC replacement financing estimator.</p>
+            </div>
+            <a href="/tool/hvac-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Home & Property</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/adu-financing-calculator" style="color: var(--text-main); text-decoration: none;">ADU Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Accessory Dwelling Unit (ADU) loan calculator.</p>
+            </div>
+            <a href="/tool/adu-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Home & Property</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/tiny-house-financing-calculator" style="color: var(--text-main); text-decoration: none;">Tiny House Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Tiny home RV or personal loan financing.</p>
+            </div>
+            <a href="/tool/tiny-house-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Home & Property</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/park-model-home-financing-calculator" style="color: var(--text-main); text-decoration: none;">Park Model Home Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Park model resort home mortgage calculator.</p>
+            </div>
+            <a href="/tool/park-model-home-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Home & Property</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/service-finance-calculator" style="color: var(--text-main); text-decoration: none;">Service Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Home contractor and HVAC service loan calculator.</p>
+            </div>
+            <a href="/tool/service-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Home & Property</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/seller-financing-calculator" style="color: var(--text-main); text-decoration: none;">Seller Financing Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Owner financing calculator with balloon analysis.</p>
+            </div>
+            <a href="/tool/seller-financing-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Home & Property</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/seller-financing-mortgage-calculator" style="color: var(--text-main); text-decoration: none;">Seller Financing Mortgage Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Private seller mortgage amortization calculator.</p>
+            </div>
+            <a href="/tool/seller-financing-mortgage-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Home & Property</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/finance-of-america-reverse-mortgage-calculator" style="color: var(--text-main); text-decoration: none;">Finance of America Reverse Mortgage Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">HECM reverse mortgage net proceeds estimator.</p>
+            </div>
+            <a href="/tool/finance-of-america-reverse-mortgage-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Home & Property</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/calculating-finance-charge-mortgage-loan" style="color: var(--text-main); text-decoration: none;">Calculating Finance Charge Mortgage Loan</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate finance charges and true APR with fees.</p>
+            </div>
+            <a href="/tool/calculating-finance-charge-mortgage-loan" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Business & Commercial</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Business & Commercial</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/invoice-finance-calculator" style="color: var(--text-main); text-decoration: none;">Invoice Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Invoice factoring and cash advance cost calculator.</p>
+            </div>
+            <a href="/tool/invoice-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Business & Commercial</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/asset-finance-calculator" style="color: var(--text-main); text-decoration: none;">Asset Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Commercial asset and machinery loan calculator.</p>
+            </div>
+            <a href="/tool/asset-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Business & Commercial</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/development-finance-calculator" style="color: var(--text-main); text-decoration: none;">Development Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Property development loan interest and drawdowns.</p>
+            </div>
+            <a href="/tool/development-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Business & Commercial</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/supply-chain-finance-calculator" style="color: var(--text-main); text-decoration: none;">Supply Chain Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Early payment discount and supply chain estimator.</p>
+            </div>
+            <a href="/tool/supply-chain-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Business & Commercial</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/pwc-finance-calculator" style="color: var(--text-main); text-decoration: none;">PwC Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Enterprise business loan finance charge and APR.</p>
+            </div>
+            <a href="/tool/pwc-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Business & Commercial</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/mccarthy-finance-calculator" style="color: var(--text-main); text-decoration: none;">McCarthy Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Commercial equipment loan cash flow calculator.</p>
+            </div>
+            <a href="/tool/mccarthy-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Business & Commercial</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/factory-loan-calculator" style="color: var(--text-main); text-decoration: none;">Factory Loan Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate loan payments, interest costs, and amortization schedules for factory purchases, industrial facility financing, and manufacturing plant acquisitions.</p>
+            </div>
+            <a href="/tool/factory-loan-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Personal & Learning</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Personal & Learning</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/personal-finance-club-calculator" style="color: var(--text-main); text-decoration: none;">Personal Finance Club Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Budgeting and debt payoff toolkit.</p>
+            </div>
+            <a href="/tool/personal-finance-club-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Personal & Learning</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/divorce-finance-calculator" style="color: var(--text-main); text-decoration: none;">Divorce Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Asset split and divorce settlement financial divider.</p>
+            </div>
+            <a href="/tool/divorce-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Personal & Learning</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/zoya-finance-zakat-calculator" style="color: var(--text-main); text-decoration: none;">Zoya Finance Zakat Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate Zakat liability by Islamic guidelines.</p>
+            </div>
+            <a href="/tool/zoya-finance-zakat-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Personal & Learning</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/what-is-pmt-in-finance-calculator" style="color: var(--text-main); text-decoration: none;">What Is PMT in Finance Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Interactive PMT function explainer and formula.</p>
+            </div>
+            <a href="/tool/what-is-pmt-in-finance-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Personal & Learning</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/finance-calculator-ti-84" style="color: var(--text-main); text-decoration: none;">Finance Calculator TI 84</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">TI-84 style TVM (Time Value of Money) solver.</p>
+            </div>
+            <a href="/tool/finance-calculator-ti-84" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Personal & Learning</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/finance-calculator-ai" style="color: var(--text-main); text-decoration: none;">Finance Calculator AI</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Plain-English AI financial loan parser.</p>
+            </div>
+            <a href="/tool/finance-calculator-ai" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Investment & Wealth</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Investment & Wealth</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/simple-investment-calculator" style="color: var(--text-main); text-decoration: none;">Simple Investment Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate future investment growth, contributions, and compound earnings over time.</p>
+            </div>
+            <a href="/tool/simple-investment-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Investment & Wealth</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/compound-interest-calculator" style="color: var(--text-main); text-decoration: none;">Compound Interest Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Compute the exponential growth of principal with recurring additions and interest compounding.</p>
+            </div>
+            <a href="/tool/compound-interest-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Investment & Wealth</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/sip-calculator" style="color: var(--text-main); text-decoration: none;">SIP Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Estimate Systematic Investment Plan returns, capital gains, and total accumulated wealth.</p>
+            </div>
+            <a href="/tool/sip-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Investment & Wealth</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/lumpsum-calculator" style="color: var(--text-main); text-decoration: none;">Lumpsum Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate long-term compound growth and returns on one-time lumpsum mutual fund investments.</p>
+            </div>
+            <a href="/tool/lumpsum-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Investment & Wealth</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/mutual-fund-returns-calculator" style="color: var(--text-main); text-decoration: none;">Mutual Fund Returns Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Forecast mutual fund portfolio maturity value, returns, and compounding performance.</p>
+            </div>
+            <a href="/tool/mutual-fund-returns-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Investment & Wealth</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/fd-calculator" style="color: var(--text-main); text-decoration: none;">FD Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate Fixed Deposit maturity value, quarterly interest accruals, and guaranteed payout.</p>
+            </div>
+            <a href="/tool/fd-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Investment & Wealth</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/rd-calculator" style="color: var(--text-main); text-decoration: none;">RD Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate Recurring Deposit maturity proceeds, monthly deposits, and compound interest.</p>
+            </div>
+            <a href="/tool/rd-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Investment & Wealth</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/cagr-calculator" style="color: var(--text-main); text-decoration: none;">CAGR Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Determine Compound Annual Growth Rate (CAGR) for investment portfolios and assets.</p>
+            </div>
+            <a href="/tool/cagr-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Investment & Wealth</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/roi-calculator" style="color: var(--text-main); text-decoration: none;">ROI Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate Return on Investment percentage, net financial gain, and annualized yield.</p>
+            </div>
+            <a href="/tool/roi-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Investment & Wealth</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/stock-profit-calculator" style="color: var(--text-main); text-decoration: none;">Stock Profit Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Evaluate realized capital gains, brokerage fees, and net return from equity share trades.</p>
+            </div>
+            <a href="/tool/stock-profit-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Investment & Wealth</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/dividend-calculator" style="color: var(--text-main); text-decoration: none;">Dividend Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Estimate future passive dividend income, DRIP reinvestment growth, and portfolio valuation.</p>
+            </div>
+            <a href="/tool/dividend-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Investment & Wealth</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/crypto-profit-calculator" style="color: var(--text-main); text-decoration: none;">Crypto Profit Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate cryptocurrency trading profits, percentage gains, and fee deductions.</p>
+            </div>
+            <a href="/tool/crypto-profit-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Retirement & Pension</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Retirement & Pension</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/epf-calculator" style="color: var(--text-main); text-decoration: none;">EPF Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate Employees Provident Fund corpus accumulation and statutory compound interest.</p>
+            </div>
+            <a href="/tool/epf-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Retirement & Pension</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/ppf-calculator" style="color: var(--text-main); text-decoration: none;">PPF Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Plan Public Provident Fund tax-free retirement savings and 15-year guaranteed compounding.</p>
+            </div>
+            <a href="/tool/ppf-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Retirement & Pension</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/nps-calculator" style="color: var(--text-main); text-decoration: none;">NPS Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Forecast National Pension System retirement corpus and monthly annuity pension payouts.</p>
+            </div>
+            <a href="/tool/nps-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Retirement & Pension</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/retirement-savings-calculator" style="color: var(--text-main); text-decoration: none;">Retirement Savings Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Assess long-term retirement preparedness, required nest egg, and savings milestones.</p>
+            </div>
+            <a href="/tool/retirement-savings-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Retirement & Pension</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/401k-calculator" style="color: var(--text-main); text-decoration: none;">401k Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate 401(k) retirement savings growth, employer match contributions, and tax-deferred wealth.</p>
+            </div>
+            <a href="/tool/401k-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Retirement & Pension</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/fire-calculator" style="color: var(--text-main); text-decoration: none;">FIRE Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate your Financial Independence Retire Early (FIRE) number, savings timeline, and safe withdrawal.</p>
+            </div>
+            <a href="/tool/fire-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Mortgages & Housing</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Mortgages & Housing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/mortgage-calculator" style="color: var(--text-main); text-decoration: none;">Mortgage Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate monthly home mortgage principal, interest, taxes, and complete amortization schedule.</p>
+            </div>
+            <a href="/tool/mortgage-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Mortgages & Housing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/home-loan-emi-calculator" style="color: var(--text-main); text-decoration: none;">Home Loan EMI Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate monthly home loan EMI installments, interest obligations, and repayment trajectory.</p>
+            </div>
+            <a href="/tool/home-loan-emi-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Mortgages & Housing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/mortgage-payoff-calculator" style="color: var(--text-main); text-decoration: none;">Mortgage Payoff Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Estimate interest savings and years shaved off home loans through accelerated mortgage payoff.</p>
+            </div>
+            <a href="/tool/mortgage-payoff-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Mortgages & Housing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/rent-vs-buy-calculator" style="color: var(--text-main); text-decoration: none;">Rent vs Buy Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Compare long-term total financial wealth creation of renting versus purchasing residential property.</p>
+            </div>
+            <a href="/tool/rent-vs-buy-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Mortgages & Housing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/property-appreciation-calculator" style="color: var(--text-main); text-decoration: none;">Property Appreciation Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Project real estate capital appreciation, inflation-adjusted equity, and property valuation.</p>
+            </div>
+            <a href="/tool/property-appreciation-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Mortgages & Housing</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/rental-yield-calculator" style="color: var(--text-main); text-decoration: none;">Rental Yield Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate gross and net annual rental yield percentages on residential and commercial real estate.</p>
+            </div>
+            <a href="/tool/rental-yield-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Personal Loans & Debt</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Personal Loans & Debt</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/personal-loan-emi-calculator" style="color: var(--text-main); text-decoration: none;">Personal Loan EMI Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate personal loan EMI monthly payments, processing charges, and interest amortization.</p>
+            </div>
+            <a href="/tool/personal-loan-emi-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Personal Loans & Debt</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/education-loan-calculator" style="color: var(--text-main); text-decoration: none;">Education Loan Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Estimate student loan repayments, moratorium period interest accruals, and monthly EMI.</p>
+            </div>
+            <a href="/tool/education-loan-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Personal Loans & Debt</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/credit-card-payoff-calculator" style="color: var(--text-main); text-decoration: none;">Credit Card Payoff Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate months required to eliminate credit card balances and minimize compounding interest charges.</p>
+            </div>
+            <a href="/tool/credit-card-payoff-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Personal Loans & Debt</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/debt-consolidation-calculator" style="color: var(--text-main); text-decoration: none;">Debt Consolidation Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Evaluate interest savings and lower single monthly payments by consolidating multiple high-rate debts.</p>
+            </div>
+            <a href="/tool/debt-consolidation-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Salary & Tax</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Salary & Tax</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/salary-calculator" style="color: var(--text-main); text-decoration: none;">Salary Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Break down annual gross base salary into bi-weekly, weekly, and hourly pay with tax estimates.</p>
+            </div>
+            <a href="/tool/salary-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Salary & Tax</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/take-home-pay-calculator" style="color: var(--text-main); text-decoration: none;">Take Home Pay Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate net monthly and annual paycheck take-home pay after federal, state, and benefit deductions.</p>
+            </div>
+            <a href="/tool/take-home-pay-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Salary & Tax</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/income-tax-calculator" style="color: var(--text-main); text-decoration: none;">Income Tax Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Estimate personal income tax liability, marginal brackets, standard deductions, and net liability.</p>
+            </div>
+            <a href="/tool/income-tax-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Salary & Tax</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/gst-calculator" style="color: var(--text-main); text-decoration: none;">GST Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate inclusive and exclusive Goods and Services Tax (GST) amounts across standard tax slabs.</p>
+            </div>
+            <a href="/tool/gst-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Salary & Tax</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/vat-calculator" style="color: var(--text-main); text-decoration: none;">VAT Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate Value Added Tax (VAT) amounts and net commercial product invoice totals.</p>
+            </div>
+            <a href="/tool/vat-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Financial Planning</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Financial Planning</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/inflation-calculator" style="color: var(--text-main); text-decoration: none;">Inflation Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Determine future purchasing power erosion and historical inflation-adjusted dollar values.</p>
+            </div>
+            <a href="/tool/inflation-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Financial Planning</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/emergency-fund-calculator" style="color: var(--text-main); text-decoration: none;">Emergency Fund Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate ideal 3-6 month liquid emergency fund target reserves and savings timeline.</p>
+            </div>
+            <a href="/tool/emergency-fund-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Financial Planning</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/savings-goal-calculator" style="color: var(--text-main); text-decoration: none;">Savings Goal Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Determine monthly savings contributions required to achieve target future financial milestones.</p>
+            </div>
+            <a href="/tool/savings-goal-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Business Finance</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Business Finance</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/business-loan-calculator" style="color: var(--text-main); text-decoration: none;">Business Loan Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate commercial business loan amortization, interest charges, and monthly debt service.</p>
+            </div>
+            <a href="/tool/business-loan-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Business Finance</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/startup-burn-rate-calculator" style="color: var(--text-main); text-decoration: none;">Startup Burn Rate Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate gross and net monthly cash burn rate and remaining runway months for venture startups.</p>
+            </div>
+            <a href="/tool/startup-burn-rate-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Business Finance</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/break-even-calculator" style="color: var(--text-main); text-decoration: none;">Break Even Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate break-even production units and sales revenue based on fixed and variable cost structures.</p>
+            </div>
+            <a href="/tool/break-even-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Business Finance</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/profit-margin-calculator" style="color: var(--text-main); text-decoration: none;">Profit Margin Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Calculate gross profit margin, operating margin, and net profit percentages from commercial sales.</p>
+            </div>
+            <a href="/tool/profit-margin-calculator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Generators & Tools</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Generators & Tools</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/financial-name-generator" style="color: var(--text-main); text-decoration: none;">Financial Name Generator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Generate brandable, premium names for finance firms, investment consultancies, and funds.</p>
+            </div>
+            <a href="/tool/financial-name-generator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Generators & Tools</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/bank-name-generator" style="color: var(--text-main); text-decoration: none;">Bank Name Generator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Generate authoritative, trustworthy names for commercial banks, credit unions, and lending institutions.</p>
+            </div>
+            <a href="/tool/bank-name-generator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Generators & Tools</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/crypto-coin-name-generator" style="color: var(--text-main); text-decoration: none;">Crypto Coin Name Generator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Generate creative, memorable names for blockchain projects, crypto tokens, and Web3 protocols.</p>
+            </div>
+            <a href="/tool/crypto-coin-name-generator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Generators & Tools</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/fintech-startup-name-generator" style="color: var(--text-main); text-decoration: none;">Fintech Startup Name Generator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Generate modern, venture-ready brand names for financial technology applications and neobanks.</p>
+            </div>
+            <a href="/tool/fintech-startup-name-generator" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Document Generators</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Generators</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/invoice" style="color: var(--text-main); text-decoration: none;">Invoice Generator Tool</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Create, edit, and download professional client-ready commercial PDF invoices online.</p>
+            </div>
+            <a href="/tool/invoice" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Generators</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/quotation" style="color: var(--text-main); text-decoration: none;">Quotation Generator Tool</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Draft itemized sales quotations, estimates, and formal client cost proposals in PDF format.</p>
+            </div>
+            <a href="/tool/quotation" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Generators</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/receipt" style="color: var(--text-main); text-decoration: none;">Receipt Generator Tool</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Generate itemized payment receipts, proof of transaction records, and printable statements.</p>
+            </div>
+            <a href="/tool/receipt" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Generators</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/rent-receipt" style="color: var(--text-main); text-decoration: none;">Rent Receipt Generator Tool</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Create official monthly rental payment receipts for tenant records and HRA tax exemptions.</p>
+            </div>
+            <a href="/tool/rent-receipt" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Generators</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/salary-slip" style="color: var(--text-main); text-decoration: none;">Salary Slip Generator Tool</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Generate itemized employee salary slips, earnings summaries, and deductions vouchers.</p>
+            </div>
+            <a href="/tool/salary-slip" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Generators</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/purchase-order" style="color: var(--text-main); text-decoration: none;">Purchase Order Generator Tool</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Create formal B2B purchase orders, supplier agreements, and vendor item delivery forms.</p>
+            </div>
+            <a href="/tool/purchase-order" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Generators</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/amortization-statement" style="color: var(--text-main); text-decoration: none;">Amortization Statement Generator Tool</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Generate exportable loan amortization schedules, interest breakdowns, and balance statements.</p>
+            </div>
+            <a href="/tool/amortization-statement" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Generators</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/zakat-summary" style="color: var(--text-main); text-decoration: none;">Zakat Summary Statement Tool</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Generate comprehensive Nisab-compliant Zakat contribution audit records and summary reports.</p>
+            </div>
+            <a href="/tool/zakat-summary" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Educational Guides</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Educational Guides</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/apr-vs-interest-rate" style="color: var(--text-main); text-decoration: none;">APR vs Interest Rate Guide & Calculator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Master the essential differences between nominal interest rates and true Annual Percentage Rate (APR).</p>
+            </div>
+            <a href="/tool/apr-vs-interest-rate" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Educational Guides</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/seller-financing-balloons" style="color: var(--text-main); text-decoration: none;">Seller Financing Balloon Payment Guide</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Deep-dive analysis into structuring seller-financed real estate promissory notes and balloon terms.</p>
+            </div>
+            <a href="/tool/seller-financing-balloons" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Educational Guides</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/zakat-calculation-guide-2026" style="color: var(--text-main); text-decoration: none;">Zakat Calculation Guide 2026</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Complete guide to calculating Nisab thresholds, eligible asset classes, and annual Zakat obligations.</p>
+            </div>
+            <a href="/tool/zakat-calculation-guide-2026" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Educational Guides</span>
+              <h3 style="font-size: 1.125rem; font-weight: 700; margin-top: 0.5rem;"><a href="/tool/invoice-factoring-rates" style="color: var(--text-main); text-decoration: none;">Invoice Factoring Rates Guide</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Learn how accounts receivable factoring discount fees, advance rates, and effective APRs are calculated.</p>
+            </div>
+            <a href="/tool/invoice-factoring-rates" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Open Calculator &rarr;</a>
+          </article>
+        </div>
+      </section>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Free Document Generators</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Tool</span>
+              <h3 style="font-size: 1.05rem; font-weight: 700; margin-top: 0.5rem;"><a href="/generator/invoice" style="color: var(--text-main); text-decoration: none;">Tax Invoice Generator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Create professional GST / Non-GST business invoices with PDF download.</p>
+            </div>
+            <a href="/generator/invoice" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Generate Document &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Tool</span>
+              <h3 style="font-size: 1.05rem; font-weight: 700; margin-top: 0.5rem;"><a href="/generator/quotation" style="color: var(--text-main); text-decoration: none;">Price Quotation Generator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Generate clean sales proposals and price quotes for clients.</p>
+            </div>
+            <a href="/generator/quotation" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Generate Document &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Tool</span>
+              <h3 style="font-size: 1.05rem; font-weight: 700; margin-top: 0.5rem;"><a href="/generator/receipt" style="color: var(--text-main); text-decoration: none;">Payment Receipt Generator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Create official payment confirmation receipts instantly.</p>
+            </div>
+            <a href="/generator/receipt" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Generate Document &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Tool</span>
+              <h3 style="font-size: 1.05rem; font-weight: 700; margin-top: 0.5rem;"><a href="/generator/rent-receipt" style="color: var(--text-main); text-decoration: none;">Rent Receipt Generator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Generate monthly landlord rent receipts for HRA tax exemption claims.</p>
+            </div>
+            <a href="/generator/rent-receipt" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Generate Document &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Tool</span>
+              <h3 style="font-size: 1.05rem; font-weight: 700; margin-top: 0.5rem;"><a href="/generator/salary-slip" style="color: var(--text-main); text-decoration: none;">Employee Salary Slip Generator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Create detailed monthly pay slips with earnings and deductions.</p>
+            </div>
+            <a href="/generator/salary-slip" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Generate Document &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Tool</span>
+              <h3 style="font-size: 1.05rem; font-weight: 700; margin-top: 0.5rem;"><a href="/generator/purchase-order" style="color: var(--text-main); text-decoration: none;">Purchase Order Generator</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Generate official PO procurement documents for vendors.</p>
+            </div>
+            <a href="/generator/purchase-order" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Generate Document &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Tool</span>
+              <h3 style="font-size: 1.05rem; font-weight: 700; margin-top: 0.5rem;"><a href="/generator/amortization-statement" style="color: var(--text-main); text-decoration: none;">Amortization Statement</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Generate printable loan repayment schedules for banking records.</p>
+            </div>
+            <a href="/generator/amortization-statement" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Generate Document &rarr;</a>
+          </article>
+          <article class="card card-hover flex flex-col justify-between gap-2" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div>
+              <span class="pill-badge" style="font-size: 0.7rem;">Document Tool</span>
+              <h3 style="font-size: 1.05rem; font-weight: 700; margin-top: 0.5rem;"><a href="/generator/zakat-summary" style="color: var(--text-main); text-decoration: none;">Zakat Summary Statement</a></h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4;">Generate an official printable Zakat distribution certificate.</p>
+            </div>
+            <a href="/generator/zakat-summary" style="font-size: 0.8125rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; margin-top: 0.5rem; display: inline-block;">Generate Document &rarr;</a>
+          </article>
+        </div>
+      </section>
+    </div>
   </main>
 
   <!-- MODERN ENHANCED FOOTER -->
@@ -1285,33 +2389,101 @@
     if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', toggleTheme);
 
     /* DYNAMIC SEO MANAGER FOR GOOGLE & LLMs / AI OVERVIEWS */
-    function setSEO({ title, description, path = '', schemaData = null }) {
+    function setSEO({ title, description, path = '', category = '', schemaData = null }) {
       document.title = title;
       
       const fullUrl = `https://financerslot.com${path}`;
-      document.getElementById('canonical-url').setAttribute('href', fullUrl);
+      const canonical = document.getElementById('canonical-url');
+      if (canonical) canonical.setAttribute('href', fullUrl);
       
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) metaDesc.setAttribute('content', description);
 
-      document.getElementById('og-title').setAttribute('content', title);
-      document.getElementById('og-desc').setAttribute('content', description);
-      document.getElementById('og-url').setAttribute('content', fullUrl);
+      const ogTitle = document.getElementById('og-title');
+      if (ogTitle) ogTitle.setAttribute('content', title);
+      const ogDesc = document.getElementById('og-desc');
+      if (ogDesc) ogDesc.setAttribute('content', description);
+      const ogUrl = document.getElementById('og-url');
+      if (ogUrl) ogUrl.setAttribute('content', fullUrl);
 
-      document.getElementById('twitter-title').setAttribute('content', title);
-      document.getElementById('twitter-desc').setAttribute('content', description);
+      const twTitle = document.getElementById('twitter-title');
+      if (twTitle) twTitle.setAttribute('content', title);
+      const twDesc = document.getElementById('twitter-desc');
+      if (twDesc) twDesc.setAttribute('content', description);
 
-      // Inject structured JSON-LD schema
+      // Enhanced Schema.org Graph for Google Rich Snippets & Search Console Indexing
       const schemaScript = document.getElementById('json-ld-schema');
       if (schemaScript) {
-        const schemaObj = schemaData || {
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          "name": title,
-          "description": description,
-          "url": fullUrl
-        };
-        schemaScript.textContent = JSON.stringify(schemaObj);
+        if (schemaData) {
+          schemaScript.textContent = JSON.stringify(schemaData);
+        } else {
+          const cleanName = title.split(' — ')[0].split(' – ')[0];
+          const graph = [
+            {
+              "@type": "WebPage",
+              "@id": `${fullUrl}#webpage`,
+              "url": fullUrl,
+              "name": title,
+              "description": description,
+              "isPartOf": {
+                "@type": "WebSite",
+                "@id": "https://financerslot.com/#website",
+                "name": "FinancersLot",
+                "url": "https://financerslot.com/"
+              }
+            }
+          ];
+
+          if (path.startsWith('/tool/')) {
+            graph.push({
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://financerslot.com/" },
+                { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://financerslot.com/calculators" },
+                { "@type": "ListItem", "position": 3, "name": category || "Financial Calculators", "item": "https://financerslot.com/calculators" },
+                { "@type": "ListItem", "position": 4, "name": cleanName, "item": fullUrl }
+              ]
+            });
+            graph.push({
+              "@type": "SoftwareApplication",
+              "name": cleanName,
+              "applicationCategory": "FinanceApplication",
+              "operatingSystem": "All",
+              "url": fullUrl,
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              }
+            });
+          } else if (path.startsWith('/generator/')) {
+            graph.push({
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://financerslot.com/" },
+                { "@type": "ListItem", "position": 2, "name": "Generators", "item": "https://financerslot.com/generators" },
+                { "@type": "ListItem", "position": 3, "name": cleanName, "item": fullUrl }
+              ]
+            });
+            graph.push({
+              "@type": "SoftwareApplication",
+              "name": cleanName,
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "All",
+              "url": fullUrl,
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              }
+            });
+          }
+
+          schemaScript.textContent = JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": graph
+          });
+        }
       }
     }
 
@@ -9653,18 +10825,7 @@
         title: `${tool.title} — Free Online Payment & APR Estimator | FinancerSlot`,
         description: `Free online ${tool.title}. ${tool.desc} Calculate monthly payments, interest, balloon schedules, and download PDF reports 100% in-browser.`,
         path: `/tool/${tool.slug}`,
-        schemaData: {
-          "@context": "https://schema.org",
-          "@type": "FinancialProduct",
-          "name": tool.title,
-          "description": tool.desc,
-          "category": tool.category,
-          "provider": {
-            "@type": "Organization",
-            "name": "FinancerSlot",
-            "url": "https://financerslot.com"
-          }
-        }
+        category: tool.category
       });
 
       container.innerHTML = `
