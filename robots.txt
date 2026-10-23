@@ -1,4 +1,15 @@
+# robots.txt for FinancersLot
 User-agent: *
 Allow: /
 
+# Googlebot specific rules
+User-agent: Googlebot
+Allow: /
+
+# Bingbot specific rules
+User-agent: Bingbot
+Allow: /
+
+# Canonical Sitemap
 Sitemap: https://financerslot.com/sitemap.xml
+Host: https://financerslot.com
