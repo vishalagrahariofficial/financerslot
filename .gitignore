@@ -1,0 +1,5 @@
+node_modules/
+.next/
+tsconfig.tsbuildinfo
+test_math.js
+*.log

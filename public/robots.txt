@@ -1,0 +1,17 @@
+# ==============================================================================
+# FinancersLot (https://financerslot.com) - robots.txt
+# Search Engine Crawl Directives
+# ==============================================================================
+
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Canonical XML Sitemap & Host
+Sitemap: https://financerslot.com/sitemap.xml
+Host: https://financerslot.com

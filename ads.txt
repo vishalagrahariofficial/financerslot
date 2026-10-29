@@ -1,0 +1,11 @@
+# ==============================================================================
+# FinancersLot (https://financerslot.com) - Authorized Digital Sellers (ads.txt)
+# Google AdSense Publisher Credential
+# ==============================================================================
+# Format: <Field #1>, <Field #2>, <Field #3>, <Field #4>
+# Field #1: Canonical domain name of the advertising system
+# Field #2: Publisher's account ID (pub-xxxxxxxxxxxxxxxx)
+# Field #3: Type of relationship (DIRECT / RESELLER)
+# Field #4: Certification authority ID for Google AdSense (f08c47fec0942fa0)
+
+google.com, pub-8363910904534967, DIRECT, f08c47fec0942fa0
