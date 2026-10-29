@@ -1,7 +1,664 @@
 {
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.financerslot.com"
+        }
+      ],
+      "destination": "https://financerslot.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/tool/invoice",
+      "destination": "/generators/invoice/",
+      "permanent": true
+    },
+    {
+      "source": "/generator/invoice",
+      "destination": "/generators/invoice/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/quotation",
+      "destination": "/generators/quotation/",
+      "permanent": true
+    },
+    {
+      "source": "/generator/quotation",
+      "destination": "/generators/quotation/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/receipt",
+      "destination": "/generators/receipt/",
+      "permanent": true
+    },
+    {
+      "source": "/generator/receipt",
+      "destination": "/generators/receipt/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/rent-receipt",
+      "destination": "/generators/rent-receipt/",
+      "permanent": true
+    },
+    {
+      "source": "/generator/rent-receipt",
+      "destination": "/generators/rent-receipt/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/salary-slip",
+      "destination": "/generators/salary-slip/",
+      "permanent": true
+    },
+    {
+      "source": "/generator/salary-slip",
+      "destination": "/generators/salary-slip/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/purchase-order",
+      "destination": "/generators/purchase-order/",
+      "permanent": true
+    },
+    {
+      "source": "/generator/purchase-order",
+      "destination": "/generators/purchase-order/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/amortization-statement",
+      "destination": "/generators/amortization-statement/",
+      "permanent": true
+    },
+    {
+      "source": "/generator/amortization-statement",
+      "destination": "/generators/amortization-statement/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/zakat-summary",
+      "destination": "/generators/zakat-summary/",
+      "permanent": true
+    },
+    {
+      "source": "/generator/zakat-summary",
+      "destination": "/generators/zakat-summary/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/toyota-finance-calculator",
+      "destination": "/calculators/vehicle-financing/toyota-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/audi-finance-calculator",
+      "destination": "/calculators/vehicle-financing/audi-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/bmw-finance-calculator",
+      "destination": "/calculators/vehicle-financing/bmw-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/ford-finance-calculator",
+      "destination": "/calculators/vehicle-financing/ford-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/hyundai-finance-calculator",
+      "destination": "/calculators/vehicle-financing/hyundai-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/kia-finance-calculator",
+      "destination": "/calculators/vehicle-financing/kia-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/lexus-finance-calculator",
+      "destination": "/calculators/vehicle-financing/lexus-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/lamborghini-finance-calculator",
+      "destination": "/calculators/vehicle-financing/lamborghini-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/mercedes-benz-finance-calculator",
+      "destination": "/calculators/vehicle-financing/mercedes-benz-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/nissan-finance-calculator",
+      "destination": "/calculators/vehicle-financing/nissan-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/porsche-finance-calculator",
+      "destination": "/calculators/vehicle-financing/porsche-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/subaru-finance-calculator",
+      "destination": "/calculators/vehicle-financing/subaru-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/land-rover-finance-calculator",
+      "destination": "/calculators/vehicle-financing/land-rover-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/mazda-finance-calculator",
+      "destination": "/calculators/vehicle-financing/mazda-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/volkswagen-finance-calculator",
+      "destination": "/calculators/vehicle-financing/volkswagen-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/volvo-finance-calculator",
+      "destination": "/calculators/vehicle-financing/volvo-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/classic-car-financing-calculator",
+      "destination": "/calculators/vehicle-financing/classic-car-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/collector-car-financing-calculator",
+      "destination": "/calculators/vehicle-financing/collector-car-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/exotic-car-financing-calculator",
+      "destination": "/calculators/vehicle-financing/exotic-car-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/van-finance-calculator",
+      "destination": "/calculators/vehicle-financing/van-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/car-finance-calculator-bi-weekly",
+      "destination": "/calculators/vehicle-financing/car-finance-calculator-bi-weekly/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/john-deere-financing-calculator",
+      "destination": "/calculators/equipment-trailers/john-deere-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/kubota-finance-calculator",
+      "destination": "/calculators/equipment-trailers/kubota-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/bobcat-finance-calculator",
+      "destination": "/calculators/equipment-trailers/bobcat-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/excavator-finance-calculator",
+      "destination": "/calculators/equipment-trailers/excavator-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/farm-equipment-finance-calculator",
+      "destination": "/calculators/equipment-trailers/farm-equipment-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/dump-trailer-financing-calculator",
+      "destination": "/calculators/equipment-trailers/dump-trailer-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/horse-trailer-financing-calculator",
+      "destination": "/calculators/equipment-trailers/horse-trailer-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/metal-building-finance-calculator",
+      "destination": "/calculators/equipment-trailers/metal-building-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/harley-finance-calculator",
+      "destination": "/calculators/recreation-lifestyle/harley-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/yamaha-finance-calculator",
+      "destination": "/calculators/recreation-lifestyle/yamaha-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/snowmobile-financing-calculator",
+      "destination": "/calculators/recreation-lifestyle/snowmobile-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/jet-ski-finance-calculator",
+      "destination": "/calculators/recreation-lifestyle/jet-ski-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/golf-cart-financing-calculator",
+      "destination": "/calculators/recreation-lifestyle/golf-cart-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/hot-tub-financing-calculator",
+      "destination": "/calculators/recreation-lifestyle/hot-tub-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/rv-financing-canada-calculator",
+      "destination": "/calculators/recreation-lifestyle/rv-financing-canada-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/timeshare-financing-calculator",
+      "destination": "/calculators/recreation-lifestyle/timeshare-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/engagement-ring-financing-calculator",
+      "destination": "/calculators/recreation-lifestyle/engagement-ring-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/roof-financing-calculator",
+      "destination": "/calculators/home-property/roof-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/hvac-financing-calculator",
+      "destination": "/calculators/home-property/hvac-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/adu-financing-calculator",
+      "destination": "/calculators/home-property/adu-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/tiny-house-financing-calculator",
+      "destination": "/calculators/home-property/tiny-house-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/park-model-home-financing-calculator",
+      "destination": "/calculators/home-property/park-model-home-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/service-finance-calculator",
+      "destination": "/calculators/home-property/service-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/seller-financing-calculator",
+      "destination": "/calculators/home-property/seller-financing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/seller-financing-mortgage-calculator",
+      "destination": "/calculators/home-property/seller-financing-mortgage-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/finance-of-america-reverse-mortgage-calculator",
+      "destination": "/calculators/home-property/finance-of-america-reverse-mortgage-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/calculating-finance-charge-mortgage-loan",
+      "destination": "/calculators/home-property/calculating-finance-charge-mortgage-loan/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/invoice-finance-calculator",
+      "destination": "/calculators/business-commercial/invoice-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/asset-finance-calculator",
+      "destination": "/calculators/business-commercial/asset-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/development-finance-calculator",
+      "destination": "/calculators/business-commercial/development-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/supply-chain-finance-calculator",
+      "destination": "/calculators/business-commercial/supply-chain-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/pwc-finance-calculator",
+      "destination": "/calculators/business-commercial/pwc-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/mccarthy-finance-calculator",
+      "destination": "/calculators/business-commercial/mccarthy-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/personal-finance-club-calculator",
+      "destination": "/calculators/personal-learning/personal-finance-club-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/divorce-finance-calculator",
+      "destination": "/calculators/personal-learning/divorce-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/zoya-finance-zakat-calculator",
+      "destination": "/calculators/personal-learning/zoya-finance-zakat-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/what-is-pmt-in-finance-calculator",
+      "destination": "/calculators/personal-learning/what-is-pmt-in-finance-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/finance-calculator-ti-84",
+      "destination": "/calculators/personal-learning/finance-calculator-ti-84/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/finance-calculator-ai",
+      "destination": "/calculators/personal-learning/finance-calculator-ai/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/simple-investment-calculator",
+      "destination": "/calculators/investment-wealth/simple-investment-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/compound-interest-calculator",
+      "destination": "/calculators/investment-wealth/compound-interest-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/sip-calculator",
+      "destination": "/calculators/investment-wealth/sip-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/lumpsum-calculator",
+      "destination": "/calculators/investment-wealth/lumpsum-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/mutual-fund-returns-calculator",
+      "destination": "/calculators/investment-wealth/mutual-fund-returns-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/fd-calculator",
+      "destination": "/calculators/investment-wealth/fd-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/rd-calculator",
+      "destination": "/calculators/investment-wealth/rd-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/cagr-calculator",
+      "destination": "/calculators/investment-wealth/cagr-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/roi-calculator",
+      "destination": "/calculators/investment-wealth/roi-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/stock-profit-calculator",
+      "destination": "/calculators/investment-wealth/stock-profit-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/dividend-calculator",
+      "destination": "/calculators/investment-wealth/dividend-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/crypto-profit-calculator",
+      "destination": "/calculators/investment-wealth/crypto-profit-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/epf-calculator",
+      "destination": "/calculators/retirement-pension/epf-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/ppf-calculator",
+      "destination": "/calculators/retirement-pension/ppf-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/nps-calculator",
+      "destination": "/calculators/retirement-pension/nps-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/retirement-savings-calculator",
+      "destination": "/calculators/retirement-pension/retirement-savings-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/401k-calculator",
+      "destination": "/calculators/retirement-pension/401k-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/fire-calculator",
+      "destination": "/calculators/retirement-pension/fire-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/mortgage-calculator",
+      "destination": "/calculators/mortgages-housing/mortgage-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/home-loan-emi-calculator",
+      "destination": "/calculators/mortgages-housing/home-loan-emi-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/mortgage-payoff-calculator",
+      "destination": "/calculators/mortgages-housing/mortgage-payoff-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/rent-vs-buy-calculator",
+      "destination": "/calculators/mortgages-housing/rent-vs-buy-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/property-appreciation-calculator",
+      "destination": "/calculators/mortgages-housing/property-appreciation-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/rental-yield-calculator",
+      "destination": "/calculators/mortgages-housing/rental-yield-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/personal-loan-emi-calculator",
+      "destination": "/calculators/personal-loans-debt/personal-loan-emi-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/education-loan-calculator",
+      "destination": "/calculators/personal-loans-debt/education-loan-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/credit-card-payoff-calculator",
+      "destination": "/calculators/personal-loans-debt/credit-card-payoff-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/debt-consolidation-calculator",
+      "destination": "/calculators/personal-loans-debt/debt-consolidation-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/salary-calculator",
+      "destination": "/calculators/salary-tax/salary-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/take-home-pay-calculator",
+      "destination": "/calculators/salary-tax/take-home-pay-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/income-tax-calculator",
+      "destination": "/calculators/salary-tax/income-tax-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/gst-calculator",
+      "destination": "/calculators/salary-tax/gst-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/vat-calculator",
+      "destination": "/calculators/salary-tax/vat-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/inflation-calculator",
+      "destination": "/calculators/financial-planning/inflation-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/emergency-fund-calculator",
+      "destination": "/calculators/financial-planning/emergency-fund-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/savings-goal-calculator",
+      "destination": "/calculators/financial-planning/savings-goal-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/business-loan-calculator",
+      "destination": "/calculators/business-finance/business-loan-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/startup-burn-rate-calculator",
+      "destination": "/calculators/business-finance/startup-burn-rate-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/break-even-calculator",
+      "destination": "/calculators/business-finance/break-even-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/profit-margin-calculator",
+      "destination": "/calculators/business-finance/profit-margin-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/financial-name-generator",
+      "destination": "/calculators/generators-tools/financial-name-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/bank-name-generator",
+      "destination": "/calculators/generators-tools/bank-name-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/crypto-coin-name-generator",
+      "destination": "/calculators/generators-tools/crypto-coin-name-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/fintech-startup-name-generator",
+      "destination": "/calculators/generators-tools/fintech-startup-name-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/apr-vs-interest-rate",
+      "destination": "/calculators/educational-guides/apr-vs-interest-rate/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/seller-financing-balloons",
+      "destination": "/calculators/educational-guides/seller-financing-balloons/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/zakat-calculation-guide-2026",
+      "destination": "/calculators/educational-guides/zakat-calculation-guide-2026/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/invoice-factoring-rates",
+      "destination": "/calculators/educational-guides/invoice-factoring-rates/",
+      "permanent": true
+    },
+    {
+      "source": "/tool/factory-loan-calculator",
+      "destination": "/calculators/business-commercial/factory-loan-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/guide/:slug",
+      "destination": "/guides/:slug/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
-    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
-    { "source": "/robots.txt", "destination": "/robots.txt" },
-    { "source": "/(.*)", "destination": "/" }
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/ads.txt",
+      "destination": "/ads.txt"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
   ]
 }
